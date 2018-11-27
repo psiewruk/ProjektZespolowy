@@ -4,58 +4,50 @@ import pl.foodtalk.core.exception.ResourceNotFoundException;
 import pl.foodtalk.core.model.Role;
 import pl.foodtalk.core.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class RoleController {
 
     @Autowired
     RoleRepository roleRepository;
 
-    // Get All Notes
     @GetMapping("/roles")
-    public List<Role> getAllUsers() {
-        return roleRepository.findAll();
+    public Page<Role> getAllRoles(Pageable pageable) {
+        return roleRepository.findAll(pageable);
     }
     
-    // Create a new Note
+    @GetMapping("/roles/{roleId}")
+    public Role getRoleById(@PathVariable(value = "roleId") Long roleId) {
+        return roleRepository.findById(roleId)
+                .orElseThrow(() -> new ResourceNotFoundException("RoleId " + roleId + " not found"));
+    }
+
     @PostMapping("/roles")
     public Role createRole(@Valid @RequestBody Role role) {
         return roleRepository.save(role);
     }
-    // Get a Single Note
-    @GetMapping("/roles/{id}")
-    public Role getRoleById(@PathVariable(value = "id") Long roleId) {
-        return roleRepository.findById(roleId)
-                .orElseThrow(() -> new ResourceNotFoundException("Role", "id", roleId));
+
+    @PutMapping("/roles/{roleId}")
+    public Role updateRole(@PathVariable Long roleId, @Valid @RequestBody Role roleRequest) {
+        return roleRepository.findById(roleId).map(role -> {
+            role.setName(roleRequest.getName());
+
+            return roleRepository.save(role);
+        }).orElseThrow(() -> new ResourceNotFoundException("RoleId " + roleId + " not found"));
     }
-    // Update a Note
-    @PutMapping("/roles/{id}")
-    public Role updateRole(@PathVariable(value = "id") Long roleId,
-                                            @Valid @RequestBody Role roleDetails) {
-
-    	Role role = roleRepository.findById(roleId)
-                .orElseThrow(() -> new ResourceNotFoundException("Role", "id", roleId));
-
-    	role.setName(roleDetails.getName());
 
 
-        Role updatedUser = roleRepository.save(role);
-        return updatedUser;
+    @DeleteMapping("/roles/{roleId}")
+    public ResponseEntity<?> deleteRole(@PathVariable Long roleId) {
+        return roleRepository.findById(roleId).map(role -> {
+            roleRepository.delete(role);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("RoleId " + roleId + " not found"));
     }
-    
-    // Delete a User
-    @DeleteMapping("/roles/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long roleId) {
-        Role user = roleRepository.findById(roleId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", roleId));
 
-        roleRepository.delete(user);
-
-        return ResponseEntity.ok().build();
-    }
 }

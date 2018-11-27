@@ -1,63 +1,74 @@
 package pl.foodtalk.core.controller;
 
 import pl.foodtalk.core.exception.ResourceNotFoundException;
+import pl.foodtalk.core.model.Role;
 import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.repository.UserRepository;
+import pl.foodtalk.core.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    // Get All Notes
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @GetMapping("/roles/{roleId}/users")
+    public Page<User> getAllUsersByRoleId(@PathVariable (value = "roleId") Long roleId,
+                                                Pageable pageable) {
+        return userRepository.findByRoleId(roleId, pageable);
     }
     
-    // Create a new Note
-    @PostMapping("/users")
-    public User createUser(@Valid @RequestBody User user) {
-        return userRepository.save(user);
-    }
-    // Get a Single Note
-    @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable(value = "id") Long userId) {
+    @GetMapping("/users/{userId}")
+    public User getUserById(@PathVariable(value = "userId") Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+                .orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
     }
-    // Update a Note
-    @PutMapping("/users/{id}")
-    public User updateUser(@PathVariable(value = "id") Long userId,
-                                            @Valid @RequestBody User userDetails) {
 
-    	User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
-
-    	user.setLogin(userDetails.getLogin());
-    	user.setPassword(userDetails.getPassword());
-    	user.setEmail(userDetails.getEmail());
-    	user.setRole_id(userDetails.getUserRole());
-
-        User updatedUser = userRepository.save(user);
-        return updatedUser;
+    @PostMapping("/roles/{roleId}/users")
+    public User createUser(@PathVariable (value = "roleId") Long roleId,
+                                 @Valid @RequestBody User user) {
+        return roleRepository.findById(roleId).map(role -> {
+            user.setRole(role);
+            return userRepository.save(user);
+        }).orElseThrow(() -> new ResourceNotFoundException("RoleId " + roleId + " not found"));
     }
-    
-    // Delete a User
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
-        userRepository.delete(user);
+    @PutMapping("/roles/{roleId}/users/{userId}")
+    public User updateUser(@PathVariable (value = "roleId") Long roleId,
+                                 @PathVariable (value = "userId") Long userId,
+                                 @Valid @RequestBody User userRequest) {
+        if(!roleRepository.existsById(roleId)) {
+            throw new ResourceNotFoundException("RoleId " + roleId + " not found");
+        }
 
-        return ResponseEntity.ok().build();
+        return userRepository.findById(userId).map(user -> {
+            user.setLogin(userRequest.getLogin());
+            user.setPassword(userRequest.getPassword());
+            user.setEmail(userRequest.getEmail());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+    }
+
+    @DeleteMapping("/roles/{roleId}/users/{userId}")
+    public ResponseEntity<?> deleteUser(@PathVariable (value = "roleId") Long roleId,
+                              @PathVariable (value = "userId") Long userId) {
+        if(!roleRepository.existsById(roleId)) {
+            throw new ResourceNotFoundException("RoleId " + roleId + " not found");
+        }
+
+        return userRepository.findById(userId).map(user -> {
+             userRepository.delete(user);
+             return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
     }
 }
