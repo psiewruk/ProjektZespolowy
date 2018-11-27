@@ -30,7 +30,7 @@ public class User implements Serializable {
     private String email;
 
     @NotBlank
-    private String role_id;
+    private Role role_id;
 
 	/*@Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -74,12 +74,14 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getRole_id() {
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "role")
+	public Role getUserRole() {
 		return role_id;
 	}
 
-	public void setRole_id(String role_id) {
-		this.role_id = role_id;
+	public void setRole_id(Role role) {
+		this.role_id = role;
 	}
 
 	/*public Date getCreatedAt() {
