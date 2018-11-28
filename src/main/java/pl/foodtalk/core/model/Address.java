@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "address")
-
 public class Address extends AuditModel{
 	
 	 @Id
