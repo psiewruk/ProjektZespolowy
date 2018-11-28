@@ -1,7 +1,6 @@
 package pl.foodtalk.core.controller;
 
 import pl.foodtalk.core.exception.ResourceNotFoundException;
-import pl.foodtalk.core.model.Role;
 import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.repository.UserRepository;
 import pl.foodtalk.core.repository.RoleRepository;
@@ -33,6 +32,11 @@ public class UserController {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
     }
+    
+    @GetMapping("/users")
+    public Page<User> getAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
 
     @PostMapping("/roles/{roleId}/users")
     public User createUser(@PathVariable (value = "roleId") Long roleId,
@@ -55,6 +59,17 @@ public class UserController {
             user.setLogin(userRequest.getLogin());
             user.setPassword(userRequest.getPassword());
             user.setEmail(userRequest.getEmail());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+    }
+    
+    @PutMapping("/users/{userId}")
+    public User updateUser(@PathVariable Long userId, @Valid @RequestBody User userRequest) {
+        return userRepository.findById(userId).map(user -> {
+        	user.setLogin(userRequest.getLogin());
+            user.setPassword(userRequest.getPassword());
+            user.setEmail(userRequest.getEmail());
+
             return userRepository.save(user);
         }).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
     }

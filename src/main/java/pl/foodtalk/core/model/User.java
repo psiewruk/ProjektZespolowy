@@ -6,11 +6,12 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "user")
 public class User extends AuditModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -31,7 +32,20 @@ public class User extends AuditModel {
     @JsonIgnore
     private Role role;
     
-    //getters and setters
+    public User(Long id, @NotNull String login, @NotNull String password, @NotNull String email, Role role) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.email = email;
+		this.role = role;
+	}
+
+	public User() {
+		super();
+	}
+
+	//getters and setters
 	public Long getId() {
 		return id;
 	}

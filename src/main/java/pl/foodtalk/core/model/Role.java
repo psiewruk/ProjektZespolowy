@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 @Table(name = "role")
 public class Role extends AuditModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
