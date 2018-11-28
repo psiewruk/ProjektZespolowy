@@ -10,7 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "user")
 public class User extends AuditModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
