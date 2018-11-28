@@ -8,8 +8,10 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "menu")
-public class Menu extends AuditModel {
+@Table(name = "category")
+
+public class Category {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -19,16 +21,16 @@ public class Menu extends AuditModel {
 	private String name;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "restaurant_id", nullable = false)
+	@JoinColumn(name = "menu_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
-	private Restaurant restaurant;
+	private Menu menu;
 
-	public Menu(Long id, @NotNull String name, Restaurant restaurant) {
+	public Category(Long id, @NotNull String name, Menu menu) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.restaurant = restaurant;
+		this.menu = menu;
 	}
 
 	public Long getId() {
@@ -47,11 +49,11 @@ public class Menu extends AuditModel {
 		this.name = name;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
+	public Menu getMenu() {
+		return menu;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 }

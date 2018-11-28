@@ -2,11 +2,8 @@ package pl.foodtalk.core.controller;
 
 import pl.foodtalk.core.exception.ResourceNotFoundException;
 import pl.foodtalk.core.model.Menu;
-import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.repository.MenuRepository;
 import pl.foodtalk.core.repository.RestaurantRepository;
-import pl.foodtalk.core.repository.RoleRepository;
-import pl.foodtalk.core.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
