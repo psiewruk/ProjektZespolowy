@@ -6,7 +6,7 @@ mvn clean  install
 java -jar backend/target/backend-0.0.1-SNAPSHOT.jar
 
 
-2.Do zmiany frontend'a ( tylko ) : (z folderu frontend)
+3. Do zmiany frontend'a ( tylko ) : (z folderu frontend)
 
 npm run dev
 
