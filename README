@@ -1,0 +1,14 @@
+1.Uruchamianie
+
+mvn clean  install
+
+java -jar backend/target/backend-0.0.1-SNAPSHOT.jar
+
+
+2.Do zmiany frontend'a ( tylko ) :
+
+npm run dev
+
+
+Source : 
+https://blog.codecentric.de/en/2018/04/spring-boot-vuejs/
