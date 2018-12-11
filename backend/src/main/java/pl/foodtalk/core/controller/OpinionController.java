@@ -34,6 +34,4 @@ public class OpinionController {
     public Page<Opinion> getAllOpinionsByUserId(@PathVariable(value = "userId") Long userId, Pageable pageable) {
         return opinionRepository.findByUserId(userId, pageable);
     }
-
-
 }
