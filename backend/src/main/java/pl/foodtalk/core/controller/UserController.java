@@ -56,6 +56,7 @@ public class UserController {
 			user.setLogin(userRequest.getLogin());
 			user.setPassword(userRequest.getPassword());
 			user.setEmail(userRequest.getEmail());
+
 			return userRepository.save(user);
 		}).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
 	}
