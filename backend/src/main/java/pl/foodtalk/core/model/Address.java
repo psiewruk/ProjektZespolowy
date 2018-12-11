@@ -18,7 +18,7 @@ public class Address extends AuditModel{
 	    
 	 @NotNull
 	 @Lob
-	 private int number;
+	 private String number;
 	    
 	 @NotNull
 	 @Lob
@@ -28,13 +28,17 @@ public class Address extends AuditModel{
 	 @Lob
 	 private String city;
 
-	 public Address(Long id, @NotNull String street, @NotNull int number, @NotNull String postCode, @NotNull String city) {
+	public Address(Long id, @NotNull String street, @NotNull String number, @NotNull String postCode, @NotNull String city) {
 		super();
 		this.id = id;
 		this.street = street;
 		this.number = number;
 		this.postCode = postCode;
 		this.city = city;
+	}
+
+	public Address() {
+		super();
 	}
 
 	public Long getId() {
@@ -53,11 +57,11 @@ public class Address extends AuditModel{
 		this.street = street;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 

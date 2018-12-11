@@ -50,7 +50,7 @@ public class MenuController {
 
 	    @PutMapping("/restaurants/{restaurantId}/menus/{menuId}")
 	    public Menu updateMenu(@PathVariable (value = "restaurantId") Long restaurantId,
-	                                 @PathVariable (value = "userId") Long menuId,
+	                                 @PathVariable (value = "menuId") Long menuId,
 	                                 @Valid @RequestBody Menu menuRequest) {
 	        if(!restaurantRepository.existsById(restaurantId)) {
 	            throw new ResourceNotFoundException("RestaurantId " + restaurantId + " not found");

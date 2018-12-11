@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "menu")
 public class Menu extends AuditModel {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,6 +31,8 @@ public class Menu extends AuditModel {
 		this.name = name;
 		this.restaurant = restaurant;
 	}
+
+	public Menu() { super();}
 
 	public Long getId() {
 		return id;

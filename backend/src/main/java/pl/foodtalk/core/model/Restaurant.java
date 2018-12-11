@@ -9,7 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "restaurant")
-public class Restaurant {
+public class Restaurant extends AuditModel{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,8 @@ public class Restaurant {
 		this.name = name;
 		this.address = address;
 	}
+
+	public Restaurant() { super(); }
 
 	public Long getId() {
 		return id;
