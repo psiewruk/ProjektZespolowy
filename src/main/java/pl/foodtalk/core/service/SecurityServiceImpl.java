@@ -1,4 +1,4 @@
-package pl.foodtalk.account.service;
+package pl.foodtalk.core.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

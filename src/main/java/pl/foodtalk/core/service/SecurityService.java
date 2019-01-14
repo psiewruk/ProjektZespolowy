@@ -1,4 +1,4 @@
-package pl.foodtalk.account.service;
+package pl.foodtalk.core.service;
 
 public interface SecurityService {
     String findLoggedInUsername();

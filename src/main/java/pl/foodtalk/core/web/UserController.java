@@ -1,9 +1,10 @@
-package pl.foodtalk.account.web;
+package pl.foodtalk.core.web;
 
-import pl.foodtalk.account.model.User;
-import pl.foodtalk.account.service.SecurityService;
-import pl.foodtalk.account.service.UserService;
-import pl.foodtalk.account.validator.UserValidator;
+import pl.foodtalk.core.model.User;
+import pl.foodtalk.core.service.SecurityService;
+import pl.foodtalk.core.service.UserService;
+import pl.foodtalk.core.validator.UserValidator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,10 +55,5 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
-    }
-
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
     }
 }

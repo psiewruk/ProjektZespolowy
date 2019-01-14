@@ -1,7 +1,8 @@
-package pl.foodtalk.account.repository;
+package pl.foodtalk.core.repository;
 
-import pl.foodtalk.account.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import pl.foodtalk.core.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long>{
 }

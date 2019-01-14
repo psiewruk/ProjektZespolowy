@@ -15,7 +15,7 @@
 
     <title>Welcome</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,14 +26,79 @@
 <body>
 <div class="container">
 
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+    <c:if test="${pageContext.request.userPrincipal.name == null}"> 
+    	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+   			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      			<ul class="navbar-nav mr-auto">
+            	<li class="nav-item active">
+             	   <a class="nav-link-dark" href="#">Home</a>
+            	</li>
+        	</ul>
+   	 		</div>
+    		<div class="mx-auto order-0">
+        		<a class="navbar-brand mx-auto" href="#">FoodTalk</a>
+        			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            			<span class="navbar-toggler-icon"></span>
+        			</button>
+    		</div>
+    		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      			<ul class="navbar-nav ml-auto">
+           	 		<li class="nav-item">
+                		<a class="nav-ling" href="/login">Zaloguj sie</a>
+            		</li>
+        		</ul>
+    		</div>
+		</nav>
+    </c:if>
+    
+   <c:if test="${pageContext.request.userPrincipal.name != null}"> 
+  		<form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
-        <h2>Witaj ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-
+    	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+   			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      			<ul class="navbar-nav mr-auto">
+            	<li class="nav-item active">
+             	   <a class="nav-link-dark" href="#">Home</a>
+            	</li>
+        	</ul>
+   	 		</div>
+    		<div class="mx-auto order-0">
+        		<a class="navbar-brand mx-auto" href="#">FoodTalk</a>
+        			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            			<span class="navbar-toggler-icon"></span>
+        			</button>
+    		</div>
+    		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      			<ul class="navbar-nav ml-auto">
+           	 		<li class="nav-item">
+                		<p class="nav-text-dark" style="color: yellow;">${pageContext.request.userPrincipal.name}</p>
+            		</li>
+            		<li class="nav-item">
+                		<a class="nav-link-dark" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer; color:yellow;"> (Logout)</a>
+            		</li>
+        		</ul>
+    		</div>
+		</nav>
     </c:if>
+    
+<h3>Wybierz co chcialbys zjesc: (oczywiscie tu trzeba bedzie ladnie ogarnac w html z obrazkami itd, zczytuje kategorie z bazy elegancko)</h3>
+<c:if test="${!empty listCategories}">
+	<table class="tg">
+	<tr>
+		<th width="80">Category ID</th>
+		<th width="120">Category Name</th>
+	</tr>
+	<c:forEach items="${listCategories}" var="category">
+		<tr>
+			<td>${category.id}</td>
+			<td>${category.name}</td>
+			<!-- <td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td> -->
+		</tr>
+	</c:forEach>
+	</table>
+</c:if>
 
 </div>
 <!-- /container -->

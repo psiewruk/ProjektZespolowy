@@ -1,7 +1,8 @@
-package pl.foodtalk.account.validator;
+package pl.foodtalk.core.validator;
 
-import pl.foodtalk.account.model.User;
-import pl.foodtalk.account.service.UserService;
+import pl.foodtalk.core.model.User;
+import pl.foodtalk.core.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

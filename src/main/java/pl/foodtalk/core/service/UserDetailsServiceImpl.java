@@ -1,8 +1,9 @@
-package pl.foodtalk.account.service;
+package pl.foodtalk.core.service;
 
-import pl.foodtalk.account.model.Role;
-import pl.foodtalk.account.model.User;
-import pl.foodtalk.account.repository.UserRepository;
+import pl.foodtalk.core.model.Role;
+import pl.foodtalk.core.model.User;
+import pl.foodtalk.core.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

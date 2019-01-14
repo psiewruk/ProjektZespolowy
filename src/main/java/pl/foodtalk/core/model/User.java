@@ -1,5 +1,4 @@
-package pl.foodtalk.account.model;
-
+package pl.foodtalk.core.model;
 
 import javax.persistence.*;
 import java.util.Set;
