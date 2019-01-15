@@ -24,7 +24,7 @@ public class DishController {
     @Autowired
     private DishService dishService;
     
-    @RequestMapping(value = {"/category/{cat}"}, method = RequestMethod.GET)
+    /*@RequestMapping(value = {"/category/{cat}"}, method = RequestMethod.GET)
     public String dish(@PathVariable("cat") String cat, Model model) {
     	ArrayList<Restaurant> listRestaurants = new ArrayList<Restaurant>();
     	
@@ -35,5 +35,5 @@ public class DishController {
     	}
 		model.addAttribute("listRestaurants", listRestaurants);
         return "category";
-    }
+    }*/
 }

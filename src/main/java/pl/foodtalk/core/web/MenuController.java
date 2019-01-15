@@ -26,15 +26,10 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping(value = {"/category/restaurant/{res}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/restaurant/{res}"}, method = RequestMethod.GET)
     public String menu(@PathVariable("res") String res, Model model) {
-        ArrayList<Menu> listMenus = new ArrayList<Menu>();
-
         model.addAttribute("menu", new Menu());
-        for(Menu m : this.menuService.findByRestaurantName(res)) {
-            //listMenus.add(m.getRestaurant().getName());
-        }
-        model.addAttribute("listMenus", listMenus);
+        model.addAttribute("listMenus", this.menuService.findByRestaurantName(res));
         return "restaurant";
     }
 }

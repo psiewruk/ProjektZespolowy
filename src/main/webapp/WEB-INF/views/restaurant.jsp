@@ -83,14 +83,14 @@
     </c:if>
     
 <h3>Wybierz restauracje: </h3>
-<c:if test="${!empty listRestaurants}">
+<c:if test="${!empty listMenus}">
 	<table class="tg">
 	<tr>
-		<th width="120">Category Name</th>
+		<th width="120">Menu Name</th>
 	</tr>
-	<c:forEach items="${listRestaurants}" var="restaurant">
+	<c:forEach items="${listMenus}" var="menu">
 		<tr>
-			<td><a href="/restaurant/${restaurant.name}">${restaurant.name}</a></td>
+			<td><a href="/menu/${menut.name}">${menu.name}</a></td>
 			<!-- <td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td> -->
 		</tr>
