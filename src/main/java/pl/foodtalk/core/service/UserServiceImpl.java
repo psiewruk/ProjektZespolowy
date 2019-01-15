@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+	@Autowired
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
@@ -30,10 +30,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-    
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
     }
 }

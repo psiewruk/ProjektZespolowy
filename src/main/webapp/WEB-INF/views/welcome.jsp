@@ -90,7 +90,7 @@
 	</tr>
 	<c:forEach items="${listCategories}" var="category">
 		<tr>
-			<td><a href="/category/${category.id}">${category.name}</a></td>
+			<td><a href="/category/${category.name}">${category.name}</a></td>
 			<!-- <td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td> -->
 		</tr>

@@ -20,8 +20,8 @@ public class DishServiceImpl implements DishService {
     }
     
     @Override
-    public List<Dish> findByCategory_id(long id) {
-       return dishRepository.findByCategory_id(id);
+    public List<Dish> findByCategoryName(String name) {
+       return dishRepository.findByCategoryName(name);
     }
     
     @Override

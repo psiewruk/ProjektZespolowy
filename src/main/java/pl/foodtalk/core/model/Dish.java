@@ -30,7 +30,7 @@ public class Dish {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="category_id")
     public Category getCategory() {
     	return category;
@@ -40,7 +40,7 @@ public class Dish {
     	this.category = category;
     }
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="menu_id")
     public Menu getMenu() {
     	return menu;

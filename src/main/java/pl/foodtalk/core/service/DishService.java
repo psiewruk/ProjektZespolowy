@@ -6,6 +6,6 @@ import pl.foodtalk.core.model.Dish;
 
 public interface DishService {
     void save(Dish dish);
-    List<Dish> findByCategory_id(long id);
+    List<Dish> findByCategoryName(String name);
     List<Dish> findAll();
 }
