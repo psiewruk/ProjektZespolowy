@@ -86,13 +86,11 @@
 <c:if test="${!empty listCategories}">
 	<table class="tg">
 	<tr>
-		<th width="80">Category ID</th>
 		<th width="120">Category Name</th>
 	</tr>
 	<c:forEach items="${listCategories}" var="category">
 		<tr>
-			<td>${category.id}</td>
-			<td>${category.name}</td>
+			<td><a href="/category/${category.id}">${category.name}</a></td>
 			<!-- <td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td> -->
 		</tr>
