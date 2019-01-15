@@ -22,9 +22,9 @@ public class RestaurantController {
     @Autowired
     private DishService dishService;
 
-    @RequestMapping(value = {"/category/{id}"}, method = RequestMethod.GET)
+    /*@RequestMapping(value = {"/category/{id}"}, method = RequestMethod.GET)
     public String category(Model model) {
     	
         return "category";
-    }
+    }*/
 }
