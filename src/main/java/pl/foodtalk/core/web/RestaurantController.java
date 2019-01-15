@@ -1,6 +1,8 @@
 package pl.foodtalk.core.web;
 
 import pl.foodtalk.core.model.Restaurant;
+import pl.foodtalk.core.service.DishService;
+import pl.foodtalk.core.service.MenuService;
 import pl.foodtalk.core.service.RestaurantService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
+    
+    @Autowired
+    private MenuService menuService;
+    
+    @Autowired
+    private DishService dishService;
 
     @RequestMapping(value = {"/category/{id}"}, method = RequestMethod.GET)
     public String category(Model model) {
+    	
         return "category";
     }
 }

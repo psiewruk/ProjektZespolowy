@@ -20,6 +20,11 @@ public class DishServiceImpl implements DishService {
     }
     
     @Override
+    public List<Dish> findByCategoryId(long id) {
+       return dishRepository.findByCategoryId(id);
+    }
+    
+    @Override
     public List<Dish> findAll() {
         return dishRepository.findAll();
     }
