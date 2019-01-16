@@ -30,6 +30,13 @@ public class UserController {
 
         return "registration";
     }
+    
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index(Model model) {
+    	
+        return "index";
+    }
+    
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
