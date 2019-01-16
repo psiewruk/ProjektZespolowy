@@ -29,14 +29,14 @@
 <body>
 
 <div class="container">
-
+	<h2 class="foodTalkHeader">Food&Talk</h2>
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Zaloguj sie</h2>
+        <h2 class="form-signin-heading">Zaloguj sie</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
             <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
+                   />
             <input name="password" type="password" class="form-control" placeholder="Password"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
