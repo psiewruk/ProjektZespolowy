@@ -1,3 +1,6 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%> <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -29,7 +32,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">FoodTalk</a>
+        <a class="navbar-brand js-scroll-trigger" href="${contextPath}/index">FoodTalk</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -37,14 +40,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Więcej</a>
+              <a class="nav-link js-scroll-trigger" href="#about">O co chodzi?</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#projects">Nowości</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#signup">Kontakt</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
             </li>
+            <a class="nav-link js-scroll-trigger" href="${contextPath}/login">Logowanie</a>
           </ul>
         </div>
       </div>
@@ -56,7 +60,7 @@
         <div class="mx-auto text-center">
           <h1 class="mx-auto my-0 text-uppercase">Czas coś zjeść?</h1>
           <h2 class="text-white-50 mx-auto mt-2 mb-5">Kliknij przycisk poniżej. Poszukamy jedzenia razem!</h2>
-          <a href="#about" class="btn btn-primary js-scroll-trigger">Zaczynajmy</a>
+          <a href="${contextPath}/category" class="btn btn-primary js-scroll-trigger">Zaczynajmy</a>
         </div>
       </div>
     </header>
@@ -73,22 +77,10 @@
       </div>
     </section>
 
+
     <!-- Projects Section -->
     <section id="projects" class="projects-section bg-light">
       <div class="container">
-
-        <!--<p> Featured Project Row
-        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div class="col-xl-8 col-lg-7">
-            <img class="img-fluid mb-3 mb-lg-0" src="img/foto.jpg" alt="">
-          </div>
-          <div class="col-xl-4 col-lg-5">
-            <div class="featured-text text-center text-lg-left">
-              <h4>Shoreline</h4>
-              <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
-            </div>
-          </div>
-        </div></p> -->
 
         <!-- Project One Row -->
         <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
@@ -126,8 +118,7 @@
           </div>
         </div>
 
-
-		<!-- Project Tre Row -->
+		<!-- Project Three Row -->
         <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
           <div class="col-lg-6">
             <img class="img-fluid" src="${contextPath}/resources/img/polecamy.png" alt="">
@@ -148,12 +139,13 @@
       </div>
     </section>
 
+
     <!-- Contact Section -->
-    <section class="contact-section bg-black">
+    <section id="contact" class="contact-section bg-black">
       <div class="container">
 
         <div class="row">
-
+        
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
@@ -189,7 +181,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 

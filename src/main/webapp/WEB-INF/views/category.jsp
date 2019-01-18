@@ -1,106 +1,205 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%> <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome</title>
+    <title>FoodTalk</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-<div class="container">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <c:if test="${pageContext.request.userPrincipal.name == null}"> 
-    	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-   			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      			<ul class="navbar-nav mr-auto">
-            	<li class="nav-item active">
-             	   <a class="nav-link-dark" href="#">Home</a>
-            	</li>
-        	</ul>
-   	 		</div>
-    		<div class="mx-auto order-0">
-        		<a class="navbar-brand mx-auto" href="#">FoodTalk</a>
-        			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            			<span class="navbar-toggler-icon"></span>
-        			</button>
-    		</div>
-    		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      			<ul class="navbar-nav ml-auto">
-           	 		<li class="nav-item">
-                		<a class="nav-ling" href="/login">Zaloguj sie</a>
-            		</li>
-        		</ul>
-    		</div>
-		</nav>
-    </c:if>
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+  </head>
+
+  <body id="page-top">
+  
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="${contextPath}/index">FoodTalk</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">O co chodzi?</a>
+            </li>
+            <a class="nav-link js-scroll-trigger" href="${contextPath}/login">Logowanie</a>            
+          </ul>
+        </div>
+      </div>
+    </nav>
     
-   <c:if test="${pageContext.request.userPrincipal.name != null}"> 
-  		<form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-    	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-   			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      			<ul class="navbar-nav mr-auto">
-            	<li class="nav-item active">
-             	   <a class="nav-link-dark" href="#">Home</a>
-            	</li>
-        	</ul>
-   	 		</div>
-    		<div class="mx-auto order-0">
-        		<a class="navbar-brand mx-auto" href="#">FoodTalk</a>
-        			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            			<span class="navbar-toggler-icon"></span>
-        			</button>
-    		</div>
-    		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      			<ul class="navbar-nav ml-auto">
-           	 		<li class="nav-item">
-                		<p class="nav-text-dark" style="color: yellow;">${pageContext.request.userPrincipal.name}</p>
-            		</li>
-            		<li class="nav-item">
-                		<a class="nav-link-dark" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer; color:yellow;"> (Logout)</a>
-            		</li>
-        		</ul>
-    		</div>
-		</nav>
-    </c:if>
-    
-<h3>Wybierz restauracje: </h3>
-<c:if test="${!empty listRestaurants}">
-	<table class="tg">
-	<tr>
-		<th width="120">Category Name</th>
-	</tr>
-	<c:forEach items="${listRestaurants}" var="restaurant">
-		<tr>
-			<td><a href="/restaurant/${restaurant.name}">${restaurant.name}</a></td>
-			<!-- <td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td> -->
-		</tr>
-	</c:forEach>
-	</table>
-</c:if>
+     <!-- About Section -->
+    <section id="about" class="about-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-white mb-4">Na co masz ochotę?</h2>
+            <p class="text-white-50">Po wybraniu interesującego Cię dania poprostu kliknij w nie! ;)</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-</body>
+    <!-- Category menu one -->
+    <section id="contact" class="contact-section bg-black">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/burgery.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/pizze.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/kebaby.jpg" alt="">
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+	<!-- Category menu two -->
+    <section id="contact" class="contact-section bg-black">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/Tortilla.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/lasagne.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/makaron.jpg" alt="">
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Category menu three -->
+    <section id="contact" class="contact-section bg-black">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/salatki.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/kanapki.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/sushi.jpg" alt="">
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+    
+        <!-- Category menu four -->
+    <section id="contact" class="contact-section bg-black">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/pierogi.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/nalesniki.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/zupy.jpg" alt="">
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black small text-center text-white-50">
+      <div class="container">
+        &copy; 2019 FoodTalk
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+
+  </body>
 </html>

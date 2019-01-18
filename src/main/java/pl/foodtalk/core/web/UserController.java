@@ -37,7 +37,18 @@ public class UserController {
         return "index";
     }
     
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public String category(Model model) {
+    	
+        return "category";
+    }
 
+    @RequestMapping(value = "/restaurant", method = RequestMethod.GET)
+    public String restaurant(Model model) {
+    	
+        return "restaurant";
+    }
+    
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
