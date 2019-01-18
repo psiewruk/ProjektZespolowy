@@ -20,4 +20,11 @@ public class CategoryController {
 		model.addAttribute("listCategories", this.categoryService.findAll());
         return "welcome";
     }
+    
+    @RequestMapping(value = {"/catNew"}, method = RequestMethod.GET)
+    public String catTest(Model model) {
+    	model.addAttribute("category", new Category());
+		model.addAttribute("listCategories", this.categoryService.findAll());
+        return "catNew";
+    }
 }
