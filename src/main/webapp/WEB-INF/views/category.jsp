@@ -54,7 +54,7 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-white mb-4">Na co masz ochotę?</h2>
-            <p class="text-white-50">Po wybraniu interesującego Cię dania poprostu kliknij w nie! ;)</p>
+            <p class="text-white-50">Po wybraniu interesującego Ciebie dania poprostu kliknij je! ;)</p>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/burgery.jpg" alt="">
+           <a href="${contextPath}/restaurantBurger"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/burgery.jpg" alt=""></a>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/pizze.jpg" alt="">
+            <a href="${contextPath}/restaurantPizza"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/pizze.jpg" alt="">
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/kebaby.jpg" alt="">
+            <a href="${contextPath}/restaurantKebab"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/kebaby.jpg" alt="">
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/Tortilla.jpg" alt="">
+            <a href="${contextPath}/restaurantTortilla"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/Tortilla.jpg" alt="">
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/lasagne.jpg" alt="">
+            <a href="${contextPath}/restaurantLasagne"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/lasagne.jpg" alt="">
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/makaron.jpg" alt="">
+            <a href="${contextPath}/restaurantMakaron"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/makaron.jpg" alt="">
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/salatki.jpg" alt="">
+            <a href="${contextPath}/restaurantSalatki"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/salatki.jpg" alt="">
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/kanapki.jpg" alt="">
+            <a href="${contextPath}/restaurantKanapki"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/kanapki.jpg" alt="">
               </div>
             </div>
           </div>
@@ -146,7 +146,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/sushi.jpg" alt="">
+            <a href="${contextPath}/restaurantSushi"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/sushi.jpg" alt="">
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/pierogi.jpg" alt="">
+            <a href="${contextPath}/restaurantPierogi"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/pierogi.jpg" alt="">
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/nalesniki.jpg" alt="">
+            <a href="${contextPath}/restaurantNalesniki"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/nalesniki.jpg" alt="">
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-            <img class="img-fluid" src="${contextPath}/resources/img/kategorie/zupy.jpg" alt="">
+            <a href="${contextPath}/restaurantZupy"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/zupy.jpg" alt="">
               </div>
             </div>
           </div>

@@ -43,10 +43,76 @@ public class UserController {
         return "category";
     }
 
-    @RequestMapping(value = "/restaurant", method = RequestMethod.GET)
-    public String restaurant(Model model) {
+    @RequestMapping(value = "/restaurantBurger", method = RequestMethod.GET)
+    public String restaurantBurger(Model model) {
     	
-        return "restaurant";
+        return "restaurantBurger";
+    }
+    
+    @RequestMapping(value = "/restaurantPizza", method = RequestMethod.GET)
+    public String restaurantPizza(Model model) {
+    	
+        return "restaurantPizza";
+    }
+    
+    @RequestMapping(value = "/restaurantKebab", method = RequestMethod.GET)
+    public String restaurantKebab(Model model) {
+    	
+        return "restaurantKebab";
+    }
+    
+    @RequestMapping(value = "/restaurantTortilla", method = RequestMethod.GET)
+    public String restaurantTortilla(Model model) {
+    	
+        return "restaurantTortilla";
+    }
+    
+    @RequestMapping(value = "/restaurantLasagne", method = RequestMethod.GET)
+    public String restaurantLasagne(Model model) {
+    	
+        return "restaurantLasagne";
+    }
+    
+    @RequestMapping(value = "/restaurantMakaron", method = RequestMethod.GET)
+    public String restaurantMakaron(Model model) {
+    	
+        return "restaurantMakaron";
+    }
+    
+    @RequestMapping(value = "/restaurantSalatki", method = RequestMethod.GET)
+    public String restaurantSalatki(Model model) {
+    	
+        return "restaurantSalatki";
+    }
+    
+    @RequestMapping(value = "/restaurantKanapki", method = RequestMethod.GET)
+    public String restaurantKanapki(Model model) {
+    	
+        return "restaurantKanapki";
+    }
+    
+    @RequestMapping(value = "/restaurantSushi", method = RequestMethod.GET)
+    public String restaurantSushi(Model model) {
+    	
+        return "restaurantSushi";
+    }
+    
+    @RequestMapping(value = "/restaurantPierogi", method = RequestMethod.GET)
+    public String restaurantPierogi(Model model) {
+    	
+        return "restaurantPierogi";
+    }
+    
+    @RequestMapping(value = "/restaurantNalesniki", method = RequestMethod.GET)
+    public String restaurantNalesniki(Model model) {
+    	
+        return "restaurantNalesniki";
+    }
+    
+    @RequestMapping(value = "/restaurantZupy", method = RequestMethod.GET)
+    public String restaurantZupy(Model model) {
+    	
+        return "restaurantZupy";
     }
     
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
