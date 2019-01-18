@@ -16,3 +16,7 @@
 
 ## Poradnik
 https://hellokoding.com/registration-and-login-example-with-spring-xml-configuration-maven-jsp-and-mysql/
+
+
+## Bootstrap 
+https://startbootstrap.com/template-overviews/grayscale/
