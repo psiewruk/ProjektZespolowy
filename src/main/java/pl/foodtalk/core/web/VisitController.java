@@ -13,7 +13,7 @@ public class VisitController {
     @Autowired
     private VisitService visitService;
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "/visit", method = RequestMethod.POST)
     public String visit(@ModelAttribute("visitForm") Visit visitForm, BindingResult bindingResult, Model model) {
         visitService.save(visitForm);
 
