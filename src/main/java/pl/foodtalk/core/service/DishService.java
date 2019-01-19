@@ -9,4 +9,5 @@ public interface DishService {
     List<Dish> findByCategoryName(String name);
     List<Dish> findAll();
     List<Dish> findByMenuId(Long id);
+    Dish findById(Long id);
 }

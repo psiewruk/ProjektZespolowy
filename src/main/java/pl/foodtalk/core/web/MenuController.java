@@ -77,7 +77,7 @@ public class MenuController {
         System.out.println(visitForm.getStart_dateString() + "   " + visitForm.getEnd_dateString());
         System.out.println(visitForm.getStart_date() + "   "+visitForm.getEnd_date());
         
-        return "restaurant";
+        return "redirect:/restaurant/"+res;
 	}
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)

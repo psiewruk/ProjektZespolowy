@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ManagementController {
@@ -45,21 +46,8 @@ public class ManagementController {
     @Autowired
     private VisitService visitService;
 
-    @RequestMapping(value = {"/management"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/manage"}, method = RequestMethod.GET)
     public String management(Model model, Authentication authentication) {
-    	
-    	/*HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
-    	model.addAttribute("dish", new Dish());
-    	model.addAttribute("menu", new Menu());
-    	model.addAttribute("visitForm", new Visit());
-    	model.addAttribute("restaurant", restaurantService.findByName(res));
-    
-    	for(Menu m : this.menuService.findByRestaurantName(res))
-    		menuMap.put(m, this.dishService.findByMenuId(m.getId()));
-    
-        model.addAttribute("menuMap", menuMap);
-
-        return "restaurant";*/
     	
     	HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
     	model.addAttribute("dish", new Dish());
@@ -74,20 +62,29 @@ public class ManagementController {
     	return "manage";
     }
     
-	/*@RequestMapping(value = "/restaurant/{res}", method = RequestMethod.POST)
-    public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, BindingResult bindingResult, Model model, Authentication authentication) throws ParseException {
-    
-    	DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"); 
+    @RequestMapping(value = {"/manage/editMenu"}, method = RequestMethod.POST)
+    public String editMenu(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("menuId") Long menuId) {
     	
-    	visitForm.setRestaurant(this.restaurantService.findByName(res));
-    	visitForm.setUser(userService.findByUsername(authentication.getName()));
-    	visitForm.setStart_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime()+3600000));
-    	visitForm.setEnd_date(new Date(formatter.parse(visitForm.getEnd_dateString()).getTime()+3600000));
-        visitService.save(visitForm);
-
-        System.out.println(visitForm.getStart_dateString() + "   " + visitForm.getEnd_dateString());
-        System.out.println(visitForm.getStart_date() + "   "+visitForm.getEnd_date());
-        
-        return "restaurant";
-	}*/
+    	Menu menu = menuService.findById(menuId);
+    	menu.setName(newName);
+    	menuService.save(menu);
+    
+    	return "redirect:/manage";
+    }
+    
+    @RequestMapping(value = {"/manage/editDish"}, method = RequestMethod.POST)
+    public String editDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice, 
+    		@RequestParam("newDesc") String newDesc, @RequestParam("dishId") Long dishId) {
+    	
+    	Dish dish = dishService.findById(dishId);
+    	if(newName.length() != 0)
+    		dish.setName(newName);
+    	if(newDesc.length() != 0)
+    		dish.setDescription(newDesc);
+    	if(newPrice != null)
+    		dish.setPrice(newPrice);
+    	dishService.save(dish);
+    
+    	return "redirect:/manage";
+    }
 }

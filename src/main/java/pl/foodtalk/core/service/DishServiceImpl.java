@@ -31,5 +31,10 @@ public class DishServiceImpl implements DishService {
     public void save(Dish dish) {
         dishRepository.save(dish);
     }
+    
+    @Override
+    public Dish findById(Long id) {
+        return dishRepository.findById(id);
+    }
 }
 

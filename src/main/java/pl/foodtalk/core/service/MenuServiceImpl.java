@@ -26,4 +26,14 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> findAll() {
         return menuRepository.findAll();
     }
+    
+    @Override
+    public Menu findByName(String name) {
+        return menuRepository.findByName(name);
+    }
+    
+    @Override
+    public Menu findById(Long id) {
+        return menuRepository.findById(id);
+    }
 }
