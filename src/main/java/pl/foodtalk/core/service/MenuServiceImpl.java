@@ -26,13 +26,4 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> findAll() {
         return menuRepository.findAll();
     }
-
-    @Override
-    public void addMenu(Menu m) { menuRepository.addMenu(m); }
-
-    @Override
-    public void updateMenu(Menu m) { menuRepository.updateMenu(m); }
-
-    @Override
-    public void deleteMenu(int id) { menuRepository.deleteMenu(id); }
 }

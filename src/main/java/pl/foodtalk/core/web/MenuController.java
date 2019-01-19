@@ -86,22 +86,4 @@ public class MenuController {
         model.addAttribute("listMenus", menuService.findAll());
         return "menu";
     }
-
-    @RequestMapping(value="/menu/add", method = RequestMethod.POST)
-    public String addMenu(@ModelAttribute Menu m) {
-        menuService.addMenu(m);
-        return "redirect:/menus";
-    }
-
-    @RequestMapping(value = "/menu/update/", method = RequestMethod.POST)
-    public String updateMenu(@ModelAttribute Menu m) {
-        menuService.updateMenu(m);
-        return "redirect:/menus";
-    }
-
-    @RequestMapping("/delete/{id}")
-    public String deleteMenu(@PathVariable("id") int id) {
-        menuService.deleteMenu(id);
-        return "redirect:/menus";
-    }
 }

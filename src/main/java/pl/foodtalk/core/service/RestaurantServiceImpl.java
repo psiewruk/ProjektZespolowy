@@ -23,7 +23,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant findByName(String name) {
         return restaurantRepository.findByName(name);
     }
-    
+
     @Override
     public Restaurant findByUserUsername(String name) {
     	return restaurantRepository.findByUserUsername(name);
@@ -33,13 +33,4 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<Restaurant> findAll() {
         return restaurantRepository.findAll();
     }
-
-    @Override
-    public void addRestaurant(Restaurant r) { restaurantRepository.addRestaurant(r);}
-
-    @Override
-    public void updateRestaurant(Restaurant r) { restaurantRepository.updateRestaurant(r);}
-
-    @Override
-    public void deleteRestaurant(int id) { restaurantRepository.deleteRestaurant(id);}
 }
