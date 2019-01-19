@@ -1,5 +1,6 @@
 package pl.foodtalk.core.web;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Menu;
 import pl.foodtalk.core.model.Restaurant;
@@ -23,7 +24,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DishController {
     @Autowired
     private DishService dishService;
-    
+
+    @RequestMapping(value = "/dishes", method = RequestMethod.GET)
+    public String findAll(Model model) {
+        model.addAttribute("dish", new Dish());
+        model.addAttribute("listDishes", dishService.findAll());
+        return "dish";
+    }
+
+    @RequestMapping(value="/dish/add", method = RequestMethod.POST)
+    public String addDish(@ModelAttribute Dish d) {
+        dishService.addDish(d);
+        return "redirect:/dishes";
+    }
+
+    @RequestMapping(value = "/menu/update/", method = RequestMethod.POST)
+    public String updateMenu(@ModelAttribute Dish d) {
+        dishService.updateDish(d);
+        return "redirect:/dishes";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteDish(@PathVariable("id") int id) {
+        dishService.deleteDish(id);
+        return "redirect:/dishes";
+    }
+
     /*@RequestMapping(value = {"/category/{cat}"}, method = RequestMethod.GET)
     public String dish(@PathVariable("cat") String cat, Model model) {
     	ArrayList<Restaurant> listRestaurants = new ArrayList<Restaurant>();

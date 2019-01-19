@@ -28,4 +28,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<Restaurant> findAll() {
         return restaurantRepository.findAll();
     }
+
+    @Override
+    public void addRestaurant(Restaurant r) { restaurantRepository.addRestaurant(r);}
+
+    @Override
+    public void updateRestaurant(Restaurant r) { restaurantRepository.updateRestaurant(r);}
+
+    @Override
+    public void deleteRestaurant(int id) { restaurantRepository.deleteRestaurant(id);}
 }

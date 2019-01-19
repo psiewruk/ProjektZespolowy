@@ -6,4 +6,7 @@ import pl.foodtalk.core.model.Restaurant;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     Restaurant findByName(String name);
+    void addRestaurant(Restaurant r);
+    void updateRestaurant(Restaurant r);
+    void deleteRestaurant(int id);
 }

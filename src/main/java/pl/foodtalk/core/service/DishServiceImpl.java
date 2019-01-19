@@ -1,5 +1,7 @@
 package pl.foodtalk.core.service;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.repository.DishRepository;
 
@@ -8,29 +10,41 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
-
 @Service
 public class DishServiceImpl implements DishService {
     @Autowired
     private DishRepository dishRepository;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public void save(Dish dish) {
         dishRepository.save(dish);
     }
-    
+
     @Override
     public List<Dish> findByCategoryName(String name) {
-       return dishRepository.findByCategoryName(name);
+        return dishRepository.findByCategoryName(name);
     }
-    
+
     @Override
     public List<Dish> findByMenuId(Long id) {
-       return dishRepository.findByMenuId(id);
+        return dishRepository.findByMenuId(id);
     }
-    
+
     @Override
     public List<Dish> findAll() {
         return dishRepository.findAll();
     }
+
+    @Override
+    public void addDish(Dish d) { dishRepository.addDish(d); }
+
+    @Override
+    public void updateDish(Dish d) { dishRepository.updateDish(d); }
+
+    @Override
+    public void deleteDish(int id) { dishRepository.deleteDish(id);}
 }
+

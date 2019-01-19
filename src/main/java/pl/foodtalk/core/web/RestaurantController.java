@@ -1,5 +1,6 @@
 package pl.foodtalk.core.web;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.service.DishService;
@@ -32,6 +33,31 @@ public class RestaurantController {
     	}
 		model.addAttribute("listRestaurants", listRestaurants);
         return "restaurants";
+    }
+
+    @RequestMapping(value = "/restaurants", method = RequestMethod.GET)
+    public String findAll(Model model) {
+        model.addAttribute("restaurant", new Restaurant());
+        model.addAttribute("listRestaurants", restaurantService.findAll());
+        return "restaurant";
+    }
+
+    @RequestMapping(value="/restaurant/add", method = RequestMethod.POST)
+    public String addRestaurant(@ModelAttribute Restaurant r) {
+        restaurantService.addRestaurant(r);
+        return "redirect:/restaurants";
+    }
+
+    @RequestMapping(value = "/restaurant/update/", method = RequestMethod.POST)
+    public String updateRestaurant(@ModelAttribute Restaurant r) {
+        restaurantService.updateRestaurant(r);
+        return "redirect:/restaurants";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteRestaurant(@PathVariable("id") int id) {
+        restaurantService.deleteRestaurant(id);
+        return "redirect:/restaurants";
     }
     
     /*@RequestMapping(value = {"/restaurant/{name}"}, method = RequestMethod.GET)

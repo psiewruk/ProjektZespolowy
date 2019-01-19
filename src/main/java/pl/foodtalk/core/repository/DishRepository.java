@@ -9,4 +9,7 @@ import pl.foodtalk.core.model.Dish;
 public interface DishRepository extends JpaRepository<Dish, Long>{
 	List<Dish> findByCategoryName(String name);
 	List<Dish> findByMenuId(Long id);
+	void addDish(Dish d);
+	void updateDish(Dish d);
+	void deleteDish(int id);
 }

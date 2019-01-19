@@ -23,11 +23,16 @@ public class VisitController {
     @Autowired
     private RestaurantService restaurantService;
 
+<<<<<<< HEAD
    /* @RequestMapping(value = "/restaurant/{name}", method = RequestMethod.POST)
     public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("name") String name, BindingResult bindingResult, Model model, Authentication authentication) {
     
     	visitForm.setRestaurant(this.restaurantService.findByName(name));
     	visitForm.setUser(this.userService.findByUsername(authentication.getName()));
+=======
+    @RequestMapping(value = "/visit", method = RequestMethod.POST)
+    public String visit(@ModelAttribute("visitForm") Visit visitForm, BindingResult bindingResult, Model model) {
+>>>>>>> e33f0db985680b2d69c66f48e7f28a8dce52b75c
         visitService.save(visitForm);
 
         return "redirect:/restaurant";
