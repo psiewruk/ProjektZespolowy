@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface MenuRepository extends JpaRepository<Menu, Long>{
     List<Menu> findByRestaurantName(String name);
+    void addMenu(Menu m);
+    void updateMenu(Menu m);
+    void deleteMenu(int id);
 }
