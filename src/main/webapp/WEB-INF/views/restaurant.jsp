@@ -85,6 +85,22 @@
     </c:forEach>
 </c:if>
 
+<form method="POST" action="${contextPath}/visit" class="form-signin">
+        <h2 class="form-signin-heading">Dodaj wizytę</h2>
+
+        <div class="form-group ${error != null ? 'has-error' : ''}">
+            <span>${message}</span>
+            <input name="description" type="text" class="form-control" placeholder="Opis"/>
+            <input name="start_date" type="datetime-local" class="form-control" placeholder="Początek"/>
+            <input name="start_date" type="datetime-local" class="form-control" placeholder="Koniec"/>
+            <span>${error}</span>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Dodaj</button>
+        </div>
+
+    </form>
+
     <!-- Footer -->
     <footer class="bg-black small text-center text-white-50">
       <div class="container">

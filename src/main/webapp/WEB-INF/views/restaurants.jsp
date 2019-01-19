@@ -70,7 +70,7 @@
           <a href="/restaurant/${restaurant.name}"><img class="img-fluid mb-3 mb-lg-0" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt=""></a>
           </div>
         <div class="col-xl-4 col-lg-5">
-           <a href="/restaurants/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
+           <a href="/restaurant/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
               <h4>${restaurant.name}</h4>
               <p class="text-black-50 mb-0">${restaurant.description}</p>
             </div></a>
