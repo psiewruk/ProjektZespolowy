@@ -1,8 +1,10 @@
 package pl.foodtalk.core.web;
 
+import pl.foodtalk.core.model.Category;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Menu;
 import pl.foodtalk.core.model.Visit;
+import pl.foodtalk.core.service.CategoryService;
 import pl.foodtalk.core.service.DishService;
 import pl.foodtalk.core.service.MenuService;
 import pl.foodtalk.core.service.RestaurantService;
@@ -45,6 +47,9 @@ public class ManagementController {
     
     @Autowired
     private VisitService visitService;
+    
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = {"/manage"}, method = RequestMethod.GET)
     public String management(Model model, Authentication authentication) {
@@ -58,9 +63,14 @@ public class ManagementController {
     		menuMap.put(m, dishService.findByMenuId(m.getId()));
     	
     	model.addAttribute("menuMap", menuMap);
+    	model.addAttribute("listCategories", categoryService.findAll());
     	
     	return "manage";
     }
+    
+    //
+    //ZARZADZANIE MENU
+    //
     
     @RequestMapping(value = {"/manage/editMenu"}, method = RequestMethod.POST)
     public String editMenu(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("menuId") Long menuId) {
@@ -71,6 +81,27 @@ public class ManagementController {
     
     	return "redirect:/manage";
     }
+    
+    @RequestMapping(value = {"/manage/deleteMenu"}, method = RequestMethod.POST)
+    public String deleteMenu(Model model, Authentication authentication, @RequestParam("menuId") Long menuId) {
+    	
+    	menuService.deleteById(menuId);
+    
+    	return "redirect:/manage";
+    }
+    
+    @RequestMapping(value = {"/manage/addMenu"}, method = RequestMethod.POST)
+    public String addMenu(Model model, Authentication authentication, @RequestParam("menuName") String menuName) {
+    	
+    	Menu menu = new Menu(menuName, restaurantService.findByUserUsername(authentication.getName()));
+    	menuService.save(menu);
+    
+    	return "redirect:/manage";
+    }
+    
+    //
+    //ZARZADZANIE DISH
+    //
     
     @RequestMapping(value = {"/manage/editDish"}, method = RequestMethod.POST)
     public String editDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice, 
@@ -84,6 +115,26 @@ public class ManagementController {
     	if(newPrice != null)
     		dish.setPrice(newPrice);
     	dishService.save(dish);
+    
+    	return "redirect:/manage";
+    }
+    
+    @RequestMapping(value = {"/manage/addDish"}, method = RequestMethod.POST)
+    public String addDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice, 
+    		@RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId) {
+    	
+    	Menu menu = menuService.findById(menuId);
+    	
+    	Dish dish = new Dish(newPrice, newName, newDesc, categoryService.findById(categoryId), menuService.findById(menuId));
+    	dishService.save(dish);
+    
+    	return "redirect:/manage";
+    }
+    
+    @RequestMapping(value = {"/manage/deleteDish"}, method = RequestMethod.POST)
+    public String deleteDish(Model model, Authentication authentication, @RequestParam("dishId") Long dishId) {
+    	
+    	dishService.deleteById(dishId);
     
     	return "redirect:/manage";
     }

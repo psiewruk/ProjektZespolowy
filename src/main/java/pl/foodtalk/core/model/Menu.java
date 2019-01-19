@@ -8,8 +8,18 @@ public class Menu {
     private Long id;
     private String name;
     private Restaurant restaurant;
+    
+    public Menu() {
+		super();
+	}
 
-    @Id
+	public Menu(String name, Restaurant restaurant) {
+		super();
+		this.name = name;
+		this.restaurant = restaurant;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;

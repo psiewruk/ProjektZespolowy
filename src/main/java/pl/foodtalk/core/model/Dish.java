@@ -12,7 +12,22 @@ public class Dish {
     private Category category;
     private Menu menu;
 
-    @Id
+     
+    
+    public Dish() {
+		super();
+	}
+
+	public Dish(Float price, String name, String description, Category category, Menu menu) {
+		super();
+		this.price = price;
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.menu = menu;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;

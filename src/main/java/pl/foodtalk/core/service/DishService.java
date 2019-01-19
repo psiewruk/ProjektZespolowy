@@ -10,4 +10,5 @@ public interface DishService {
     List<Dish> findAll();
     List<Dish> findByMenuId(Long id);
     Dish findById(Long id);
+    Long deleteById(Long id);
 }

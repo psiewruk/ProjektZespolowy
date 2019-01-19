@@ -10,4 +10,5 @@ public interface MenuService {
     List<Menu> findAll();
     Menu findByName(String name);
     Menu findById(Long id);
+    Long deleteById(Long id);
 }

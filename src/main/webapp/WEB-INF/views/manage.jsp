@@ -13,7 +13,13 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-white mb-4">Panel zarządzania restauracją ${restaurant.name}</h2>
-            <p class="text-white-50"></p>
+            <p class="text-white-50"><button onclick='hideForm("addMenu")'>Dodaj menu</button>
+            <form id="addMenu" method="POST" action="manage/addMenu" style="display:none;">
+            	<input type="text" name="menuName">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<input type="submit" value="Dodaj">
+			</form>
+            </p>
           </div>
         </div>
       </div>
@@ -24,14 +30,36 @@
 <c:if test="${!empty menuMap}">
 	<c:forEach items="${menuMap}" var="map" varStatus="stat">
 	<section id="contact" class="contact-section bg-black">
-	<h1>Menu: ${map.key.name} - <button onclick='hideForm("${map.key.name}")'>Edit</button></h1>
-	<form id="${map.key.name}" method="POST" action="manage/editMenu" style="display:none">
+	<h1>Menu: ${map.key.name} - 
+	<button onclick='hideForm("${map.key.name}edit")'>Zmien nazwe</button>
+	<button onclick='hideForm("${map.key.name}add")'>Dodaj danie</button>
+	<form id="${map.key.name}del" method="POST" action="manage/deleteMenu">
+		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+		<input type="hidden"  name="menuId" value="${map.key.id}"/>
+		<input type="submit" value="Usuń">
+	</form>
+	</h1>
+	<form id="${map.key.name}edit" method="POST" action="manage/editMenu" style="display:none">
 		<input type="text" name="newName" placeholder="Nowa nazwa"/>
 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 		<input type="hidden"  name="menuId" value="${map.key.id}"/>
 		<input type="submit">
 	</form>
-	
+	<form id="${map.key.name}add" method="POST" action="manage/addDish" style="display:none">
+		<input type="text" name="newName" placeholder="Nazwa" required/>
+		<input type="text" name="newDesc" placeholder="Opis" required/>
+		<input type="text" name="newPrice" placeholder="Cena" required/>
+		<select name="cat">
+		<c:if test="${!empty listCategories}">
+			<c:forEach items="${listCategories}" var="category">
+   				 <option value="${category.id}">${category.name}</option>
+    		</c:forEach>
+   		 </c:if>
+  		</select>
+		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+		<input type="hidden"  name="menuId" value="${map.key.id}"/>
+		<input type="submit">
+	 </form>
 		<c:forEach items="${map.value}" var="dish" varStatus="stat">
 		  <div class="container">
 			<div class="row">
@@ -42,9 +70,14 @@
 					<h3>${dish.name}</h3>
 					<p>${dish.description}</p>
 					<p>${dish.price}</p>
-					<button onclick='hideForm("${dish.name}")'>Edit</button>
+					<button onclick='hideForm("${dish.name}edit")'>Edit</button>
+					<form id="${map.key.name}del" method="POST" action="manage/deleteDish">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="dishId" value="${dish.id}"/>
+						<input type="submit" value="Usuń">
+					</form>
 				  </div>
-				  <form id="${dish.name}" method="POST" action="manage/editDish" style="display:none">
+				  <form id="${dish.name}edit" method="POST" action="manage/editDish" style="display:none">
 					<input type="text" name="newName" placeholder="Nowa nazwa"/>
 					<input type="text" name="newDesc" placeholder="Nowy opis"/>
 					<input type="text" name="newPrice" placeholder="Nowa cena"/>

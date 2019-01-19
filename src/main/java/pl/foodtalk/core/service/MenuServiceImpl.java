@@ -36,4 +36,9 @@ public class MenuServiceImpl implements MenuService {
     public Menu findById(Long id) {
         return menuRepository.findById(id);
     }
+    
+    @Override
+    public Long deleteById(Long id) {
+        return menuRepository.deleteById(id);
+    }
 }
