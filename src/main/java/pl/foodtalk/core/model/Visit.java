@@ -10,6 +10,8 @@ public class Visit {
     private String description;
     private Date start_date;
     private Date end_date;
+    private String start_dateString;
+    private String end_dateString;
     private User user;
     private Restaurant restaurant;
 
@@ -64,4 +66,23 @@ public class Visit {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
+    @Transient
+	public String getStart_dateString() {
+		return start_dateString;
+	}
+
+	public void setStart_dateString(String start_dateString) {
+		this.start_dateString = start_dateString;
+	}
+
+	@Transient
+	public String getEnd_dateString() {
+		return end_dateString;
+	}
+
+	public void setEnd_dateString(String end_dateString) {
+		this.end_dateString = end_dateString;
+	}
+    
 }

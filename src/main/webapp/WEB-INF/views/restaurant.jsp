@@ -5,49 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%> <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>FoodTalk</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
-  </head>
-
-  <body id="page-top">
-  
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="${contextPath}/index">FoodTalk</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">O co chodzi?</a>
-            </li>
-            <a class="nav-link js-scroll-trigger" href="${contextPath}/login">Logowanie</a>            
-          </ul>
-        </div>
-      </div>
-    </nav>
+<jsp:include page="navPage.jsp"></jsp:include>
     
      <!-- About Section -->
     <section id="about" class="about-section text-center">
@@ -84,39 +42,32 @@
 		</section>
     </c:forEach>
 </c:if>
+  <c:if test="${pageContext.request.userPrincipal.name != null}">
+    <form:form method="POST" modelAttribute="visitForm" class="form-signin">
+        <h2 class="form-signin-heading">Stwórz wizytę</h2>
+        <spring:bind path="start_dateString">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="datetime-local" path="start_dateString" class="form-control" placeholder="Start"
+                            autofocus="true"></form:input>
+                <form:errors path="start_dateString"></form:errors>
+            </div>
+        </spring:bind>
 
-<form method="POST" action="${contextPath}/visit" class="form-signin">
-        <h2 class="form-signin-heading">Dodaj wizytę</h2>
+        <spring:bind path="end_dateString">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="datetime-local" path="end_dateString" class="form-control" placeholder="End"></form:input>
+                <form:errors path="end_dateString"></form:errors>
+            </div>
+        </spring:bind>
 
-        <div class="form-group ${error != null ? 'has-error' : ''}">
-            <span>${message}</span>
-            <input name="description" type="text" class="form-control" placeholder="Opis"/>
-            <input name="start_date" type="datetime-local" class="form-control" placeholder="Początek"/>
-            <input name="start_date" type="datetime-local" class="form-control" placeholder="Koniec"/>
-            <span>${error}</span>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <spring:bind path="description">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="description" class="form-control" placeholder="Opis"></form:input>
+                <form:errors path="description"></form:errors>
+            </div>
+        </spring:bind>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Dodaj</button>
-        </div>
-
-    </form>
-
-    <!-- Footer -->
-    <footer class="bg-black small text-center text-white-50">
-      <div class="container">
-        &copy; 2019 FoodTalk
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="${contextPath}/resources/js/grayscale.min.js"></script>
-
-  </body>
-</html>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Stwórz</button>
+    </form:form>
+  </c:if>
+<jsp:include page="footer.jsp"></jsp:include>
