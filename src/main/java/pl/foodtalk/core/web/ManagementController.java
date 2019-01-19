@@ -1,0 +1,93 @@
+package pl.foodtalk.core.web;
+
+import pl.foodtalk.core.model.Dish;
+import pl.foodtalk.core.model.Menu;
+import pl.foodtalk.core.model.Visit;
+import pl.foodtalk.core.service.DishService;
+import pl.foodtalk.core.service.MenuService;
+import pl.foodtalk.core.service.RestaurantService;
+import pl.foodtalk.core.service.UserService;
+import pl.foodtalk.core.service.VisitService;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class ManagementController {
+
+    @Autowired
+    private MenuService menuService;
+    
+    @Autowired
+    private DishService dishService;
+    
+    @Autowired
+    private RestaurantService restaurantService;
+    
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private VisitService visitService;
+
+    @RequestMapping(value = {"/management"}, method = RequestMethod.GET)
+    public String management(Model model, Authentication authentication) {
+    	
+    	/*HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
+    	model.addAttribute("dish", new Dish());
+    	model.addAttribute("menu", new Menu());
+    	model.addAttribute("visitForm", new Visit());
+    	model.addAttribute("restaurant", restaurantService.findByName(res));
+    
+    	for(Menu m : this.menuService.findByRestaurantName(res))
+    		menuMap.put(m, this.dishService.findByMenuId(m.getId()));
+    
+        model.addAttribute("menuMap", menuMap);
+
+        return "restaurant";*/
+    	
+    	HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
+    	model.addAttribute("dish", new Dish());
+    	model.addAttribute("menu", new Menu());
+    	model.addAttribute("restaurant", restaurantService.findByUserUsername(authentication.getName()));
+    	
+    	for(Menu m : menuService.findByRestaurantName(restaurantService.findByUserUsername(authentication.getName()).getName()))
+    		menuMap.put(m, dishService.findByMenuId(m.getId()));
+    	
+    	model.addAttribute("menuMap", menuMap);
+    	
+    	return "manage";
+    }
+    
+	/*@RequestMapping(value = "/restaurant/{res}", method = RequestMethod.POST)
+    public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, BindingResult bindingResult, Model model, Authentication authentication) throws ParseException {
+    
+    	DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"); 
+    	
+    	visitForm.setRestaurant(this.restaurantService.findByName(res));
+    	visitForm.setUser(userService.findByUsername(authentication.getName()));
+    	visitForm.setStart_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime()+3600000));
+    	visitForm.setEnd_date(new Date(formatter.parse(visitForm.getEnd_dateString()).getTime()+3600000));
+        visitService.save(visitForm);
+
+        System.out.println(visitForm.getStart_dateString() + "   " + visitForm.getEnd_dateString());
+        System.out.println(visitForm.getStart_date() + "   "+visitForm.getEnd_date());
+        
+        return "restaurant";
+	}*/
+}

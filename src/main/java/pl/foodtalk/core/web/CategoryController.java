@@ -16,8 +16,6 @@ public class CategoryController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-    	model.addAttribute("category", new Category());
-		model.addAttribute("listCategories", this.categoryService.findAll());
         return "welcome";
     }
     

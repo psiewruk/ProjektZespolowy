@@ -25,6 +25,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
     
     @Override
+    public Restaurant findByUserUsername(String name) {
+    	return restaurantRepository.findByUserUsername(name);
+    }
+    
+    @Override
     public List<Restaurant> findAll() {
         return restaurantRepository.findAll();
     }
