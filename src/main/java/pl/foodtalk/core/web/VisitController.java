@@ -23,7 +23,6 @@ public class VisitController {
     @Autowired
     private RestaurantService restaurantService;
 
-<<<<<<< HEAD
    /* @RequestMapping(value = "/restaurant/{name}", method = RequestMethod.POST)
     public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("name") String name, BindingResult bindingResult, Model model, Authentication authentication) {
     

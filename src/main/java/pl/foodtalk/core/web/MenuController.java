@@ -1,9 +1,7 @@
 package pl.foodtalk.core.web;
 
-import org.springframework.web.bind.annotation.*;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Menu;
-import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.Visit;
 import pl.foodtalk.core.service.DishService;
 import pl.foodtalk.core.service.MenuService;
@@ -14,26 +12,20 @@ import pl.foodtalk.core.service.VisitService;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-=======
->>>>>>> e33f0db985680b2d69c66f48e7f28a8dce52b75c
 
 @Controller
 public class MenuController {
@@ -62,18 +54,14 @@ public class MenuController {
     	model.addAttribute("visitForm", new Visit());
     	model.addAttribute("restaurant", restaurantService.findByName(res));
     
-<<<<<<< HEAD
     	for(Menu m : this.menuService.findByRestaurantName(res))
-=======
-    	for(Menu m : this.menuService.findByRestaurantName(res)) {
->>>>>>> e33f0db985680b2d69c66f48e7f28a8dce52b75c
     		menuMap.put(m, this.dishService.findByMenuId(m.getId()));
     
         model.addAttribute("menuMap", menuMap);
 
         return "restaurant";
     }
-<<<<<<< HEAD
+
     
 	@RequestMapping(value = "/restaurant/{res}", method = RequestMethod.POST)
     public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, BindingResult bindingResult, Model model, Authentication authentication) throws ParseException {
@@ -90,7 +78,7 @@ public class MenuController {
         System.out.println(visitForm.getStart_date() + "   "+visitForm.getEnd_date());
         
         return "restaurant";
-=======
+	}
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
     public String findAll(Model model) {
@@ -115,6 +103,5 @@ public class MenuController {
     public String deleteMenu(@PathVariable("id") int id) {
         menuService.deleteMenu(id);
         return "redirect:/menus";
->>>>>>> e33f0db985680b2d69c66f48e7f28a8dce52b75c
     }
 }
