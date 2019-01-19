@@ -49,4 +49,22 @@ public class Dish {
     public void setMenu(Menu menu) {
     	this.menu = menu;
     }
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+    
+    
 }

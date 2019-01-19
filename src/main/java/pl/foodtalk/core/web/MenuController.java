@@ -9,6 +9,7 @@ import pl.foodtalk.core.service.MenuService;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -25,11 +26,28 @@ public class MenuController {
 
     @Autowired
     private MenuService menuService;
+    
+    @Autowired
+    private DishService dishService;
 
     @RequestMapping(value = {"/restaurant/{res}"}, method = RequestMethod.GET)
     public String menu(@PathVariable("res") String res, Model model) {
+    	
+    	HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
+    	model.addAttribute("dish", new Dish());
+    
+    	for(Menu m : this.menuService.findByRestaurantName(res)) {
+    		//model.addAttribute("listMenu"+m.getId(), this.dishService.findByMenuId(m.getId()));
+    		menuMap.put(m, this.dishService.findByMenuId(m.getId()));
+    	}
+    	
         model.addAttribute("menu", new Menu());
         model.addAttribute("listMenus", this.menuService.findByRestaurantName(res));
+        model.addAttribute("menuMap", menuMap);
+        
+
         return "restaurant";
+    	
+    	
     }
 }

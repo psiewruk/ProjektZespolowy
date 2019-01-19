@@ -25,6 +25,11 @@ public class DishServiceImpl implements DishService {
     }
     
     @Override
+    public List<Dish> findByMenuId(Long id) {
+       return dishRepository.findByMenuId(id);
+    }
+    
+    @Override
     public List<Dish> findAll() {
         return dishRepository.findAll();
     }

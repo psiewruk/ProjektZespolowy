@@ -21,10 +21,10 @@ public class CategoryController {
         return "welcome";
     }
     
-    @RequestMapping(value = {"/catNew"}, method = RequestMethod.GET)
-    public String catTest(Model model) {
+    @RequestMapping(value = {"/category"}, method = RequestMethod.GET)
+    public String category(Model model) {
     	model.addAttribute("category", new Category());
 		model.addAttribute("listCategories", this.categoryService.findAll());
-        return "catNew";
+        return "category";
     }
 }

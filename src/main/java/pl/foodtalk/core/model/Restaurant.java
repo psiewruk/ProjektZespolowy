@@ -8,6 +8,7 @@ public class Restaurant {
     private Long id;
     private String name;
     private Address address;
+    private String description;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,4 +37,12 @@ public class Restaurant {
     public void setAddress(Address address) {
     	this.address = address;
     }
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
