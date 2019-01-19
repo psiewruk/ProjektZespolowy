@@ -8,6 +8,7 @@ public class Restaurant {
     private Long id;
     private String name;
     private Address address;
+    private User user;
     private String description;
 
     @Id
@@ -37,6 +38,12 @@ public class Restaurant {
     public void setAddress(Address address) {
     	this.address = address;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 
 	public String getDescription() {
 		return description;
