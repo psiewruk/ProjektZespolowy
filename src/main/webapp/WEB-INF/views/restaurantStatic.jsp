@@ -32,7 +32,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="${contextPath}/index">FoodTalk</a>
+        <a class="navbar-brand js-scroll-trigger" href="${contextPath}/">FoodTalk</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -59,23 +59,7 @@
       </div>
     </section>
 
+<jsp:include page="contact.jsp"></jsp:include>
 
-    <!-- Footer -->
-    <footer class="bg-black small text-center text-white-50">
-      <div class="container">
-        &copy; 2019 FoodTalk
-      </div>
-    </footer>
+<jsp:include page="footer.jsp"></jsp:include>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="${contextPath}/resources/js/grayscale.min.js"></script>
-
-  </body>
-</html>
