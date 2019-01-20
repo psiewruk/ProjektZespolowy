@@ -39,7 +39,7 @@ public class Restaurant {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="address_id")
     public Address getAddress() {
     	return address;
@@ -49,7 +49,7 @@ public class Restaurant {
     	this.address = address;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     public User getUser() { return user; }
 

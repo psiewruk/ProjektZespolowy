@@ -90,15 +90,27 @@ public class AdminController {
 
     @RequestMapping(value = {"/admin/editRestaurant"}, method = RequestMethod.POST)
     public String editRestaurant(Model model, Authentication authentication,@RequestParam("restaurantId") Long restaurantId,
-                                 @RequestParam("newName") String newName, @RequestParam("newDesc") String newDesc) {
+                                 @RequestParam("newName") String newName, @RequestParam("newDesc") String newDesc,
+                                 @RequestParam("newStreet") String newStreet, @RequestParam("newNumber") String newNumber,
+                                 @RequestParam("newCode") String newCode, @RequestParam("newCity") String newCity) {
 
         Restaurant restaurant = restaurantService.findById(restaurantId);
+        Address address = restaurant.getAddress();
 
         if(newName.length() != 0)
             restaurant.setName(newName);
         if(newDesc.length() != 0)
             restaurant.setDescription(newDesc);
+        if(newStreet.length() != 0)
+            address.setStreet(newStreet);
+        if(newNumber.length() != 0)
+            address.setNumber(newNumber);
+        if(newCode.length() != 0)
+            address.setPost_code(newCode);
+        if(newCity.length() != 0)
+            address.setCity(newCity);
 
+        addressService.save(address);
         restaurantService.save(restaurant);
 
         return "redirect:/admin";
