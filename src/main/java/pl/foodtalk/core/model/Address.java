@@ -11,7 +11,17 @@ public class Address {
     private String post_code;
     private String city;
 
-    @Id
+	public Address() { super(); }
+
+	public Address(String street, String number, String post_code, String city) {
+		super();
+		this.street = street;
+		this.number = number;
+		this.post_code = post_code;
+		this.city = city;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;

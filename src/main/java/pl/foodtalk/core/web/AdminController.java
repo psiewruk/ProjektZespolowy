@@ -44,7 +44,7 @@ public class AdminController {
 
     //ZARZĄDZANIE KATEGORIAMI
 
-    @RequestMapping(value = {"admin/addCategory"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/admin/addCategory"}, method = RequestMethod.POST)
     public String addCategory(Model model, @RequestParam("categoryName") String categoryName) {
         Category category = new Category(categoryName);
         categoryService.save(category);
@@ -55,13 +55,15 @@ public class AdminController {
     @RequestMapping(value = {"/admin/editCategory"}, method = RequestMethod.POST)
     public String editCategory(Model model, @RequestParam("newName") String newName, @RequestParam("categoryId") Long categoryId) {
         Category category = categoryService.findById(categoryId);
-        category.setName(newName);
+
+        if(newName.length() != 0)
+            category.setName(newName);
         categoryService.save(category);
 
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"admin/deleteCategory"})
+    @RequestMapping(value = {"/admin/deleteCategory"})
     public String deleteCategory(Model model, @RequestParam("categoryId") Long categoryId) {
         categoryService.deleteById(categoryId);
 
@@ -70,13 +72,15 @@ public class AdminController {
 
     //ZARZĄDZANIE RESTAURACJAMI
 
-    @RequestMapping(value = {"admin/addRestaurant"}, method = RequestMethod.POST)
-    public String addRestaurant(Model model, Authentication authentication, @RequestParam("name") String name,
-                                @RequestParam("desc") String desc, @RequestParam("address") Long addressId,
-                                @RequestParam("user") Long userId) {
+    @RequestMapping(value = {"/admin/addRestaurant"}, method = RequestMethod.POST)
+    public String addRestaurant(Model model, Authentication authentication, @RequestParam("restaurantName") String name,
+                                @RequestParam("desc") String desc, @RequestParam("street") String street,
+                                @RequestParam("number") String number, @RequestParam("code") String code,
+                                @RequestParam("city") String city,@RequestParam("username") String username) {
 
-        Address address = addressService.findById(addressId);
-        User user = userService.findById(userId);
+        Address address = new Address(street,number,code,city);
+        addressService.save(address);
+        User user = userService.findByUsername(username);
 
         Restaurant restaurant = new Restaurant(name,address,user,desc);
         restaurantService.save(restaurant);
@@ -84,24 +88,25 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"admin/editRestaurant"}, method = RequestMethod.POST)
-    public String editRestaurant(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId,
-                                 @RequestParam("newName") String newName, @RequestParam("newDesc") String newDesc,
-                                 @RequestParam("newAddress") Long addressId, @RequestParam("newUser") Long userId) {
+    @RequestMapping(value = {"/admin/editRestaurant"}, method = RequestMethod.POST)
+    public String editRestaurant(Model model, Authentication authentication,@RequestParam("restaurantId") Long restaurantId,
+                                 @RequestParam("newName") String newName, @RequestParam("newDesc") String newDesc) {
+
         Restaurant restaurant = restaurantService.findById(restaurantId);
 
         if(newName.length() != 0)
             restaurant.setName(newName);
         if(newDesc.length() != 0)
             restaurant.setDescription(newDesc);
-        restaurant.setAddress(addressService.findById(addressId));
-        restaurant.setUser(userService.findById(userId));
+
+        restaurantService.save(restaurant);
 
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"admin/deleteRestaurant"})
-    public String deleteRestaurant(Model model, @RequestParam("restaurantId") Long restaurantId) {
+    @RequestMapping(value = {"/admin/deleteRestaurant"})
+    public String deleteRestaurant(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId) {
+
         restaurantService.deleteById(restaurantId);
 
         return "redirect:/admin";
