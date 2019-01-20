@@ -9,4 +9,6 @@ public interface RestaurantService {
     Restaurant findByName(String name);
     Restaurant findByUserUsername(String name);
     List<Restaurant> findAll();
+    Long deleteById(Long id);
+    Restaurant findById(Long id);
 }
