@@ -14,11 +14,6 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
-    }
-    
     @RequestMapping(value = {"/category"}, method = RequestMethod.GET)
     public String category(Model model) {
     	model.addAttribute("category", new Category());

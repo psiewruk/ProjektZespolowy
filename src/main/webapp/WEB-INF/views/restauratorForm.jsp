@@ -19,26 +19,27 @@
       </div>
     </section>
     
-<c:if test="${!empty listRestaurants}">
   	<section id="projects" class="projects-section bg-light">
   	<div class="container">
-	<c:forEach items="${listRestaurants}" var="restaurant">
 	  <div class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-8 col-lg-7">
-          <a href="/restaurant/${restaurant.name}"><img class="img-fluid mb-3 mb-lg-0" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt=""></a>
+          <form action="/restauratorForm" method="POST" id="appForm" class="form-signin">
+          	<input type="text" name="name" placeholder="Nazwa restauracji"/>
+          	<input type="text" name="description" placeholder="Kilka zdań o restauracji">
+          	<br>
+            <input type="text" name="street" placeholder="Ulica"/>
+            <input type="text" name="number" placeholder="Numer budynku/lokalu"/>
+            <input type="text" name="postcode" placeholder="Kod pocztowy"/>
+            <input type="text" name="city" placeholder="Miasto"/>
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            <input type="submit" value="Wyślij wniosek"/>
+          </form>
           </div>
         <div class="col-xl-4 col-lg-5">
-           <a href="/restaurant/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
-              <h4>${restaurant.name}</h4>
-              <p class="text-black-50 mb-0">${restaurant.description}</p>
-            </div></a>
+           
           </div>
         </div>
-    </c:forEach>
     </div>
     </section>
-</c:if>
-
-<jsp:include page="contact.jsp"></jsp:include>
 
 <jsp:include page="footer.jsp"></jsp:include>
