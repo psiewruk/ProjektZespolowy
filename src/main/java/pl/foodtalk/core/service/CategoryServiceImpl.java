@@ -1,6 +1,7 @@
 package pl.foodtalk.core.service;
 
 import pl.foodtalk.core.model.Category;
+import pl.foodtalk.core.model.CategoryIMG;
 import pl.foodtalk.core.repository.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +19,28 @@ public class CategoryServiceImpl implements CategoryService {
     public void save(Category category) {
         categoryRepository.save(category);
     }
-
-    @Override
-    public Category findByName(String name) {
-        return categoryRepository.findByName(name);
-    }
     
     @Override
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
-    
-    @Override
-    public Category findById(Long id) {
-    	return categoryRepository.findById(id);
-    }
 
     @Override
-    public Long deleteById(Long id) { return categoryRepository.deleteById(id); }
+    public Long deleteById(Long id) { 
+    	return categoryRepository.deleteById(id); }
+
+	@Override
+	public Category findByName(String name) {
+		return categoryRepository.findByName(name);
+	}
+
+	@Override
+	public Category findById(Long id) {
+		return categoryRepository.findById(id);
+	}
+	
+	@Override
+	public byte[] findImgById(Long id) {
+		return categoryRepository.findImgById(id);
+	}
 }

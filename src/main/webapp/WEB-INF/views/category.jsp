@@ -50,12 +50,12 @@
             <c:if test="${pageContext.request.userPrincipal.name == null}">
             	<a class="nav-link js-scroll-trigger" href="${contextPath}/login">Logowanie</a>
             </c:if>
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
+              <c:if test="${pageContext.request.userPrincipal.name != null}">
             	<form id="logoutForm" method="POST" action="${contextPath}/logout">
             		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         		</form>
         		<a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Logout</a>
-        	</c:if>
+        	  </c:if>
             </li>
           </ul>
         </div>
@@ -74,7 +74,7 @@
       </div>
     </section>
     
-<c:if test="${!empty listCategories}">
+  <c:if test="${!empty listCategories}">
 	<c:set var="listSize" value="${fn:length(listCategories)}"/>
 	<c:forEach items="${listCategories}" var="category" varStatus="stat">
 	  <c:choose>
@@ -85,7 +85,10 @@
 			  <div class="col-md-4 mb-3 mb-md-0">
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center">
-					<a href="/restaurants/${category.name}"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/${category.name}.jpg" alt="" /></a>
+					<a href="/restaurants/${category.name}">
+					<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
+					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
+					
 				  </div>
 				</div>
 			  </div>
@@ -95,7 +98,9 @@
           <div class="col-md-4 mb-3 mb-md-0">
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
-				<a href="/restaurants/${category.name}"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/${category.name}.jpg" alt="" /></a>
+				<a href="/restaurants/${category.name}">
+				<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
+					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
@@ -107,7 +112,10 @@
           <div class="col-md-4 mb-3 mb-md-0">
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
-				<a href="/restaurants/${category.name}"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/${category.name}.jpg" alt="" /></a>
+				<a href="/restaurants/${category.name}">
+				<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
+					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" />
+				</a>
 			  </div>
 			</div>
 		  </div>
@@ -122,14 +130,16 @@
           <div class="col-md-4 mb-3 mb-md-0">
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
-				<a href="/restaurants/${category.name}"><img class="img-fluid" src="${contextPath}/resources/img/kategorie/${category.name}.jpg" alt="" /></a>
+				<a href="/restaurants/${category.name}">
+				<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
+					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
         </c:otherwise>
       </c:choose>
     </c:forEach>
-</c:if>
+  </c:if>
 
 <jsp:include page="contact.jsp"></jsp:include>
 

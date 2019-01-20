@@ -67,9 +67,9 @@
 			  </div>
 			</div>
 		  </div>
-		  </c:if>
 		</c:forEach>
 		</section>
+		</c:if>
     </c:forEach>
 </c:if>
 

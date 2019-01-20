@@ -3,23 +3,20 @@ package pl.foodtalk.core.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "categoryIMG")
+public class CategoryIMG {
     private Long id;
     private String name;
-    private byte[] image;
-
-    public Category() { super(); }
-
-    public Category(String name, byte[] image) {
-        super();
-        this.name = name;
-        this.image = image;
-    }
+    private byte[] img;
+    private String encoded;
     
-    public Category(String name) {
+
+    public CategoryIMG() { super(); }
+
+    public CategoryIMG(String name, byte[] img) {
         super();
         this.name = name;
+        this.img = img;
     }
 
     @Id
@@ -40,11 +37,20 @@ public class Category {
         this.name = name;
     }
 
-	public byte[] getImage() {
-		return image;
+	public byte[] getImg() {
+		return img;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setImg(byte[] img) {
+		this.img = img;
+	}
+	
+	@Transient
+	public String getEncoded() {
+		return encoded;
+	}
+
+	public void setEncoded(String encoded) {
+		this.encoded = encoded;
 	}
 }

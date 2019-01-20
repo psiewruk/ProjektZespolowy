@@ -10,4 +10,5 @@ public interface CategoryService {
     List<Category> findAll();
     Category findById(Long id);
     Long deleteById(Long id);
+    byte[] findImgById(Long id);
 }
