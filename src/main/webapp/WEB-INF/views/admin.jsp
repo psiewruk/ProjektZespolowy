@@ -71,6 +71,11 @@
         	<form id="${restaurant}edit" method="POST" action="admin/editRestaurant" style="display:none">
             	<input type="text" name="newName" placeholder="Nowa nazwa"/>
                 <input type="text" name="newDesc" placeholder="Opis">
+                <br>Adres: </br>
+                <input type="text" name="newStreet" placeholder="Ulica">
+                <input type="text" name="newNumber" placeholder="Numer">
+                <input type="text" name="newCode" placeholder="Kod pocztowy">
+                <input type="text" name="newCity" placeholder="Miasto">
             	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             	<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
             	<input type="submit">
