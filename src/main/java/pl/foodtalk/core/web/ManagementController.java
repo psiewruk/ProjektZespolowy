@@ -57,11 +57,12 @@ public class ManagementController {
 		HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
 		model.addAttribute("dish", new Dish());
 		model.addAttribute("menu", new Menu());
-		model.addAttribute("restaurant", restaurantService.findByUserUsername(authentication.getName()));
-
-		for(Menu m : menuService.findByRestaurantName(restaurantService.findByUserUsername(authentication.getName()).getName()))
-			menuMap.put(m, dishService.findByMenuId(m.getId()));
-
+		
+		if(restaurantService.findByUserUsername(authentication.getName()) != null) {
+			for(Menu m : menuService.findByRestaurantName(restaurantService.findByUserUsername(authentication.getName()).getName()))
+				menuMap.put(m, dishService.findByMenuId(m.getId()));
+			model.addAttribute("restaurant", restaurantService.findByUserUsername(authentication.getName()));
+		}
 		model.addAttribute("menuMap", menuMap);
 		model.addAttribute("listCategories", categoryService.findAll());
 
