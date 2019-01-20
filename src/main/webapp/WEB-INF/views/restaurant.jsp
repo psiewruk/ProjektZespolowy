@@ -50,6 +50,7 @@
 <c:if test="${!empty menuMap}">
 	<c:set var="listSize" value="${fn:length(listCategories)}"/>
 	<c:forEach items="${menuMap}" var="map" varStatus="stat">
+	<c:if test="${!empty map.value}">
 	<section id="contact" class="contact-section bg-black">
 	<h1>Menu: ${map.key.name}</h1>
 		<c:forEach items="${map.value}" var="dish" varStatus="stat">
@@ -66,6 +67,7 @@
 			  </div>
 			</div>
 		  </div>
+		  </c:if>
 		</c:forEach>
 		</section>
     </c:forEach>

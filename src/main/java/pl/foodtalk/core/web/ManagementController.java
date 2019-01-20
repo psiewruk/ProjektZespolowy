@@ -1,20 +1,12 @@
 package pl.foodtalk.core.web;
 
-import pl.foodtalk.core.model.Category;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Menu;
-import pl.foodtalk.core.model.Visit;
 import pl.foodtalk.core.service.CategoryService;
 import pl.foodtalk.core.service.DishService;
 import pl.foodtalk.core.service.MenuService;
 import pl.foodtalk.core.service.RestaurantService;
-import pl.foodtalk.core.service.UserService;
-import pl.foodtalk.core.service.VisitService;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,9 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,12 +31,6 @@ public class ManagementController {
 
 	@Autowired
 	private RestaurantService restaurantService;
-
-	@Autowired
-	private UserService userService;
-
-	@Autowired
-	private VisitService visitService;
 
 	@Autowired
 	private CategoryService categoryService;
@@ -123,8 +107,6 @@ public class ManagementController {
 	@RequestMapping(value = {"/manage/addDish"}, method = RequestMethod.POST)
 	public String addDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
 						  @RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId) {
-
-		Menu menu = menuService.findById(menuId);
 
 		Dish dish = new Dish(newPrice, newName, newDesc, categoryService.findById(categoryId), menuService.findById(menuId));
 		dishService.save(dish);
