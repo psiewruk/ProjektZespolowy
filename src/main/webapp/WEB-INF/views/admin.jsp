@@ -70,15 +70,15 @@
         	<button onclick='hideForm("${restaurant}delete")'>Usuń</button>
         	<form id="${restaurant}edit" method="POST" action="admin/editRestaurant" style="display:none">
             	<input type="text" name="newName" placeholder="Nowa nazwa"/>
-                <input type="text" name="desc" placeholder="Opis">
+                <input type="text" name="newDesc" placeholder="Opis">
             	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             	<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
             	<input type="submit">
             </form>
             <form id="${restaurant}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
-            	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-            	<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-            	Jesteś pewny? <input type="submit" value="Usuń">
+                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+                Jesteś pewny? <input type="submit" value="Usuń">
             </form>
     </c:forEach>
 </c:if>

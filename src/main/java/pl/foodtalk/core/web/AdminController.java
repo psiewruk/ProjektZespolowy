@@ -44,7 +44,7 @@ public class AdminController {
 
     //ZARZĄDZANIE KATEGORIAMI
 
-    @RequestMapping(value = {"admin/addCategory"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/admin/addCategory"}, method = RequestMethod.POST)
     public String addCategory(Model model, @RequestParam("categoryName") String categoryName) {
         Category category = new Category(categoryName);
         categoryService.save(category);
@@ -63,7 +63,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"admin/deleteCategory"})
+    @RequestMapping(value = {"/admin/deleteCategory"})
     public String deleteCategory(Model model, @RequestParam("categoryId") Long categoryId) {
         categoryService.deleteById(categoryId);
 
@@ -72,7 +72,7 @@ public class AdminController {
 
     //ZARZĄDZANIE RESTAURACJAMI
 
-    @RequestMapping(value = {"admin/addRestaurant"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/admin/addRestaurant"}, method = RequestMethod.POST)
     public String addRestaurant(Model model, Authentication authentication, @RequestParam("restaurantName") String name,
                                 @RequestParam("desc") String desc, @RequestParam("street") String street,
                                 @RequestParam("number") String number, @RequestParam("code") String code,
@@ -88,7 +88,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"admin/editRestaurant"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/admin/editRestaurant"}, method = RequestMethod.POST)
     public String editRestaurant(Model model, Authentication authentication,@RequestParam("restaurantId") Long restaurantId,
                                  @RequestParam("newName") String newName, @RequestParam("newDesc") String newDesc) {
 
@@ -104,8 +104,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"admin/deleteRestaurant"})
-    public String deleteRestaurant(Model model, @RequestParam("restaurantId") Long restaurantId) {
+    @RequestMapping(value = {"/admin/deleteRestaurant"})
+    public String deleteRestaurant(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId) {
+
         restaurantService.deleteById(restaurantId);
 
         return "redirect:/admin";
