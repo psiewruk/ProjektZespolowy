@@ -12,8 +12,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Na co masz ochotę?</h2>
-            <p class="text-white-50">Po wybraniu interesującego Cię dania poprostu kliknij je! ;)</p>
+            <h2 class="text-white mb-4">Wybierz interesującą Cię restaurację!</h2>
+            <p class="text-white-50">Śmiało, nie krępuj się :)</p>
           </div>
         </div>
       </div>
