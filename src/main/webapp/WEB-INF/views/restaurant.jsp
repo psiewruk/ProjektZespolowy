@@ -12,37 +12,13 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Wybierz interesującą Cię restaurację!</h2>
-            <p class="text-white-50">Śmiało, nie krępuj się :)</p>
+            <h2 class="text-white mb-4">Zaloguj się aby umówić się na spotkanie!</h2>
+            <p class="text-white-50">To proste! Zaloguj się do swojego konta aby zorganizować spotkanie :)</p>
           </div>
         </div>
       </div>
     </section>
-    
-<c:if test="${!empty menuMap}">
-	<c:set var="listSize" value="${fn:length(listCategories)}"/>
-	<c:forEach items="${menuMap}" var="map" varStatus="stat">
-	<section id="contact" class="contact-section bg-black">
-	<h1>Menu: ${map.key.name}</h1>
-		<c:forEach items="${map.value}" var="dish" varStatus="stat">
-		  <div class="container">
-			<div class="row">
-			  <div class="col-md-4 mb-3 mb-md-0">
-				<div class="card py-4 h-100">
-				  <img class="img-fluid" src="${contextPath}/resources/img/dania/dishPlaceholder.jpg" alt="" />
-				  <div class="card-body text-center">
-					<h3>${dish.name}</h3>
-					<p>${dish.description}</p>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		</c:forEach>
-		</section>
-    </c:forEach>
-</c:if>
-  <c:if test="${pageContext.request.userPrincipal.name != null}">
+      <c:if test="${pageContext.request.userPrincipal.name != null}">
     <form:form method="POST" modelAttribute="visitForm" class="form-signin">
         <h2 class="form-signin-heading">Stwórz wizytę</h2>
         <spring:bind path="start_dateString">
@@ -70,6 +46,32 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Stwórz</button>
     </form:form>
   </c:if>
+    
+<c:if test="${!empty menuMap}">
+	<c:set var="listSize" value="${fn:length(listCategories)}"/>
+	<c:forEach items="${menuMap}" var="map" varStatus="stat">
+	<section id="contact" class="contact-section bg-black">
+	<h1>Menu: ${map.key.name}</h1>
+		<c:forEach items="${map.value}" var="dish" varStatus="stat">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <img class="img-fluid" src="${contextPath}/resources/img/dania/dishPlaceholder.jpg" alt="" />
+				  <div class="card-body text-center">
+					<h3>${dish.name}</h3>
+					<p>${dish.description}</p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</c:forEach>
+		</section>
+    </c:forEach>
+</c:if>
+
+  
 <jsp:include page="contact.jsp"></jsp:include>
 
 <jsp:include page="footer.jsp"></jsp:include>

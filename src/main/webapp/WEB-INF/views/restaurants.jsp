@@ -39,4 +39,6 @@
     </section>
 </c:if>
 
+<jsp:include page="contact.jsp"></jsp:include>
+
 <jsp:include page="footer.jsp"></jsp:include>
