@@ -11,6 +11,16 @@ public class Restaurant {
     private User user;
     private String description;
 
+    public Restaurant() { super(); }
+
+    public Restaurant(String name, Address address, User user, String description) {
+        super();
+        this.name = name;
+        this.address = address;
+        this.user = user;
+        this.description = description;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {

@@ -8,6 +8,13 @@ public class Category {
     private Long id;
     private String name;
 
+    public Category() { super(); }
+
+    public Category(String name) {
+        super();
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {

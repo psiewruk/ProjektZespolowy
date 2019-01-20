@@ -33,4 +33,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<Restaurant> findAll() {
         return restaurantRepository.findAll();
     }
+
+    @Override
+    public Long deleteById(Long id) { return restaurantRepository.deleteById(id); }
+
+    @Override
+    public Restaurant findById(Long id) { return restaurantRepository.findById(id); }
 }
