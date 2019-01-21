@@ -116,7 +116,7 @@
 			  <div class="container">
 				<div class="row">
 				  <div class="col mb-md-2">
-					<img class="img-fluid" src="${contextPath}/resources/img/dania/dishPlaceholder.jpg" alt="" />
+					<img class="img-fluid" src="${contextPath}/resources/img/dania/dish${dish.id}.jpg" alt="" />
 				  </div>
 				  <div class="col-md-8 mb-md-2">
 				    <div class="card h-100">	
