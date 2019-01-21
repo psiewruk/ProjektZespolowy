@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -69,7 +70,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout, @RequestHeader("Referer") String referer) {
+    public String login(Model model, String error, String logout) {
 
 
         if (error != null)
@@ -89,7 +90,18 @@ public class UserController {
         model.addAttribute("visit", new Visit());
         model.addAttribute("restaurant", new Restaurant());
         model.addAttribute("opinion", new Opinion());
-        model.addAttribute("listVisits", visitService.findByUserId(currentUser.getId()));
+        
+        ArrayList<Visit> prevVisits = new ArrayList<Visit>();
+        ArrayList<Visit> futureVisits = new ArrayList<Visit>();
+        
+        for(Visit v : visitService.findByUserId(currentUser.getId())) {
+        	if(v.getEnd_date().compareTo(new Date())< 0)
+        		prevVisits.add(v);
+        	else  futureVisits.add(v);
+        }
+        
+        model.addAttribute("previousVisits", prevVisits);
+        model.addAttribute("futureVisits", futureVisits);
         model.addAttribute("listOpinions", opinionService.findByUserId(currentUser.getId()));
 
         return ("user");
@@ -106,9 +118,9 @@ public class UserController {
         Visit visit = visitService.findById(visitId);
 
         if (startDateString.length() != 0)
-            visit.setStart_date(new Date(formatter.parse(startDateString).getTime() + 3600000));
+            visit.setStart_date(new Date(formatter.parse(startDateString).getTime()));
         if (endDateString.length() != 0)
-            visit.setEnd_date(new Date(formatter.parse(endDateString).getTime() + 3600000));
+            visit.setEnd_date(new Date(formatter.parse(endDateString).getTime()));
         if (newDesc.length() != 0)
             visit.setDescription(newDesc);
         visitService.save(visit);

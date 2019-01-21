@@ -27,7 +27,7 @@
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
 
-  <body id="page-top">
+  <body id="page-top" scroll="no" style="overflow: hidden">
   
   <div class="mastheada">
   
@@ -79,7 +79,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj!</button><br>
-            <center><h4 class="form-signin-heading color-white"><a href="${contextPath}/registration">Stwórz konto</a></h4></center>
+            <center><h4 class="form-signin-heading"><a href="${contextPath}/registration" style="color: white;">Stwórz konto</a></h4></center>
         </div>
 
     </form>

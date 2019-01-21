@@ -1,7 +1,6 @@
 package pl.foodtalk.core.model;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 
 @Entity
 @Table(name = "opinion")
@@ -13,6 +12,7 @@ public class Opinion {
     private String description;
     private Restaurant restaurant;
     private User user;
+    
 
     public Opinion() { super(); }
 

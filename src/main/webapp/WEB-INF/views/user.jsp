@@ -71,14 +71,14 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Twoje wizyty:</h2>
+            <h2 class="text-white mb-4">Przyszłe wizyty:</h2>
           </div>
         </div>
       </div>
     </section>
     
-<c:if test="${!empty listVisits}">
-	<c:forEach items="${listVisits}" var="visit" varStatus="stat">
+<c:if test="${!empty futureVisits}">
+	<c:forEach items="${futureVisits}" var="visit" varStatus="stat">
 	<section id="contact" class="contact-section bg-black">
 
 		  <div class="container">
@@ -89,20 +89,9 @@
 					<h3>Restauracja: ${visit.restaurant.name}</h3>
 					<p>Rozpoczęcie: ${visit.start_date }</p>
 					<p>Opis: ${visit.description}</p>
-					<button onclick='hideForm("${visit.start_date}addOpinion")'>Dodaj opinię</button>
 					<button onclick='hideForm("${visit.start_date}edit")'>Edytuj</button>
 					<button onclick='hideForm("${visit.start_date}delete")'>Usuń</button>
 					<br></br>
-					<form id="${visit.start_date}addOpinion" method="POST" action="user/addOpinion" style="display:none">
-					    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-					    <input type="hidden" name="opinionId" value="${opinion.id}"/>
-					    <input type="hidden" name="userId" value="${user.id}"/>
-					    <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
-					    <input type="number" name="star" min="0" max="10" placeholder="Ocena"/>
-					    <input type="text" name="name" placeholder="Tytuł"/>
-					    <input type="text" name="desc" placeholder="Opis"/>
-					    <input type="submit" value="Dodaj opinię">
-					</form>
 					<form id="${visit.start_date}edit" method="POST" action="user/editVisit" style="display:none">
 					    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="visitId" value="${visit.id}"/>
@@ -120,8 +109,52 @@
 					<form id="${visit.start_date}delete" method="POST" action="user/deleteVisit" style="display:none">
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="visitId" value="${visit.id}"/>
-                        Jesteś pewny? <input type="submit" value="Usuń">
+                        Jesteś pewny? <input type="submit" value="Odwołaj">
                     </form>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</section>
+    </c:forEach>
+</c:if>
+
+     <!-- About Section -->
+    <section id="about" class="about-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-white mb-4">Zakończone wizyty:</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<c:if test="${!empty previousVisits}">
+	<c:forEach items="${previousVisits}" var="visit" varStatus="stat">
+	<section id="contact" class="contact-section bg-black">
+
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center">
+					<h3>Restauracja: ${visit.restaurant.name}</h3>
+					<p>Rozpoczęcie: ${visit.start_date }</p>
+					<p>Opis: ${visit.description}</p>
+					<button onclick='hideForm("${visit.start_date}addOpinion")'>Dodaj opinię</button>
+					<br></br>
+					<form id="${visit.start_date}addOpinion" method="POST" action="user/addOpinion" style="display:none">
+					    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+					    <input type="hidden" name="opinionId" value="${opinion.id}"/>
+					    <input type="hidden" name="userId" value="${user.id}"/>
+					    <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
+					    <input type="number" name="star" min="0" max="10" placeholder="Ocena"/>
+					    <input type="text" name="name" placeholder="Tytuł"/>
+					    <input type="text" name="desc" placeholder="Opis"/>
+					    <input type="submit" value="Dodaj opinię">
+					</form>
 				  </div>
 				</div>
 			  </div>

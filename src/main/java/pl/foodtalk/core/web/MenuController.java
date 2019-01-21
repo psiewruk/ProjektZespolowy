@@ -70,8 +70,8 @@ public class MenuController {
     	
     	visitForm.setRestaurant(this.restaurantService.findByName(res));
     	visitForm.setUser(this.userService.findByUsername(authentication.getName()));
-    	visitForm.setStart_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime()+3600000));
-    	visitForm.setEnd_date(new Date(formatter.parse(visitForm.getEnd_dateString()).getTime()+3600000));
+    	visitForm.setStart_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime()));
+    	visitForm.setEnd_date(new Date(formatter.parse(visitForm.getEnd_dateString()).getTime()));
         visitService.save(visitForm);
 
         System.out.println(visitForm.getStart_dateString() + "   " + visitForm.getEnd_dateString());

@@ -166,4 +166,28 @@ public class AdminController {
 
         return "redirect:/admin";
     }
+    
+    //ZARZADZANIE WNIOSKAMI
+    @RequestMapping(value = {"/admin/approveApp"}, method = RequestMethod.POST)
+    public String approveApp(Model model, Authentication authentication, @RequestParam("applicationId") Long applicationId) {
+
+        Application app = applicationService.findById(applicationId);
+        
+        Address addr = new Address(app.getStreet(), app.getNumber(), app.getPost_code(), app.getCity());
+        addressService.save(addr);
+        
+        Restaurant res = new Restaurant(app.getName(), addr, app.getUser(), app.getDescription());
+        restaurantService.save(res);
+        
+        return "redirect:/admin";
+    }
+    
+    @RequestMapping(value = {"/admin/discardApp"})
+    public String discardApp(Model model, Authentication authentication, @RequestParam("applicationId") Long applicationId) {
+
+        applicationService.deleteById(applicationId);
+
+        return "redirect:/admin";
+    }
+    
 }
