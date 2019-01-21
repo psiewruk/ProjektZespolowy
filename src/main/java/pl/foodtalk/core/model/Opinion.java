@@ -8,11 +8,21 @@ import java.math.BigInteger;
 public class Opinion {
 
     private Long id;
-    private BigInteger star;
+    private int star;
     private String name;
     private String description;
     private Restaurant restaurant;
     private User user;
+
+    public Opinion() { super(); }
+
+    public Opinion(int star, String name, String description, Restaurant restaurant, User user) {
+        this.star = star;
+        this.name = name;
+        this.description = description;
+        this.restaurant = restaurant;
+        this.user = user;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,9 +30,9 @@ public class Opinion {
 
     public void setId(Long id) { this.id = id; }
 
-    public BigInteger getStar() { return star; }
+    public int getStar() { return star; }
 
-    public void setStar(BigInteger star) { this.star = star; }
+    public void setStar(int star) { this.star = star; }
 
     public String getName() { return name; }
 
