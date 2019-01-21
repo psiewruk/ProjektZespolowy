@@ -27,14 +27,13 @@
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
 
-  <body id="page-top">
+  <body id="page-top" scroll="no" style="overflow: hidden">
   
-  <header class="mastheada">
+  <div class="mastheada">
   
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="${contextPath}/">FoodTalk</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">FoodTalk</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -42,19 +41,27 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
+              <a class="nav-link js-scroll-trigger" href="#about">O co chodzi?</a>
             </li>
             <li class="nav-item">
-            <c:if test="${pageContext.request.userPrincipal.name == null}">
-            	<a class="nav-link js-scroll-trigger" href="${contextPath}/login">Logowanie</a>
-            </c:if>
+              <a class="nav-link js-scroll-trigger" href="#projects">Nowości</a>
+            </li>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
             	<form id="logoutForm" method="POST" action="${contextPath}/logout">
-            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        		</form>
-        		<a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Logout</a>
-        	</c:if>
+         		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    			</form>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
             </li>
+            <li>
+              <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Logout</a>
+            </li>
+            </c:if>
+            <c:if test="${pageContext.request.userPrincipal.name == null}">
+              <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/login">Logowanie</a>
+              </li>
+            </c:if>
           </ul>
         </div>
       </div>
@@ -62,7 +69,7 @@
 
 <div class="container">
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <center><h2 class="form-signin-heading">Zaloguj sie</h2></center>
+        <center><h2 class="form-signin-heading">Zaloguj się</h2></center>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
@@ -72,13 +79,70 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj!</button><br>
-            <center><h4 class="form-signin-heading"><a href="${contextPath}/registration">Stworz konto</a></h4></center>
+            <center><h4 class="form-signin-heading color-white"><a href="${contextPath}/registration">Stwórz konto</a></h4></center>
         </div>
 
     </form>
 
 </div>
-</header>
-<jsp:include page="contact.jsp"></jsp:include>
 
-<jsp:include page="footer.jsp"></jsp:include>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+
+        <div class="row">
+        
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                <h4 class="text-uppercase m-0">Adres</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">Polani 64, Gdańsk</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-envelope text-primary mb-2"></i>
+                <h4 class="text-uppercase m-0">Email</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">
+                  <a href="#">ug@poczta.pl</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-80">
+              <div class="card-body text-center">
+                <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                <h4 class="text-uppercase m-0">Telefon</h4>
+                <hr class="my-4">
+                <div class="small text-black-50">+48 666-232-826</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class=" small text-center text-white">
+        &copy; 2019 FoodTalk
+    </footer>
+
+</div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="${contextPath}/resources/js/grayscale.js"></script>
+  </body>
+</html>
