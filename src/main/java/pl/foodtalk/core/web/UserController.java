@@ -16,6 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class UserController {
     @Autowired
@@ -82,7 +87,26 @@ public class UserController {
     	
     	return("user");
     }
-    
+
+    @RequestMapping(value = {"/user/editVisit"}, method = RequestMethod.POST)
+    public String editVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId,
+                            @RequestParam("newDesc") String newDesc, @RequestParam("start_dateString") String startDateString,
+                            @RequestParam("end_dateString") String endDateString) throws ParseException {
+
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        Visit visit = visitService.findById(visitId);
+
+        if(startDateString.length() != 0)
+            visit.setStart_date(new Date(formatter.parse(startDateString).getTime()+3600000));
+        if(endDateString.length() != 0)
+            visit.setEnd_date(new Date(formatter.parse(endDateString).getTime()+3600000));
+        if(newDesc.length() != 0)
+            visit.setDescription(newDesc);
+        visitService.save(visit);
+
+        return "redirect:/user";
+    }
+
     @RequestMapping(value = {"/user/deleteVisit"})
     public String deleteVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId) {
 

@@ -27,4 +27,7 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public Long deleteById(Long id) { return visitRepository.deleteById(id); }
+
+    @Override
+    public Visit findById(Long id) { return visitRepository.findById(id); }
 }

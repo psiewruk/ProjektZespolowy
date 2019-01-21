@@ -10,4 +10,5 @@ public interface VisitService {
     List<Visit> findByUserId(Long id);
     List<Visit> findAll();
     Long deleteById(Long id);
+    Visit findById(Long id);
 }

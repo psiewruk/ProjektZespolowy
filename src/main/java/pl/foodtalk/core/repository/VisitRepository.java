@@ -13,4 +13,5 @@ public interface VisitRepository extends JpaRepository<Visit, Long>{
     List<Visit> findByUserId(Long id);
     @Transactional
     Long deleteById(Long id);
+    Visit findById(Long id);
 }

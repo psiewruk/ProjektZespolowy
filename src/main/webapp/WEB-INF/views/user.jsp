@@ -104,6 +104,22 @@
 					<p>Opis: ${visit.description}</p>
 					<button onclick='hideForm("${visit.start_date}delete")'>Usuń</button>
 					<button onclick='hideForm("${visit.start_date}edit")'>Edytuj</button>
+					<br></br>
+					<form id="${visit.start_date}edit" method="POST" action="user/editVisit" style="display:none">
+					    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                        <input type="hidden"  name="visitId" value="${visit.id}"/>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <input type="datetime-local" name="start_dateString" class="form-control" placeholder="Start" autofocus="true"></input>
+                            <errors path="start_dateString"><errors>
+                        </div>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <input type="datetime-local" name="end_dateString" class="form-control" placeholder="End"></input>
+                            <errors path="end_dateString"></errors>
+                        </div>
+                        <input type="text" name="newDesc" placeholder="Nowy opis">
+                        <br></br>
+                        <input type="submit" value="Edytuj">
+					</form>
 					<form id="${visit.start_date}delete" method="POST" action="user/deleteVisit" style="display:none">
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="visitId" value="${visit.id}"/>
