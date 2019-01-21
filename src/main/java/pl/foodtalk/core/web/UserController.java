@@ -1,12 +1,16 @@
 package pl.foodtalk.core.web;
 
+import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.User;
+import pl.foodtalk.core.model.Visit;
 import pl.foodtalk.core.service.SecurityService;
 import pl.foodtalk.core.service.UserService;
+import pl.foodtalk.core.service.VisitService;
 import pl.foodtalk.core.validator.UserValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private VisitService visitService;
 
     @Autowired
     private SecurityService securityService;
@@ -65,5 +72,17 @@ public class UserController {
             model.addAttribute("message", "Zostałeś wylogowany.");
 
         return "login";
+    }
+    
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String user(Model model, Authentication auth) {
+    	
+    	User currentUser = userService.findByUsername(auth.getName());
+    	
+    	model.addAttribute("visit", new Visit());
+    	model.addAttribute("restaurant", new Restaurant());
+    	model.addAttribute("listVisits", visitService.findByUserId(currentUser.getId()));
+    	
+    	return("user");
     }
 }
