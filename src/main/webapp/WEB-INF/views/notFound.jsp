@@ -50,7 +50,7 @@
             	<form id="logoutForm" method="POST" action="${contextPath}/logout">
             		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         		</form>
-        		<a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Logout</a>
+        		<a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
         	</c:if>
             </li>
           </ul>

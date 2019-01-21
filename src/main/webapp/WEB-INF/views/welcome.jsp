@@ -51,7 +51,7 @@
               <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
             </li>
             <li>
-              <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Logout</a>
+              <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
             </li>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name == null}">

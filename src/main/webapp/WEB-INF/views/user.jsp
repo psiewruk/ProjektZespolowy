@@ -53,7 +53,7 @@
               <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
             </li>
             <li>
-              <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Logout</a>
+              <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
             </li>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name == null}">
@@ -98,7 +98,6 @@
 			<div class="row">
 			  <div class="col-md-4 mb-3 mb-md-0">
 				<div class="card py-4 h-100">
-				  <img class="img-fluid" src="${contextPath}/resources/img/dania/dishPlaceholder.jpg" alt="" />
 				  <div class="card-body text-center">
 					<h3>Restauracja: ${visit.restaurant.name}</h3>
 					<p>Rozpoczęcie: ${visit.start_date }</p>
