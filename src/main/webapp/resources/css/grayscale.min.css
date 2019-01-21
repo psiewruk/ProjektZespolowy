@@ -169,6 +169,21 @@ background-size: cover;
   color: white;
 }
 
+.btn-primarya {
+  background-color: white;
+  color: black;
+}
+
+.btn-primarya:hover {
+  background-color: white;
+  color: black;
+}
+
+.btn-primarya:focus {
+  background-color: white;
+  color: black;
+}
+
 .btn-primary:active {
   background-color: #467370 !important;
 }

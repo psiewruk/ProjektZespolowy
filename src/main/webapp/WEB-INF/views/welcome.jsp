@@ -71,7 +71,7 @@
         
           <h1 class="mx-auto my-0 text-uppercase text-white">Czas coś zjeść?</h1>
           <h2 class="text-white-50 mx-auto mt-2 mb-5">Kliknij przycisk poniżej aby zacząć swą przygodę!</h2>
-          <a href="${contextPath}/category" class="btn btn-primary js-scroll-trigger">Zaczynajmy</a>
+          <a href="${contextPath}/category" class="btn btn-primarya js-scroll-trigger">Zaczynajmy</a>
         </div>
       </div>
     </header>
