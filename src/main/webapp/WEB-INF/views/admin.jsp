@@ -45,30 +45,31 @@
     <c:forEach items="${listCategories}" var="category" varStatus="stat">
     <section id="contact" class="contact-section bg-black">
     	<h1>Kategoria: ${category.name}
-    	<button onclick='hideForm("${category}edit")'>Edytuj</button>
-    	<button onclick='hideForm("${category}delete")'>Usuń</button>
-    	<form id="${category}edit" method="POST" action="admin/editCategory" style="display:none">
+    	<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
+    	<button onclick='hideForm("${category.name}delete")'>Usuń</button>
+    	<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
         	<input type="text" name="newName" placeholder="Nowa nazwa"/>
         	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         	<input type="hidden"  name="categoryId" value="${category.id}"/>
         	<input type="submit">
         </form>
-        <form id="${category}delete" method="POST" action="admin/deleteCategory" style="display:none">
+        <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
         	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         	<input type="hidden"  name="categoryId" value="${category.id}"/>
         	Jesteś pewny? <input type="submit" value="Usuń">
         </form>
     </c:forEach>
-
+</c:if>
+<c:if test="${!empty listRestaurants}">
     <h2 class="text-white mb-4">Restauracje</h2>
 
     <c:set var="listSize" value="${fn:length(listRestaurants)}"/>
     <c:forEach items="${listRestaurants}" var="restaurant" varStatus="stat">
     <section id="contact" class="contact-section bg-black">
         	<h1>Restauracja: ${restaurant.name}
-        	<button onclick='hideForm("${restaurant}edit")'>Edytuj</button>
-        	<button onclick='hideForm("${restaurant}delete")'>Usuń</button>
-        	<form id="${restaurant}edit" method="POST" action="admin/editRestaurant" style="display:none">
+        	<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
+        	<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+        	<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
             	<input type="text" name="newName" placeholder="Nowa nazwa"/>
                 <input type="text" name="newDesc" placeholder="Opis">
                 <br>Adres: </br>
@@ -80,11 +81,42 @@
             	<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
             	<input type="submit">
             </form>
-            <form id="${restaurant}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
+            <form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
                 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                 <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
                 Jesteś pewny? <input type="submit" value="Usuń">
             </form>
+    </c:forEach>
+</c:if>
+
+<c:if test="${!empty listUsers}">
+    <h2 class="text-white mb-4">Użytkownicy</h2>
+
+    <c:set var="listSize" value="${fn:length(listUsers)}"/>
+    <c:forEach items="${listUsers}" var="user" varStatus="stat">
+    <section id="contact" class="contact-section bg-black">
+        <h1>Użytkonik: ${user.username}</h1>
+        	<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
+        	<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+        <form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
+            <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+            <select name="newRole">
+                <c:if test="${!empty listRoles}">
+					<c:forEach items="${listRoles}" var="role">
+   						 <option value="${role.id}">${role.name}</option>
+    				</c:forEach>
+   				 </c:if>
+   			</select>
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            <input type="hidden"  name="userId" value="${user.id}"/>
+            <input type="submit">
+            </form>
+            <form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
+                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                <input type="hidden"  name="userId" value="${user.id}"/>
+                Jesteś pewny? <input type="submit" value="Usuń">
+            </form>
+           </section>
     </c:forEach>
 </c:if>
 

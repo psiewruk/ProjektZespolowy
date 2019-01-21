@@ -1,6 +1,5 @@
 package pl.foodtalk.core.web;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.service.DishService;
@@ -41,12 +40,4 @@ public class RestaurantController {
         model.addAttribute("listRestaurants", restaurantService.findAll());
         return "restaurant";
     }
-    
-    /*@RequestMapping(value = {"/restaurant/{name}"}, method = RequestMethod.GET)
-    public String restaurant(@PathVariable("name") String name, Model model) {
-    	ArrayList<Restaurant> listRestaurants = new ArrayList<Restaurant>();
-    	
-    	model.addAttribute("restaurant", this.restaurantService.findByName(name));
-        return "restaurant";
-    }*/
 }

@@ -12,4 +12,14 @@ public class MainController {
     public String welcome(Model model) {
         return "welcome";
     }
+    
+    @RequestMapping(value = {"/accessDenied"}, method = RequestMethod.GET)
+    public String accessDenied(Model model) {
+        return "accessDenied";
+    }
+    
+    @RequestMapping(value = {"/notFound"}, method = RequestMethod.GET)
+    public String notFound(Model model) {
+        return "notFound";
+    }
 }

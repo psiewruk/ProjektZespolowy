@@ -1,5 +1,7 @@
 package pl.foodtalk.core.web;
 
+import java.util.HashSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.foodtalk.core.model.Address;
 import pl.foodtalk.core.model.Category;
 import pl.foodtalk.core.model.Restaurant;
+import pl.foodtalk.core.model.Role;
 import pl.foodtalk.core.model.User;
+import pl.foodtalk.core.repository.RoleRepository;
 import pl.foodtalk.core.service.AddressService;
 import pl.foodtalk.core.service.CategoryService;
 import pl.foodtalk.core.service.RestaurantService;
@@ -31,6 +35,8 @@ public class AdminController {
     @Autowired
     private AddressService addressService;
 
+    @Autowired
+    private RoleRepository roleRepository;
 
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String admin(Model model) {
@@ -38,7 +44,11 @@ public class AdminController {
         model.addAttribute("listCategories", this.categoryService.findAll());
         model.addAttribute("restaurant", new Restaurant());
         model.addAttribute("listRestaurants", this.restaurantService.findAll());
-
+        model.addAttribute("user", new User());
+        model.addAttribute("listUsers", userService.findAll());
+        model.addAttribute("role", new Role());
+        model.addAttribute("listRoles", roleRepository.findAll());
+        
         return "admin";
     }
 
@@ -120,6 +130,32 @@ public class AdminController {
     public String deleteRestaurant(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId) {
 
         restaurantService.deleteById(restaurantId);
+
+        return "redirect:/admin";
+    }
+    
+    //ZARZADZANIE UZYTKOWNIKAMI
+    
+    @RequestMapping(value = {"/admin/editUser"}, method = RequestMethod.POST)
+    public String editUser(Model model, Authentication authentication,@RequestParam("userId") Long userId,
+                                 @RequestParam("newUsername") String newUsername, @RequestParam("newRole") Long newRole) {
+
+        User user = userService.findById(userId);
+
+        if(newUsername.length() != 0)
+            user.setUsername(newUsername);
+        if(newRole != null)
+        	user.setRoles(new HashSet<>(roleRepository.findById(newRole)));
+
+        userService.save(user);
+
+        return "redirect:/admin";
+    }
+    
+    @RequestMapping(value = {"/admin/deleteUser"})
+    public String deleteUser(Model model, Authentication authentication, @RequestParam("userId") Long userId) {
+
+        userService.deleteById(userId);
 
         return "redirect:/admin";
     }
