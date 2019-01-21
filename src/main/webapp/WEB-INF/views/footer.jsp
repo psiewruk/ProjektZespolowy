@@ -20,5 +20,3 @@
 
     <!-- Custom scripts for this template -->
     <script src="${contextPath}/resources/js/grayscale.js"></script>
-  </body>
-</html>

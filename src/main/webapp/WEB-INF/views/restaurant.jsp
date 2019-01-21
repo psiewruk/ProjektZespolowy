@@ -27,8 +27,8 @@
     <!-- Custom styles for this template -->
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
-
-  <body id="page-top-login">   
+  <body id="page-top-login">
+  <div class="mastheada">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
@@ -144,7 +144,7 @@
     </section>
 </c:if>
 
-  
+  </div>
 <jsp:include page="contact.jsp"></jsp:include>
 
 <jsp:include page="footer.jsp"></jsp:include>

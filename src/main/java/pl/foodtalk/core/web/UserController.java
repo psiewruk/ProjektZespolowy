@@ -104,6 +104,8 @@ public class UserController {
         model.addAttribute("futureVisits", futureVisits);
         model.addAttribute("listOpinions", opinionService.findByUserId(currentUser.getId()));
 
+        System.out.println(auth.getAuthorities());
+        
         return ("user");
     }
 
@@ -124,6 +126,7 @@ public class UserController {
         if (newDesc.length() != 0)
             visit.setDescription(newDesc);
         visitService.save(visit);
+        
 
         return "redirect:/user";
     }
