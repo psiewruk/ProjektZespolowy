@@ -92,7 +92,7 @@
 <c:if test="${!empty listVisits}">
 	<c:forEach items="${listVisits}" var="visit" varStatus="stat">
 	<section id="contact" class="contact-section bg-black">
-	<h1>Twoje wizyty:</h1>
+	<center><h1>Twoje wizyty:</h1></center>
 
 		  <div class="container">
 			<div class="row">
