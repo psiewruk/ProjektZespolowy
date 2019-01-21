@@ -27,7 +27,7 @@
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
 
-  <body id="page-top" scroll="no" style="overflow: hidden">
+  <body id="page-top">
     
   <div class="mastheada">
   
