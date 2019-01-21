@@ -1,5 +1,6 @@
 package pl.foodtalk.core.web;
 
+import org.springframework.web.bind.annotation.*;
 import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.model.Visit;
@@ -14,10 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
@@ -84,5 +81,13 @@ public class UserController {
     	model.addAttribute("listVisits", visitService.findByUserId(currentUser.getId()));
     	
     	return("user");
+    }
+    
+    @RequestMapping(value = {"/user/deleteVisit"})
+    public String deleteVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId) {
+
+        visitService.deleteById(visitId);
+
+        return "redirect:/user";
     }
 }

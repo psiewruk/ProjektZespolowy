@@ -9,4 +9,5 @@ public interface VisitService {
     List<Visit> findByRestaurantName(String name);
     List<Visit> findByUserId(Long id);
     List<Visit> findAll();
+    Long deleteById(Long id);
 }

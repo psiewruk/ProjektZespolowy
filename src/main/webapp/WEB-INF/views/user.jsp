@@ -102,6 +102,13 @@
 					<h3>Restauracja: ${visit.restaurant.name}</h3>
 					<p>Rozpoczęcie: ${visit.start_date }</p>
 					<p>Opis: ${visit.description}</p>
+					<button onclick='hideForm("${visit.start_date}delete")'>Usuń</button>
+					<button onclick='hideForm("${visit.start_date}edit")'>Edytuj</button>
+					<form id="${visit.start_date}delete" method="POST" action="user/deleteVisit" style="display:none">
+                        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                        <input type="hidden"  name="visitId" value="${visit.id}"/>
+                        Jesteś pewny? <input type="submit" value="Usuń">
+                    </form>
 				  </div>
 				</div>
 			  </div>
