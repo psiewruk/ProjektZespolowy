@@ -84,11 +84,10 @@
 			<div class="row">
 			  <div class="col-md-4 mb-3 mb-md-0">
 				<div class="card py-4 h-100">
-				  <div class="card-body text-center">
+				  <div class="card-body text-center ">
 					<a href="/restaurants/${category.name}">
 					<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
-					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
-					
+					<img class="img-fluid rounded" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
 				  </div>
 				</div>
 			  </div>
@@ -100,7 +99,7 @@
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
 				<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
-					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
+					<img class="img-fluid rounded" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
@@ -114,7 +113,7 @@
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
 				<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
-					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" />
+					<img class="img-fluid rounded" src="data:image/jpeg;base64,${imageVal}" alt="" />
 				</a>
 			  </div>
 			</div>
@@ -132,7 +131,7 @@
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
 				<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
-					<img class="img-fluid" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
+					<img class="img-fluid rounded" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
