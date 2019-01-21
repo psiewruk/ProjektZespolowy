@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.foodtalk.core.model.Address;
+import pl.foodtalk.core.model.Application;
 import pl.foodtalk.core.model.Category;
 import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.Role;
 import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.repository.RoleRepository;
 import pl.foodtalk.core.service.AddressService;
+import pl.foodtalk.core.service.ApplicationService;
 import pl.foodtalk.core.service.CategoryService;
 import pl.foodtalk.core.service.RestaurantService;
 import pl.foodtalk.core.service.UserService;
@@ -37,6 +39,9 @@ public class AdminController {
 
     @Autowired
     private RoleRepository roleRepository;
+    
+    @Autowired
+    private ApplicationService applicationService;
 
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String admin(Model model) {
@@ -48,6 +53,8 @@ public class AdminController {
         model.addAttribute("listUsers", userService.findAll());
         model.addAttribute("role", new Role());
         model.addAttribute("listRoles", roleRepository.findAll());
+        model.addAttribute("application", new Application());
+        model.addAttribute("listApplications", applicationService.findAll());
         
         return "admin";
     }

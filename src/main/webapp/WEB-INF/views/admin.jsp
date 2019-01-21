@@ -178,6 +178,31 @@
     </c:forEach>
 </c:if>
 
+<c:if test="${!empty listApplications}">
+    <h2 class="text-white mb-4">Wnioski o restauratora</h2>
+
+    <c:set var="listSize" value="${fn:length(listApplications)}"/>
+    <c:forEach items="${listApplications}" var="application" varStatus="stat">
+    <section id="contact" class="contact-section bg-black">
+        <h1>Wniosek nr.: ${application.id}</h1>
+        <p>Użytkownik: ${application.user.username}</p>
+        <p>Restauracja: ${application.name}</p>
+        <p>Opis: ${application.description}</p>
+        <p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
+        ${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+        <form id="${application.id}approve" method="POST" action="admin/approveApp" style="display:none">
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            <input type="hidden"  name="applicationId" value="${application.id}"/>
+            <input type="submit" value = "Zatwierdz">
+            </form>
+            <form id="${application.id}delete" method="POST" action="admin/discardApp" style="display:none">
+                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                <input type="hidden"  name="userId" value="${user.id}"/>
+                Jesteś pewny? <input type="submit" value="Odrzuć">
+            </form>
+           </section>
+    </c:forEach>
+</c:if>
 
 
 <script>
