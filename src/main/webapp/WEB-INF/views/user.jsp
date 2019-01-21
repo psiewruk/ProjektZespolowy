@@ -71,19 +71,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-          <c:if test="${!empty restaurant}">
-            <h2 class="text-white mb-4">Panel zarządzania restauracją ${restaurant.name}</h2>
-            <p class="text-white-50"><button onclick='hideForm("addMenu")'>Dodaj menu</button>
-            <form id="addMenu" method="POST" action="manage/addMenu" style="display:none;">
-            	<input type="text" name="menuName">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<input type="submit" value="Dodaj">
-			</form>
-            </p>
-            </c:if>
-            <c:if test="${empty restaurant}">
-            	<h2 class="text-white mb-4">Nie ma restauracji powiązanej z tym kontem. Skontaktuj się z administratorem.</h2>
-            </c:if>
+            <h2 class="text-white mb-4">Twoje wizyty:</h2>
           </div>
         </div>
       </div>
@@ -92,7 +80,7 @@
 <c:if test="${!empty listVisits}">
 	<c:forEach items="${listVisits}" var="visit" varStatus="stat">
 	<section id="contact" class="contact-section bg-black">
-	<h1>Twoje wizyty:</h1>
+	<center><h1>Twoje wizyty:</h1></center>
 
 		  <div class="container">
 			<div class="row">

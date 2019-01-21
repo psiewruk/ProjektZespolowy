@@ -24,7 +24,7 @@ import java.util.Date;
 public class UserController {
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private VisitService visitService;
 
@@ -49,10 +49,10 @@ public class UserController {
 
     @RequestMapping(value = "/restaurantStatic", method = RequestMethod.GET)
     public String restaurantStatic(Model model) {
-    	
+
         return "restaurantStatic";
     }
-    
+
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
@@ -70,8 +70,8 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout, @RequestHeader("Referer") String referer) {
-    	
-    	
+
+
         if (error != null)
             model.addAttribute("error", "Nazwa użytkownika lub hasło niepoprawne.");
 
@@ -80,19 +80,19 @@ public class UserController {
 
         return "login";
     }
-    
+
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String user(Model model, Authentication auth) {
-    	
-    	User currentUser = userService.findByUsername(auth.getName());
-    	
-    	model.addAttribute("visit", new Visit());
-    	model.addAttribute("restaurant", new Restaurant());
-    	model.addAttribute("opinion", new Opinion());
-    	model.addAttribute("listVisits", visitService.findByUserId(currentUser.getId()));
-    	model.addAttribute("listOpinions", opinionService.findByUserId(currentUser.getId()));
-    	
-    	return("user");
+
+        User currentUser = userService.findByUsername(auth.getName());
+
+        model.addAttribute("visit", new Visit());
+        model.addAttribute("restaurant", new Restaurant());
+        model.addAttribute("opinion", new Opinion());
+        model.addAttribute("listVisits", visitService.findByUserId(currentUser.getId()));
+        model.addAttribute("listOpinions", opinionService.findByUserId(currentUser.getId()));
+
+        return ("user");
     }
 
     //ZARZĄDZANIE WIZYTAMI USERA
@@ -105,11 +105,11 @@ public class UserController {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Visit visit = visitService.findById(visitId);
 
-        if(startDateString.length() != 0)
-            visit.setStart_date(new Date(formatter.parse(startDateString).getTime()+3600000));
-        if(endDateString.length() != 0)
-            visit.setEnd_date(new Date(formatter.parse(endDateString).getTime()+3600000));
-        if(newDesc.length() != 0)
+        if (startDateString.length() != 0)
+            visit.setStart_date(new Date(formatter.parse(startDateString).getTime() + 3600000));
+        if (endDateString.length() != 0)
+            visit.setEnd_date(new Date(formatter.parse(endDateString).getTime() + 3600000));
+        if (newDesc.length() != 0)
             visit.setDescription(newDesc);
         visitService.save(visit);
 
@@ -132,7 +132,7 @@ public class UserController {
 
         User currentUser = userService.findByUsername(authentication.getName());
         Restaurant restaurant = restaurantService.findById(restaurantId);
-        Opinion opinion = new Opinion(star,name,desc,restaurant,currentUser);
+        Opinion opinion = new Opinion(star, name, desc, restaurant, currentUser);
         opinionService.save(opinion);
 
         return "redirect:/user";
@@ -140,16 +140,16 @@ public class UserController {
 
     @RequestMapping(value = {"/user/editOpinion"}, method = RequestMethod.POST)
     public String editOpinion(Model model, Authentication authentication, @RequestParam("opinionId") Long opinionId,
-                            @RequestParam("newStar") int newStar, @RequestParam("newName") String newName,
-                            @RequestParam("newDesc") String newDesc) {
+                              @RequestParam("newStar") int newStar, @RequestParam("newName") String newName,
+                              @RequestParam("newDesc") String newDesc) {
 
         Opinion opinion = opinionService.findById(opinionId);
 
-        if(newStar > 0)
+        if (newStar > 0)
             opinion.setStar(newStar);
-        if(newName.length() != 0)
+        if (newName.length() != 0)
             opinion.setName(newName);
-        if(newDesc.length() != 0)
+        if (newDesc.length() != 0)
             opinion.setDescription(newDesc);
         opinionService.save(opinion);
 

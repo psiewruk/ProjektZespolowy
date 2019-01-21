@@ -73,7 +73,8 @@
           	<c:if test="${!empty restaurant}">
           	  <h2 class="text-white mb-4">Panel zarządzania restauracją </h2>
           	  <h1 class="text-white mb-4">${restaurant.name}</h1>
-          	  <p class="text-white-50"><button class="btn btn-primary js-scroll-trigger" data-toggle="modal" data-target="#modalAddMenu" onclick='hideForm("addMenu")'>
+          	  <p class="text-white-50">
+          	  <button class="btn btn-primary js-scroll-trigger" data-toggle="modal" data-target="#modalAddMenu">
 				Dodaj menu</button>
           	  </p>
           	  <!-- Modal -->
@@ -86,7 +87,7 @@
         					  <button type="button" class="close" data-dismiss="modal">&times;</button>
       					  </div>
       					  <div class="modal-body">
-							  <form id="addMenu" method="POST" action="manage/addMenu" style="display:none;">
+							  <form id="addMenu" method="POST" action="manage/addMenu">
             					  <input type="text" name="menuName">
 								  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								  <input type="submit" class="btn btn-primary js-scroll-trigger"  value="Dodaj">
