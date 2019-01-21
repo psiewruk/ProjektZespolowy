@@ -69,7 +69,7 @@ public class UserController {
             model.addAttribute("error", "Nazwa użytkownika lub hasło niepoprawne.");
 
         if (logout != null)
-            model.addAttribute("message", "Zostałeś wylogowany.");
+            model.addAttribute("message", "Zostales wylogowany.");
 
         return "login";
     }
