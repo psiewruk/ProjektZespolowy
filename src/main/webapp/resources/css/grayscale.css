@@ -7,6 +7,7 @@
 #mainNav {
   min-height: 56px;
   background-color: #fff;
+  navbar-shrink
 }
 
 #mainNav .navbar-toggler {
@@ -27,14 +28,14 @@
 }
 
 #mainNav .navbar-nav .nav-item:hover {
-  color: fade(white, 80%);
+  color: white;
   outline: none;
-  background-color: transparent;
+  background-color: #64a19d;
 }
 
 #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
   outline: none;
-  background-color: transparent;
+  background-color: #64a19d;
 }
 
 @media (min-width: 992px) {
@@ -42,19 +43,19 @@
     padding-top: 0;
     padding-bottom: 0;
     border-bottom: none;
-    background-color: transparent;
+    background-color: #64a19d;
     -webkit-transition: background-color 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {
     padding: .5rem 0;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
   }
   #mainNav .nav-link {
     -webkit-transition: none;
     transition: none;
     padding: 2rem 1.5rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
   }
   #mainNav .nav-link:hover {
     color: rgba(255, 255, 255, 0.75);
@@ -86,6 +87,12 @@
   }
 }
 
+.mastheada {
+
+background: url("../img/PIZZA.jpg");
+background-size: cover;
+}
+
 .masthead {
   position: relative;
   width: 100%;
@@ -105,7 +112,7 @@
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.8rem;
-  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
@@ -134,7 +141,7 @@
   }
   .masthead h2 {
     max-width: 30rem;
-    font-size: 1.25rem;
+    font-size: 2.25rem;
   }
 }
 
@@ -160,6 +167,21 @@
 .btn-primary:focus {
   background-color: #4f837f;
   color: white;
+}
+
+.btn-primarya {
+  background-color: white;
+  color: black;
+}
+
+.btn-primarya:hover {
+  background-color: white;
+  color: black;
+}
+
+.btn-primarya:focus {
+  background-color: white;
+  color: black;
 }
 
 .btn-primary:active {
@@ -288,11 +310,11 @@ a:focus, a:hover {
 }
 
 .bg-black {
-  background-color: #161616 !important;
+  background-color: #64a19d !important;
 }
 
 .bg-primary {
-  background-color: #64a19d !important;
+  background-color: #161616 !important;
 }
 
 .text-primary {
@@ -301,4 +323,52 @@ a:focus, a:hover {
 
 footer {
   padding: 5rem 0;
+}
+
+.form-signin {
+	font-family: 'Varela Round';
+	font-size: 80%;
+	padding: 0.75rem;
+	color: white;
+    max-width: 330px;
+    padding-top: 117px;
+    padding-bottom: 110px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input {
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin button {
+    margin-top: 10px;
+}
+
+.has-error {
+    color: red
 }
