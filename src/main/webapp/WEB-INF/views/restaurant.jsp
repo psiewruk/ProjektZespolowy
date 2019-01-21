@@ -144,6 +144,27 @@
     </section>
 </c:if>
 
+<c:if test="{!empty futureVisits}">
+    <h1>Przyszłe wizyty w restauracji:</h1>
+    <c:forEach items="${futureVisits}" var="visit" varStatus="stat">
+    	<section id="contact" class="contact-section bg-black">
+    		  <div class="container">
+    			<div class="row">
+    			  <div class="col-md-4 mb-3 mb-md-0">
+    				<div class="card py-4 h-100">
+    				    <div class="card-body text-center">
+    				        <p>Użytkownik: ${visit.user.username }</p>
+    				        <p>Rozpoczęcie: ${visit.start_date }</p>
+                            <p>Opis: ${visit.description}</p>
+    				    </div>
+                    </div>
+                  </div>
+              </div>
+        </section>
+    </c:forEach>
+</c:if>
+
+
   
 <jsp:include page="contact.jsp"></jsp:include>
 
