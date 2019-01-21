@@ -9,4 +9,6 @@ public interface OpinionService {
     List<Opinion> findByRestaurantName(String name);
     List<Opinion> findByUserId(Long id);
     List<Opinion> findAll();
+    Opinion findById(Long id);
+    Long deleteById(Long id);
 }

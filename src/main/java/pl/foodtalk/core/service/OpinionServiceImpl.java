@@ -24,4 +24,10 @@ public class OpinionServiceImpl implements OpinionService {
 
     @Override
     public List<Opinion> findAll() { return opinionRepository.findAll(); }
+
+    @Override
+    public Opinion findById(Long id) { return opinionRepository.findById(id); }
+
+    @Override
+    public Long deleteById(Long id) { return opinionRepository.deleteById(id); }
 }

@@ -1,12 +1,11 @@
 package pl.foodtalk.core.web;
 
 import org.springframework.web.bind.annotation.*;
+import pl.foodtalk.core.model.Opinion;
 import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.model.Visit;
-import pl.foodtalk.core.service.SecurityService;
-import pl.foodtalk.core.service.UserService;
-import pl.foodtalk.core.service.VisitService;
+import pl.foodtalk.core.service.*;
 import pl.foodtalk.core.validator.UserValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,12 @@ public class UserController {
     
     @Autowired
     private VisitService visitService;
+
+    @Autowired
+    private OpinionService opinionService;
+
+    @Autowired
+    private RestaurantService restaurantService;
 
     @Autowired
     private SecurityService securityService;
@@ -83,10 +88,14 @@ public class UserController {
     	
     	model.addAttribute("visit", new Visit());
     	model.addAttribute("restaurant", new Restaurant());
+    	model.addAttribute("opinion", new Opinion());
     	model.addAttribute("listVisits", visitService.findByUserId(currentUser.getId()));
+    	model.addAttribute("listOpinions", opinionService.findByUserId(currentUser.getId()));
     	
     	return("user");
     }
+
+    //ZARZĄDZANIE WIZYTAMI USERA
 
     @RequestMapping(value = {"/user/editVisit"}, method = RequestMethod.POST)
     public String editVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId,
@@ -111,6 +120,46 @@ public class UserController {
     public String deleteVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId) {
 
         visitService.deleteById(visitId);
+
+        return "redirect:/user";
+    }
+
+    //ZARZĄDZANIE OPINIAMI USERA
+
+    @RequestMapping(value = {"/user/addOpinion"}, method = RequestMethod.POST)
+    public String addOpinion(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId,
+                             @RequestParam("star") int star, @RequestParam("name") String name, @RequestParam("desc") String desc) {
+
+        User currentUser = userService.findByUsername(authentication.getName());
+        Restaurant restaurant = restaurantService.findById(restaurantId);
+        Opinion opinion = new Opinion(star,name,desc,restaurant,currentUser);
+        opinionService.save(opinion);
+
+        return "redirect:/user";
+    }
+
+    @RequestMapping(value = {"/user/editOpinion"}, method = RequestMethod.POST)
+    public String editOpinion(Model model, Authentication authentication, @RequestParam("opinionId") Long opinionId,
+                            @RequestParam("newStar") int newStar, @RequestParam("newName") String newName,
+                            @RequestParam("newDesc") String newDesc) {
+
+        Opinion opinion = opinionService.findById(opinionId);
+
+        if(newStar > 0)
+            opinion.setStar(newStar);
+        if(newName.length() != 0)
+            opinion.setName(newName);
+        if(newDesc.length() != 0)
+            opinion.setDescription(newDesc);
+        opinionService.save(opinion);
+
+        return "redirect:/user";
+    }
+
+    @RequestMapping(value = {"/user/deleteOpinion"})
+    public String deleteOpinion(Model model, Authentication authentication, @RequestParam("opinionId") Long opinionId) {
+
+        opinionService.deleteById(opinionId);
 
         return "redirect:/user";
     }
