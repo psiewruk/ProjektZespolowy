@@ -19,6 +19,6 @@
     <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="${contextPath}/resources/js/grayscale.min.js"></script>
+    <script src="${contextPath}/resources/js/grayscale.js"></script>
   </body>
 </html>
