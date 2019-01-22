@@ -113,16 +113,15 @@ public class UserController {
 
     @RequestMapping(value = {"/user/editVisit"}, method = RequestMethod.POST)
     public String editVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId,
-                            @RequestParam("newDesc") String newDesc, @RequestParam("start_dateString") String startDateString,
-                            @RequestParam("end_dateString") String endDateString) throws ParseException {
+                            @RequestParam("newDesc") String newDesc, @RequestParam("start_dateString") String startDateString) throws ParseException {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Visit visit = visitService.findById(visitId);
 
-        if (startDateString.length() != 0)
+        if (startDateString.length() != 0) {
             visit.setStart_date(new Date(formatter.parse(startDateString).getTime()));
-        if (endDateString.length() != 0)
-            visit.setEnd_date(new Date(formatter.parse(endDateString).getTime()));
+            visit.setEnd_date(new Date(formatter.parse(startDateString).getTime() + 7200000));
+        }
         if (newDesc.length() != 0)
             visit.setDescription(newDesc);
         visitService.save(visit);

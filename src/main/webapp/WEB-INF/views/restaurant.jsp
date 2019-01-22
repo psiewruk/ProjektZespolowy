@@ -88,13 +88,6 @@
             </div>
         </spring:bind>
 
-        <spring:bind path="end_dateString">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="datetime-local" path="end_dateString" class="form-control" placeholder="End"></form:input>
-                <form:errors path="end_dateString"></form:errors>
-            </div>
-        </spring:bind>
-
         <spring:bind path="description">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="description" class="form-control" placeholder="Opis"></form:input>
