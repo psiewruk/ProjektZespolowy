@@ -27,8 +27,9 @@
     <!-- Custom styles for this template -->
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
-
+  
   <body id="page-top-login">   
+  <div class="bg-seamless">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
@@ -77,7 +78,7 @@
         </div>
       </div>
     </section>
-      <c:if test="${pageContext.request.userPrincipal.name != null}">
+     <c:if test="${pageContext.request.userPrincipal.name != null}">
     <form:form method="POST" modelAttribute="visitForm" class="form-signin">
         <h2 class="form-signin-heading ">Stwórz wizytę</h2>
         <spring:bind path="start_dateString">
@@ -108,7 +109,7 @@
     
 	<c:if test="${!empty menuMap}">
 		<c:set var="listSize" value="${fn:length(listCategories)}"/>
-		<section id="contact" class="contact-section bg-black">
+		<section id="contact" class="contact-section">
 		<h1 class="text-center font-weight-bold">Nasze menu</h1>
 		<c:forEach items="${menuMap}" var="map" varStatus="stat">
 		<c:if test="${!empty map.value}">
@@ -117,19 +118,25 @@
 			  <div class="container">
 				<div class="row">
 				  <div class="col mb-md-2">
-					<img class="img-fluid rounded-circle" src="${contextPath}/resources/img/dania/dishPlaceholder.jpg" alt="" />
+					<img class="img-fluid rounded-circle" src="${contextPath}/resources/img/dania/dish${dish.id}.jpg" alt="" style="height:300px; width:300px;" />
 				  </div>
 				  <div class="col-md-8 mb-md-2">
 				    <div class="card h-100">	
 				     <div class="row">		  
 					  <div class="col mb-3 mb-md-0">
-					    <div class="card-body text-center">					    	
+					    <div class="card-body text-center">		
+					    <br/>
+					    <br/>			    	
 						  <h3 class="font-weight-bold">	${dish.name}</h3>
+						  <br/>
+					    <br/>
 					  	  <p><em>${dish.description}</em></p>
 					    </div>				  
 					  </div>				
 					  <div class="col-3 mb-3 mb-md-0">
 					    <div class="card-body text-center">
+					    <br/>
+					    <br/>
 						  <h5 class="font-weight-bold">Cena</h5>
 						  <p>${dish.price} zł</p>
 					  	</div>
@@ -145,7 +152,7 @@
     </section>
 </c:if>
 
-  <c:if test="${!empty futureVisits}">
+ <c:if test="${!empty futureVisits}">
 
     <section id="about" class="about-section text-center">
           <div class="container">
@@ -161,7 +168,7 @@
 	<c:forEach items="${futureVisits}" var="visit" varStatus="stat">
 	  <c:choose>
 		<c:when test="${ stat.count == 1 }">
-		  <section id="contact" class="contact-section bg-black">
+		  <section id="contact" class="contact-section">
 		  <div class="container">
 			<div class="row">
 			  <div class="col-md-4 mb-3 mb-md-0">
@@ -204,7 +211,8 @@
 		  </div>
         </div>
         </section>
-        <section id="contact" class="contact-section bg-black">
+        
+        <section id="contact" class="contact-section">
 		<div class="container">
         <div class="row">
         </c:when>
@@ -224,7 +232,8 @@
       </c:choose>
     </c:forEach>
   </c:if>
-  
+  <br/><br/>
+  </div>
 <jsp:include page="contact.jsp"></jsp:include>
 
 <jsp:include page="footer.jsp"></jsp:include>

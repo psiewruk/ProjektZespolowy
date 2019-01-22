@@ -310,6 +310,10 @@ a:focus, a:hover {
 }
 
 .bg-black {
+  background-color: #64a19d;
+}
+
+.bg-seamless {
   background: url("../img/sml-bg.jpg"); !important;
   background-size: 337px 338px;
 }

@@ -131,7 +131,8 @@
 			   <form id="${map.key.name}del" method="POST" action="manage/deleteMenu">
 				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 			  	 <input type="hidden"  name="menuId" value="${map.key.id}"/>
-				 <input type="submit" class="btn btn-danger" value="Usuń menu">
+				 
+				 <input class="btn btn-danger" type="submit" onclick="clicked(event)" value="Usuń menu"/>
 			   </form>		
 	 		 </div>
 			</div>
@@ -207,18 +208,18 @@
 	  <div class="container">
 		<div class="row">
 		  <div class="col mb-md-2">
-			<img class="img-fluid rounded-circle" src="${contextPath}/resources/img/dania/dishPlaceholder.jpg" alt="" />
+			<img class="img-fluid rounded-circle" src="${contextPath}/resources/img/dania/dish${dish.id}.jpg" alt="" style="width:300px; height:300px;"/>
 		  </div>
 		  <div class="col-md-8 mb-md-2">
 	      <div class="card h-100">	
 			<div class="row h-100">				     		  
 			  <div class="col mb-3	 mb-md-0">
 				<div class="card-body text-center h-100 p-0">
-				<br/><br/><br/><br/><br/>
+				<br/><br/><br/>
 				  <div class="row">
 					<div class="col">
 						<h3 class="font-weight-bold">${dish.name}</h3>
-					  	<p><em>${dish.description}</em></p>
+					  	<p style="padding-left:5px;"><em>${dish.description}</em></p>
 					</div>
 				  </div>
 				  <div class="row">
@@ -231,7 +232,9 @@
 					  <form id="${map.key.name}del" method="POST" action="manage/deleteDish">
 						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 						<input type="hidden"  name="dishId" value="${dish.id}"/>
-						<input type="submit" class="btn btn-danger" value="Usuń">
+						
+						<input class="btn btn-danger" type="submit" onclick="clicked(event)" value="Usuń"/>
+
 					  </form>
 					</div>		
 								
@@ -297,5 +300,12 @@ function hideForm(id) {
 }
 </script>
 
+
+<script>
+function clicked(e)
+{
+    if(!confirm('Are you sure?'))e.preventDefault();
+}
+</script>
 
 <jsp:include page="footer.jsp"></jsp:include>
