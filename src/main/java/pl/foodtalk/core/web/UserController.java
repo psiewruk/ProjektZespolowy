@@ -137,7 +137,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @RequestMapping(value = {"/user/deleteVisit"})
+    @RequestMapping(value = {"/user/deleteVisit"}, method = RequestMethod.POST)
     public String deleteVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId) {
 
         visitService.deleteById(visitId);
@@ -177,7 +177,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @RequestMapping(value = {"/user/deleteOpinion"})
+    @RequestMapping(value = {"/user/deleteOpinion"}, method = RequestMethod.POST)
     public String deleteOpinion(Model model, Authentication authentication, @RequestParam("opinionId") Long opinionId) {
 
         opinionService.deleteById(opinionId);

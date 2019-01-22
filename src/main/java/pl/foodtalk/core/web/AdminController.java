@@ -89,7 +89,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"/admin/deleteCategory"})
+    @RequestMapping(value = {"/admin/deleteCategory"}, method = RequestMethod.POST)
     public String deleteCategory(Model model, @RequestParam("categoryId") Long categoryId) {
         categoryService.deleteById(categoryId);
 
@@ -142,7 +142,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = {"/admin/deleteRestaurant"})
+    @RequestMapping(value = {"/admin/deleteRestaurant"}, method = RequestMethod.POST)
     public String deleteRestaurant(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId) {
 
         restaurantService.deleteById(restaurantId);
@@ -168,7 +168,7 @@ public class AdminController {
         return "redirect:/admin";
     }
     
-    @RequestMapping(value = {"/admin/deleteUser"})
+    @RequestMapping(value = {"/admin/deleteUser"}, method = RequestMethod.POST)
     public String deleteUser(Model model, Authentication authentication, @RequestParam("userId") Long userId) {
 
         userService.deleteById(userId);
@@ -191,7 +191,7 @@ public class AdminController {
         return "redirect:/admin";
     }
     
-    @RequestMapping(value = {"/admin/discardApp"})
+    @RequestMapping(value = {"/admin/discardApp"}, method = RequestMethod.POST)
     public String discardApp(Model model, Authentication authentication, @RequestParam("applicationId") Long applicationId) {
 
         applicationService.deleteById(applicationId);
