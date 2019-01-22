@@ -91,6 +91,7 @@
           </div>
         </div>
       </div>
+        <br/>
     </section>
     
      <!--<c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -275,6 +276,7 @@
   </c:if>
   <br/><br/>
   </div>
+    <br/><br/>
 <jsp:include page="contact.jsp"></jsp:include>
 
 <jsp:include page="footer.jsp"></jsp:include>
