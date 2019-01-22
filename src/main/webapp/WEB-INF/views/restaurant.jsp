@@ -219,7 +219,7 @@
 					<p>Użytkownik: ${visit.user.username }</p>
                     <p>Rozpoczęcie: ${visit.start_date }</p>
                     <p>Opis: ${visit.description}</p>
-                    <button class="btn btn-lg btn-primary btn-block js-scroll-trigger" type="submit">Dołącz!</button>
+                <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
 				  </div>
 				</div>
 			  </div>
@@ -232,7 +232,7 @@
 				<p>Użytkownik: ${visit.user.username }</p>
                 <p>Rozpoczęcie: ${visit.start_date }</p>
                 <p>Opis: ${visit.description}</p>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+                <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
 			  </div>
 			</div>
 		  </div>
@@ -247,7 +247,7 @@
                 <p>Użytkownik: ${visit.user.username }</p>
                 <p>Rozpoczęcie: ${visit.start_date }</p>
                 <p>Opis: ${visit.description}</p>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+                <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
 			  </div>
 			</div>
 		  </div>
@@ -266,7 +266,7 @@
                 <p>Użytkownik: ${visit.user.username }</p>
                 <p>Rozpoczęcie: ${visit.start_date }</p>
                 <p>Opis: ${visit.description}</p>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+                <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
 			  </div>
 			</div>
 		  </div>
@@ -274,9 +274,30 @@
       </c:choose>
     </c:forEach>
   </c:if>
-  <br/><br/>
+  <br/><br/>    <br/><br/>
   </div>
-    <br/><br/>
+
+    
+    <script>
+function hideForm(id) {
+  var x = document.getElementById(id);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+<script>
+function clicked(e)
+{
+    if(!alert('Funkcja dostępna już niebawem!'))e.preventDefault();
+}
+</script>
+
+
 <jsp:include page="contact.jsp"></jsp:include>
 
 <jsp:include page="footer.jsp"></jsp:include>
