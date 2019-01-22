@@ -117,8 +117,7 @@
 							<form id="${visit.start_date}edit" method="POST" action="user/editVisit">
 							  <div class="row">
 							  <div class="col-3">
-								<p class="mt-3">Od:</p>
-								<p class="mt-4">Do:</p>
+								<p class="mt-3">Kiedy?</p>
 								<p class="mt-4">Opis:</p>
 							  </div>
 							  <div class="col-5  mt-2">
@@ -127,10 +126,6 @@
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <input type="datetime-local" name="start_dateString" class="form-control" placeholder="Start" autofocus="true"></input>
                             <errors path="start_dateString"><errors>
-                        </div>
-                        <div class="form-group ${status.error ? 'has-error' : ''}">
-                            <input type="datetime-local" name="end_dateString" class="form-control" placeholder="End"></input>
-                            <errors path="end_dateString"></errors>
                         </div>
                         <input type="text" name="newDesc" placeholder="Nowy opis">
 							  </div>
