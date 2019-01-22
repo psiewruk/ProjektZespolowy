@@ -54,6 +54,7 @@ public class MenuController {
         ArrayList<Visit> futureVisits = new ArrayList<Visit>();
     	model.addAttribute("dish", new Dish());
     	model.addAttribute("menu", new Menu());
+    	model.addAttribute("visit", new Visit());
     	model.addAttribute("visitForm", new Visit());
     	model.addAttribute("restaurant", restaurantService.findByName(res));
     
@@ -62,9 +63,10 @@ public class MenuController {
 
         model.addAttribute("menuMap", menuMap);
 
-        for(Visit v : visitService.findByRestaurantName(res)) {
-            if(v.getEnd_date().compareTo(new Date()) < 0)
+        for(Visit v : this.visitService.findByRestaurantName(res)) {
+            if(v.getStart_date().compareTo(new Date()) > 0) {
                 futureVisits.add(v);
+            }
         }
 
         model.addAttribute("futureVisits", futureVisits);
