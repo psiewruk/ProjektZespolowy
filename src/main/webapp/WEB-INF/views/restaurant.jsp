@@ -66,13 +66,23 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
+          <c:if test="${pageContext.request.userPrincipal.name == null}">
             <h2 class="text-white mb-4">Zaloguj się aby umówić się na spotkanie!</h2>
             <p class="text-white-50">To proste! Zaloguj się do swojego konta aby zorganizować spotkanie :)</p>
+            </c:if>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+             <h2 class="text-white mb-4">Możesz umówić się na spotkanie w tej restauracji!</h2>
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddVisit">
+				Dodaj danie
+			  </button>
+            </c:if>
           </div>
         </div>
       </div>
     </section>
-     <c:if test="${pageContext.request.userPrincipal.name != null}">
+    
+     <!--<c:if test="${pageContext.request.userPrincipal.name != null}">
+     
     <form:form method="POST" modelAttribute="visitForm" class="form-signin">
         <h2 class="form-signin-heading text-center text-dark ">Stwórz wizytę</h2>
         <spring:bind path="start_dateString">
@@ -92,7 +102,39 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Stwórz</button>
     </form:form>
-  </c:if>
+  </c:if>-->
+  
+  <div id="modalAddVisit" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <a class="modal-title font-weight-bold">Stwórz wizytę</a>
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+							<form:form method="POST" modelAttribute="visitForm" class="form-signin">
+        <spring:bind path="start_dateString">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="datetime-local" path="start_dateString" class="form-control" placeholder="Start"
+                            autofocus="true"></form:input>
+                <form:errors path="start_dateString"></form:errors>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="description">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="description" class="form-control" placeholder="Opis"></form:input>
+                <form:errors path="description"></form:errors>
+            </div>
+        </spring:bind>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Stwórz</button>
+    </form:form>
+    			  		  </div>
+    				  </div>
+  				  </div>
+			  </div>  
     
 	<c:if test="${!empty menuMap}">
 		<c:set var="listSize" value="${fn:length(listCategories)}"/>

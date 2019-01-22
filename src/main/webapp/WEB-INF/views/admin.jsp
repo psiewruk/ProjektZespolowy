@@ -63,7 +63,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Zarządzanie kategoriami</h2>
+            <h2 class="text-white mb-4">Panel administracyjny</h2>
 			  
 			  <button class="btn btn-secondary" onclick='hideForm("catManage")'>KATEGORIE</button>
 			  <button class="btn btn-secondary" onclick='hideForm("resManage")'>RESTAURACJE</button>
@@ -159,18 +159,18 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<h3> ${category.name}</h3>
-					<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${category.name}delete")'>Usuń</button>
+					<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
         	<input type="text" name="newName" placeholder="Nowa nazwa"/>
         	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         	<input type="hidden"  name="categoryId" value="${category.id}"/>
-        	<input type="submit">
+        	<input type="submit" class="btn btn-primary" value="Wyślij">
         </form>
         <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
         	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         	<input type="hidden"  name="categoryId" value="${category.id}"/>
-        	Jesteś pewny? <input type="submit" value="Usuń">
+        	Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
         	
         </form>
 				  </div>
@@ -180,26 +180,52 @@
 
 	    <c:when test="${ stat.count == listSize }">
           <div class="col-md-4 mb-3 mb-md-0">
-			<div class="card py-4 h-100">
-			  <div class="card-body text-center">
-				<h3> ${category.name}</h3>
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${category.name}</h3>
+					<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
+    				<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
+        	<input type="text" name="newName" placeholder="Nowa nazwa"/>
+        	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        	<input type="hidden"  name="categoryId" value="${category.id}"/>
+        	<input type="submit" class="btn btn-primary" value="Wyślij">
+        </form>
+        <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
+        	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        	<input type="hidden"  name="categoryId" value="${category.id}"/>
+        	Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
+        	
+        </form>
+				  </div>
+				</div>
 			  </div>
-			</div>
-		  </div>
 		</div>
 	  </section>           
        	</c:when>	
 
 		<c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
           <div class="col-md-4 mb-3 mb-md-0">
-			<div class="card py-4 h-100">
-			  <div class="card-body text-center">
-				<h3> ${category.name}</h3>
-				<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
-    			<button onclick='hideForm("${category.name}delete")'>Usuń</button>
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${category.name}</h3>
+					<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
+    				<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
+        	<input type="text" name="newName" placeholder="Nowa nazwa"/>
+        	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        	<input type="hidden"  name="categoryId" value="${category.id}"/>
+        	<input type="submit" class="btn btn-primary" value="Wyślij">
+        </form>
+        <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
+        	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        	<input type="hidden"  name="categoryId" value="${category.id}"/>
+        	Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
+        	
+        </form>
+				  </div>
+				</div>
 			  </div>
-			</div>
-		  </div>
         </div>
         </section>
         <section id="contact" class="contact-section">
@@ -209,14 +235,26 @@
                 
 		<c:otherwise>
           <div class="col-md-4 mb-3 mb-md-0">
-			<div class="card py-4 h-100">
-			  <div class="card-body text-center">
-				<h3> ${category.name}</h3>
-				<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
-    			<button onclick='hideForm("${category.name}delete")'>Usuń</button>
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${category.name}</h3>
+					<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
+    				<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
+        	<input type="text" name="newName" placeholder="Nowa nazwa"/>
+        	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        	<input type="hidden"  name="categoryId" value="${category.id}"/>
+        	<input type="submit" class="btn btn-primary" value="Wyślij">
+        </form>
+        <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
+        	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        	<input type="hidden"  name="categoryId" value="${category.id}"/>
+        	Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
+        	
+        </form>
+				  </div>
+				</div>
 			  </div>
-			</div>
-		  </div>
         </c:otherwise>
       </c:choose>
     </c:forEach>
@@ -244,8 +282,8 @@
 					<p> ${restaurant.description} <p>
 					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
-					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+					<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
             			<input type="text" name="newName" placeholder="Nowa nazwa"/>
                			<input type="text" name="newDesc" placeholder="Opis">
@@ -256,12 +294,12 @@
                 		<input type="text" name="newCity" placeholder="Miasto">
             			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-            			<input type="submit">
+            			<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
                		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+               			Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
             		</form>
 				  </div>
 				</div>
@@ -276,8 +314,8 @@
 					<p> ${restaurant.description} <p>
 					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
-					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+					<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
             			<input type="text" name="newName" placeholder="Nowa nazwa"/>
                			<input type="text" name="newDesc" placeholder="Opis">
@@ -288,12 +326,12 @@
                 		<input type="text" name="newCity" placeholder="Miasto">
             			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-            			<input type="submit">
+            			<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
                		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+               			Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
             		</form>
 				  </div>
 				</div>
@@ -310,8 +348,8 @@
 					<p> ${restaurant.description} <p>
 					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
-					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+					<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
             			<input type="text" name="newName" placeholder="Nowa nazwa"/>
                			<input type="text" name="newDesc" placeholder="Opis">
@@ -322,12 +360,12 @@
                 		<input type="text" name="newCity" placeholder="Miasto">
             			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-            			<input type="submit">
+            			<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
                		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+               			Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
             		</form>
 				  </div>
 				</div>
@@ -347,8 +385,8 @@
 					<p> ${restaurant.description} <p>
 					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
-					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+					<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
             			<input type="text" name="newName" placeholder="Nowa nazwa"/>
                			<input type="text" name="newDesc" placeholder="Opis">
@@ -359,12 +397,12 @@
                 		<input type="text" name="newCity" placeholder="Miasto">
             			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-            			<input type="submit">
+            			<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
                		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+               			Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
             		</form>
 				  </div>
 				</div>
@@ -388,9 +426,8 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<h3> ${user.username}</h3>
-					
-					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+					<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
           			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
            			  <select name="newRole">
@@ -402,12 +439,12 @@
    					</select>
             		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		<input type="hidden"  name="userId" value="${user.id}"/>
-            		<input type="submit">
+            		<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
              		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		    <input type="hidden"  name="userId" value="${user.id}"/>
-           		       Jesteś pewny? <input type="submit" value="Usuń">
+           		       Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
           		 	</form>
 				  </div>
 				</div>
@@ -419,9 +456,8 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<h3> ${user.username}</h3>
-					
-					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+					<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
           			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
            			  <select name="newRole">
@@ -433,12 +469,12 @@
    					</select>
             		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		<input type="hidden"  name="userId" value="${user.id}"/>
-            		<input type="submit">
+            		<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
              		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		    <input type="hidden"  name="userId" value="${user.id}"/>
-           		       Jesteś pewny? <input type="submit" value="Usuń">
+           		       Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
           		 	</form>
 				  </div>
 				</div>
@@ -452,9 +488,8 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<h3> ${user.username}</h3>
-					
-					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+					<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
           			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
            			  <select name="newRole">
@@ -466,12 +501,12 @@
    					</select>
             		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		<input type="hidden"  name="userId" value="${user.id}"/>
-            		<input type="submit">
+            		<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
              		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		    <input type="hidden"  name="userId" value="${user.id}"/>
-           		       Jesteś pewny? <input type="submit" value="Usuń">
+           		       Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
           		 	</form>
 				  </div>
 				</div>
@@ -488,9 +523,8 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<h3> ${user.username}</h3>
-					
-					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
-    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+					<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
     				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
           			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
            			  <select name="newRole">
@@ -502,12 +536,12 @@
    					</select>
             		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		<input type="hidden"  name="userId" value="${user.id}"/>
-            		<input type="submit">
+            		<input type="submit" value="Wyślij" class="btn btn-primary">
             		</form>
             		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
              		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             		    <input type="hidden"  name="userId" value="${user.id}"/>
-           		       Jesteś pewny? <input type="submit" value="Usuń">
+           		       Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
           		 	</form>
 				  </div>
 				</div>
@@ -517,33 +551,6 @@
     </c:forEach>
   </c:if>
 </section>
-
-<!--<c:if test="${!empty listApplications}">
-    <h2 class="text-white mb-4">Wnioski o restauratora</h2>
-
-    <c:set var="listSize" value="${fn:length(listApplications)}"/>
-    <c:forEach items="${listApplications}" var="application" varStatus="stat">
-    <section id="contact" class="contact-section bg-black">
-        <h1>Wniosek nr.: ${application.id}</h1>
-        <p>Użytkownik: ${application.user.username}</p>
-        <p>Restauracja: ${application.name}</p>
-        <p>Opis: ${application.description}</p>
-        <p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
-        ${application.post_code}<c:out value=" "></c:out>${application.city}</p>
-        <form id="${application.id}approve" method="POST" action="admin/approveApp">
-            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-            <input type="hidden"  name="applicationId" value="${application.id}"/>
-            <input type="submit" value = "Zatwierdz">
-            </form>
-            <form id="${application.id}delete" method="POST" action="admin/discardApp">
-                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-                <input type="hidden"  name="applicationId" value="${application.id}"/>
-                <input type="submit" value="Odrzuć">
-            </form>
-           </section>
-    </c:forEach>
-</c:if>-->
-
 
 <section id="appManage" style="display:none">
 <c:if test="${!empty listApplications}">
@@ -566,12 +573,12 @@
     				<form id="${application.id}approve" method="POST" action="admin/approveApp">
            				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
            				 <input type="hidden"  name="applicationId" value="${application.id}"/>
-           				 <input type="submit" value = "Zatwierdz">
+           				 <input type="submit" value = "Zatwierdz" class="btn btn-primary">
            			</form>
             		<form id="${application.id}delete" method="POST" action="admin/discardApp">
               		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                			 <input type="hidden"  name="applicationId" value="${application.id}"/>
-               			 <input type="submit" value="Odrzuć">
+               			 <input type="submit" value="Odrzuć" class="btn btn-danger">
            			</form>
 				  </div>
 				</div>
@@ -588,12 +595,12 @@
     				<form id="${application.id}approve" method="POST" action="admin/approveApp">
            				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
            				 <input type="hidden"  name="applicationId" value="${application.id}"/>
-           				 <input type="submit" value = "Zatwierdz">
+           				 <input type="submit" value = "Zatwierdz" class="btn btn-primary">
            			</form>
             		<form id="${application.id}delete" method="POST" action="admin/discardApp">
               		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                			 <input type="hidden"  name="applicationId" value="${application.id}"/>
-               			 <input type="submit" value="Odrzuć">
+               			 <input type="submit" value="Odrzuć" class="btn btn-danger">
            			</form>
 				  </div>
 				</div>
@@ -612,12 +619,12 @@
     				<form id="${application.id}approve" method="POST" action="admin/approveApp">
            				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
            				 <input type="hidden"  name="applicationId" value="${application.id}"/>
-           				 <input type="submit" value = "Zatwierdz">
+           				 <input type="submit" value = "Zatwierdz" class="btn btn-primary">
            			</form>
             		<form id="${application.id}delete" method="POST" action="admin/discardApp">
               		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                			 <input type="hidden"  name="applicationId" value="${application.id}"/>
-               			 <input type="submit" value="Odrzuć">
+               			 <input type="submit" value="Odrzuć" class="btn btn-danger">
            			</form>
 				  </div>
 				</div>
@@ -639,12 +646,12 @@
     				<form id="${application.id}approve" method="POST" action="admin/approveApp">
            				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
            				 <input type="hidden"  name="applicationId" value="${application.id}"/>
-           				 <input type="submit" value = "Zatwierdz">
+           				 <input type="submit" value = "Zatwierdz" class="btn btn-primary">
            			</form>
             		<form id="${application.id}delete" method="POST" action="admin/discardApp">
               		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                			 <input type="hidden"  name="applicationId" value="${application.id}"/>
-               			 <input type="submit" value="Odrzuć">
+               			 <input type="submit" value="Odrzuć" class="btn btn-danger">
            			</form>
 				  </div>
 				</div>
