@@ -64,48 +64,110 @@
         </div>
       </div>
     </nav>
-
-     <!-- About Section -->
-    <section id="about" class="about-section text-center">
+    
+    <section id="admin" class="about-section text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Panel admina</h2>
-            <p class="text-white-50"><button onclick='hideForm("addCategory")'>Dodaj kategorię</button>
-            <form id="addCategory" method="POST" action="admin/addCategory" style="display:none;">
-            	<input type="text" name="categoryName">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<input type="submit" value="Dodaj">
-			</form>
-            </p>
-            <p class="text-white-50"><button onclick='hideForm("addRestaurant")'>Dodaj restaurację</button>
-            <form id="addRestaurant" method="POST" action="admin/addRestaurant" style="display:none;">
-                <input type="text" name="restaurantName" placeholder="Nazwa">
-                <input type="text" name="desc" placeholder="Opis">
-                <br>Adres: </br>
-                <input type="text" name="street" placeholder="Ulica">
-                <input type="text" name="number" placeholder="Numer">
-                <input type="text" name="code" placeholder="Kod pocztowy">
-                <input type="text" name="city" placeholder="Miasto">
-                <br>Restaurator: </br>
-                <input type="text" name="username" placeholder="Restaurator">
-            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            	<input type="submit" value="Dodaj">
-            </form>
+            <h2 class="text-white mb-4">Zarządzanie kategoriami</h2>
+			  
+			  <button class="btn btn-secondary" onclick='hideForm("catManage")'>KATEGORIE</button>
+			  <button class="btn btn-secondary" onclick='hideForm("resManage")'>RESTAURACJE</button>
+			  <button class="btn btn-secondary" onclick='hideForm("userManage")'>UŻYTKOWNICY</button>
+			  <button class="btn btn-secondary" onclick='hideForm("appManage")'>WNIOSKI</button>
+			   
+			<br/><br/>       
           </div>
         </div>
       </div>
     </section>
-
+    
+    <section>
+    <div id="modalAddCategory" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <a class="modal-title font-weight-bold">Dodaj kategorię</a>
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+							<form id="categoryAdd" method="POST" action="admin/addCategory">
+							 <div class="row">
+							  <div class="col-3">
+								<p class="mt-2">Nazwa:</p>
+							  </div>
+							  <div class="col">
+							    <input type="text" class="mb-2 form-control" name="categoryName" required/>
+  							  </div>
+								<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+								<input type="submit" class="btn btn-primary mr-3" value="Dodaj">
+							 </div>
+	 						</form>
+    			  		  </div>
+    				  </div>
+  				  </div>
+			  </div>  
+			  
+			  <div id="modalAddRestaurant" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <a class="modal-title font-weight-bold">Dodaj restaurację</a>
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+							<form id="restaurantAdd" method="POST" action="admin/addRestaurant">
+							 <div class="row">
+							  <div class="col-3">
+								<p class="mt-2">Nazwa:</p>
+								<p class="mt-3">Opis:</p>
+								<p class="mt-4">Ulica:</p>
+								<p class="mt-4">Numer:</p>
+								<p class="mt-4">Kod pocztowy:</p>
+								<p class="mt-4">Miasto:</p>
+								<p class="mt-4">Restaurator:</p>
+							  </div>
+							  <div class="col">
+							    <input type="text" class="mb-2 form-control" name="restaurantName" required/>
+							    <input type="text" class="mb-2 form-control" name="desc" required/>
+							    <input type="text" class="mb-2 form-control" name="street" required/>
+							    <input type="text" class="mb-2 form-control" name="number" required/>
+							    <br/>
+							    <input type="text" class="mb-2 form-control" name="code" required/>
+							    <input type="text" class="mb-2 form-control" name="city" required/>
+							    <input type="text" class="mb-2 form-control" name="username" required/>
+								<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							 </div>
+							 <div class="col">
+							 <input type="submit" class="btn btn-primary mr-3" value="Dodaj">
+							 </div>
+	 						</form>
+    			  		  </div>
+    				  </div>
+  				  </div>
+		</div>
+</section>
+<section id="catManage" style="display:none;">
+<button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddCategory">
+				Dodaj kategorię
+</button>
 <c:if test="${!empty listCategories}">
-    <h2 class="text-black mb-4">Kategorie</h2>
-    <c:set var="listSize" value="${fn:length(listCategories)}"/>
-    <c:forEach items="${listCategories}" var="category" varStatus="stat">
-    <section id="contact" class="contact-section bg-black">
-    	<h1>Kategoria: ${category.name}
-    	<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
-    	<button onclick='hideForm("${category.name}delete")'>Usuń</button>
-    	<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
+	<c:set var="listSize" value="${fn:length(listCategories)}"/>
+	<c:forEach items="${listCategories}" var="category" varStatus="stat">
+	  <c:choose>
+		<c:when test="${ stat.count == 1 }">
+		  <section id="contact" class="contact-section">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${category.name}</h3>
+					<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${category.name}delete")'>Usuń</button>
+    				<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
         	<input type="text" name="newName" placeholder="Nowa nazwa"/>
         	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         	<input type="hidden"  name="categoryId" value="${category.id}"/>
@@ -115,70 +177,354 @@
         	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         	<input type="hidden"  name="categoryId" value="${category.id}"/>
         	Jesteś pewny? <input type="submit" value="Usuń">
+        	
         </form>
+				  </div>
+				</div>
+			  </div>
+		</c:when>
+
+	    <c:when test="${ stat.count == listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+			<div class="card py-4 h-100">
+			  <div class="card-body text-center">
+				<h3> ${category.name}</h3>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </section>           
+       	</c:when>	
+
+		<c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+			<div class="card py-4 h-100">
+			  <div class="card-body text-center">
+				<h3> ${category.name}</h3>
+				<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
+    			<button onclick='hideForm("${category.name}delete")'>Usuń</button>
+			  </div>
+			</div>
+		  </div>
+        </div>
+        </section>
+        <section id="contact" class="contact-section">
+		<div class="container">
+        <div class="row">
+        </c:when>
+                
+		<c:otherwise>
+          <div class="col-md-4 mb-3 mb-md-0">
+			<div class="card py-4 h-100">
+			  <div class="card-body text-center">
+				<h3> ${category.name}</h3>
+				<button onclick='hideForm("${category.name}edit")'>Edytuj</button>
+    			<button onclick='hideForm("${category.name}delete")'>Usuń</button>
+			  </div>
+			</div>
+		  </div>
+        </c:otherwise>
+      </c:choose>
     </c:forEach>
-</c:if>
+  </c:if>
+</section>
+
+
+<section id="resManage" style="display:none">
+<button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddRestaurant">
+				Dodaj restaurację
+</button>
+
 <c:if test="${!empty listRestaurants}">
-    <h2 class="text-white mb-4">Restauracje</h2>
+	<c:set var="listSize" value="${fn:length(listRestaurants)}"/>
+	<c:forEach items="${listRestaurants}" var="restaurant" varStatus="stat">
+	  <c:choose>
+		<c:when test="${ stat.count == 1 }">
+		  <section id="contact" class="contact-section">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${restaurant.name}</h3>
+					<p> ${restaurant.description} <p>
+					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
+						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
+					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+    				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
+            			<input type="text" name="newName" placeholder="Nowa nazwa"/>
+               			<input type="text" name="newDesc" placeholder="Opis">
+                		<br>Adres: </br>
+                		<input type="text" name="newStreet" placeholder="Ulica">
+                		<input type="text" name="newNumber" placeholder="Numer">
+                		<input type="text" name="newCode" placeholder="Kod pocztowy">
+                		<input type="text" name="newCity" placeholder="Miasto">
+            			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+            			<input type="submit">
+            		</form>
+            		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
+               		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+            		</form>
+				  </div>
+				</div>
+			  </div>
+		</c:when>
 
-    <c:set var="listSize" value="${fn:length(listRestaurants)}"/>
-    <c:forEach items="${listRestaurants}" var="restaurant" varStatus="stat">
-    <section id="contact" class="contact-section bg-black">
-        	<h1>Restauracja: ${restaurant.name}
-        	<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
-        	<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
-        	<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
-            	<input type="text" name="newName" placeholder="Nowa nazwa"/>
-                <input type="text" name="newDesc" placeholder="Opis">
-                <br>Adres: </br>
-                <input type="text" name="newStreet" placeholder="Ulica">
-                <input type="text" name="newNumber" placeholder="Numer">
-                <input type="text" name="newCode" placeholder="Kod pocztowy">
-                <input type="text" name="newCity" placeholder="Miasto">
-            	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-            	<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-            	<input type="submit">
-            </form>
-            <form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
-                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-                <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-                Jesteś pewny? <input type="submit" value="Usuń">
-            </form>
+	    <c:when test="${ stat.count == listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${restaurant.name}</h3>
+					<p> ${restaurant.description} <p>
+					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
+						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
+					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+    				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
+            			<input type="text" name="newName" placeholder="Nowa nazwa"/>
+               			<input type="text" name="newDesc" placeholder="Opis">
+                		<br>Adres: </br>
+                		<input type="text" name="newStreet" placeholder="Ulica">
+                		<input type="text" name="newNumber" placeholder="Numer">
+                		<input type="text" name="newCode" placeholder="Kod pocztowy">
+                		<input type="text" name="newCity" placeholder="Miasto">
+            			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+            			<input type="submit">
+            		</form>
+            		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
+               		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+            		</form>
+				  </div>
+				</div>
+			  </div>
+		</div>
+	  </section>           
+       	</c:when>	
+
+		<c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${restaurant.name}</h3>
+					<p> ${restaurant.description} <p>
+					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
+						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
+					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+    				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
+            			<input type="text" name="newName" placeholder="Nowa nazwa"/>
+               			<input type="text" name="newDesc" placeholder="Opis">
+                		<br>Adres: </br>
+                		<input type="text" name="newStreet" placeholder="Ulica">
+                		<input type="text" name="newNumber" placeholder="Numer">
+                		<input type="text" name="newCode" placeholder="Kod pocztowy">
+                		<input type="text" name="newCity" placeholder="Miasto">
+            			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+            			<input type="submit">
+            		</form>
+            		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
+               		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+            		</form>
+				  </div>
+				</div>
+			  </div>
+        </div>
+        </section>
+        <section id="contact" class="contact-section">
+		<div class="container">
+        <div class="row">
+        </c:when>
+                
+		<c:otherwise>
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${restaurant.name}</h3>
+					<p> ${restaurant.description} <p>
+					<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
+						${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
+					<button onclick='hideForm("${restaurant.name}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${restaurant.name}delete")'>Usuń</button>
+    				<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
+            			<input type="text" name="newName" placeholder="Nowa nazwa"/>
+               			<input type="text" name="newDesc" placeholder="Opis">
+                		<br>Adres: </br>
+                		<input type="text" name="newStreet" placeholder="Ulica">
+                		<input type="text" name="newNumber" placeholder="Numer">
+                		<input type="text" name="newCode" placeholder="Kod pocztowy">
+                		<input type="text" name="newCity" placeholder="Miasto">
+            			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            			<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+            			<input type="submit">
+            		</form>
+            		<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
+               		    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               		    <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+               			Jesteś pewny? <input type="submit" value="Tak, usuń">
+            		</form>
+				  </div>
+				</div>
+			  </div>
+        </c:otherwise>
+      </c:choose>
     </c:forEach>
-</c:if>
+  </c:if>
+</section>
 
+<section id="userManage" style="display:none">
 <c:if test="${!empty listUsers}">
-    <h2 class="text-white mb-4">Użytkownicy</h2>
-
-    <c:set var="listSize" value="${fn:length(listUsers)}"/>
-    <c:forEach items="${listUsers}" var="user" varStatus="stat">
-    <section id="contact" class="contact-section bg-black">
-        <h1>Użytkonik: ${user.username}</h1>
-        	<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
-        	<button onclick='hideForm("${user.username}delete")'>Usuń</button>
-        <form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
-            <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
-            <select name="newRole">
-                <c:if test="${!empty listRoles}">
-					<c:forEach items="${listRoles}" var="role">
+	<c:set var="listSize" value="${fn:length(listUsers)}"/>
+	<c:forEach items="${listUsers}" var="user" varStatus="stat">
+	  <c:choose>
+		<c:when test="${ stat.count == 1 }">
+		  <section id="contact" class="contact-section">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${user.username}</h3>
+					
+					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+    				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
+          			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+           			  <select name="newRole">
+              		  <c:if test="${!empty listRoles}">
+						<c:forEach items="${listRoles}" var="role">
    						 <option value="${role.id}">${role.name}</option>
-    				</c:forEach>
-   				 </c:if>
-   			</select>
-            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-            <input type="hidden"  name="userId" value="${user.id}"/>
-            <input type="submit">
-            </form>
-            <form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
-                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-                <input type="hidden"  name="userId" value="${user.id}"/>
-                Jesteś pewny? <input type="submit" value="Usuń">
-            </form>
-           </section>
-    </c:forEach>
-</c:if>
+    					</c:forEach>
+   				 	  </c:if>
+   					</select>
+            		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		<input type="hidden"  name="userId" value="${user.id}"/>
+            		<input type="submit">
+            		</form>
+            		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
+             		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		    <input type="hidden"  name="userId" value="${user.id}"/>
+           		       Jesteś pewny? <input type="submit" value="Usuń">
+          		 	</form>
+				  </div>
+				</div>
+			  </div>
+		</c:when>
 
-<c:if test="${!empty listApplications}">
+	    <c:when test="${ stat.count == listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${user.username}</h3>
+					
+					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+    				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
+          			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+           			  <select name="newRole">
+              		  <c:if test="${!empty listRoles}">
+						<c:forEach items="${listRoles}" var="role">
+   						 <option value="${role.id}">${role.name}</option>
+    					</c:forEach>
+   				 	  </c:if>
+   					</select>
+            		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		<input type="hidden"  name="userId" value="${user.id}"/>
+            		<input type="submit">
+            		</form>
+            		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
+             		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		    <input type="hidden"  name="userId" value="${user.id}"/>
+           		       Jesteś pewny? <input type="submit" value="Usuń">
+          		 	</form>
+				  </div>
+				</div>
+			  </div>
+		</div>
+	  </section>           
+       	</c:when>	
+
+		<c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${user.username}</h3>
+					
+					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+    				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
+          			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+           			  <select name="newRole">
+              		  <c:if test="${!empty listRoles}">
+						<c:forEach items="${listRoles}" var="role">
+   						 <option value="${role.id}">${role.name}</option>
+    					</c:forEach>
+   				 	  </c:if>
+   					</select>
+            		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		<input type="hidden"  name="userId" value="${user.id}"/>
+            		<input type="submit">
+            		</form>
+            		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
+             		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		    <input type="hidden"  name="userId" value="${user.id}"/>
+           		       Jesteś pewny? <input type="submit" value="Usuń">
+          		 	</form>
+				  </div>
+				</div>
+			  </div>
+        </div>
+        </section>
+        <section id="contact" class="contact-section">
+		<div class="container">
+        <div class="row">
+    </c:when>
+                
+		<c:otherwise>
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> ${user.username}</h3>
+					
+					<button onclick='hideForm("${user.username}edit")'>Edytuj</button>
+    				<button onclick='hideForm("${user.username}delete")'>Usuń</button>
+    				<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
+          			  <input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+           			  <select name="newRole">
+              		  <c:if test="${!empty listRoles}">
+						<c:forEach items="${listRoles}" var="role">
+   						 <option value="${role.id}">${role.name}</option>
+    					</c:forEach>
+   				 	  </c:if>
+   					</select>
+            		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		<input type="hidden"  name="userId" value="${user.id}"/>
+            		<input type="submit">
+            		</form>
+            		<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
+             		   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            		    <input type="hidden"  name="userId" value="${user.id}"/>
+           		       Jesteś pewny? <input type="submit" value="Usuń">
+          		 	</form>
+				  </div>
+				</div>
+			  </div>
+        </c:otherwise>
+      </c:choose>
+    </c:forEach>
+  </c:if>
+</section>
+
+<!--<c:if test="${!empty listApplications}">
     <h2 class="text-white mb-4">Wnioski o restauratora</h2>
 
     <c:set var="listSize" value="${fn:length(listApplications)}"/>
@@ -202,8 +548,118 @@
             </form>
            </section>
     </c:forEach>
-</c:if>
+</c:if>-->
 
+
+<section id="appManage" style="display:none">
+<c:if test="${!empty listApplications}">
+	<c:set var="listSize" value="${fn:length(listUsers)}"/>
+	<c:forEach items="${listApplications}" var="application" varStatus="stat">
+	  <c:choose>
+		<c:when test="${ stat.count == 1 }">
+		  <section id="contact" class="contact-section">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> Wniosek nr ${application.id}</h3>
+					<p>Użytkownik: ${application.user.username}</p>
+       				<p>Restauracja: ${application.name}</p>
+        			<p>Opis: ${application.description}</p>
+					<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
+       				 ${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+    				<form id="${application.id}approve" method="POST" action="admin/approveApp">
+           				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+           				 <input type="hidden"  name="applicationId" value="${application.id}"/>
+           				 <input type="submit" value = "Zatwierdz">
+           			</form>
+            		<form id="${application.id}delete" method="POST" action="admin/discardApp">
+              		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               			 <input type="hidden"  name="applicationId" value="${application.id}"/>
+               			 <input type="submit" value="Odrzuć">
+           			</form>
+				  </div>
+				</div>
+			  </div>
+		</c:when>
+
+	    <c:when test="${ stat.count == listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> Wniosek nr ${application.id}</h3>
+					<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
+       				 ${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+    				<form id="${application.id}approve" method="POST" action="admin/approveApp">
+           				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+           				 <input type="hidden"  name="applicationId" value="${application.id}"/>
+           				 <input type="submit" value = "Zatwierdz">
+           			</form>
+            		<form id="${application.id}delete" method="POST" action="admin/discardApp">
+              		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               			 <input type="hidden"  name="applicationId" value="${application.id}"/>
+               			 <input type="submit" value="Odrzuć">
+           			</form>
+				  </div>
+				</div>
+			  </div>
+		</div>
+	  </section>           
+       	</c:when>	
+
+		<c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> Wniosek nr ${application.id}</h3>
+					<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
+       				 ${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+    				<form id="${application.id}approve" method="POST" action="admin/approveApp">
+           				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+           				 <input type="hidden"  name="applicationId" value="${application.id}"/>
+           				 <input type="submit" value = "Zatwierdz">
+           			</form>
+            		<form id="${application.id}delete" method="POST" action="admin/discardApp">
+              		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               			 <input type="hidden"  name="applicationId" value="${application.id}"/>
+               			 <input type="submit" value="Odrzuć">
+           			</form>
+				  </div>
+				</div>
+			  </div>
+        </div>
+        </section>
+        <section id="contact" class="contact-section">
+		<div class="container">
+        <div class="row">
+    </c:when>
+                
+		<c:otherwise>
+          <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<h3> Wniosek nr ${application.id}</h3>
+					<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
+       				 ${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+    				<form id="${application.id}approve" method="POST" action="admin/approveApp">
+           				 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+           				 <input type="hidden"  name="applicationId" value="${application.id}"/>
+           				 <input type="submit" value = "Zatwierdz">
+           			</form>
+            		<form id="${application.id}delete" method="POST" action="admin/discardApp">
+              		     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+               			 <input type="hidden"  name="applicationId" value="${application.id}"/>
+               			 <input type="submit" value="Odrzuć">
+           			</form>
+				  </div>
+				</div>
+			  </div>
+        </c:otherwise>
+      </c:choose>
+    </c:forEach>
+  </c:if>
+</section>
 
 <script>
 function hideForm(id) {
