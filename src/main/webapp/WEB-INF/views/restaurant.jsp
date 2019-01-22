@@ -169,6 +169,7 @@
 					<p>Użytkownik: ${visit.user.username }</p>
                     <p>Rozpoczęcie: ${visit.start_date }</p>
                     <p>Opis: ${visit.description}</p>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
 				  </div>
 				</div>
 			  </div>
@@ -181,6 +182,7 @@
 				<p>Użytkownik: ${visit.user.username }</p>
                 <p>Rozpoczęcie: ${visit.start_date }</p>
                 <p>Opis: ${visit.description}</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
 			  </div>
 			</div>
 		  </div>
@@ -195,6 +197,7 @@
                 <p>Użytkownik: ${visit.user.username }</p>
                 <p>Rozpoczęcie: ${visit.start_date }</p>
                 <p>Opis: ${visit.description}</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
 			  </div>
 			</div>
 		  </div>
@@ -212,6 +215,7 @@
                 <p>Użytkownik: ${visit.user.username }</p>
                 <p>Rozpoczęcie: ${visit.start_date }</p>
                 <p>Opis: ${visit.description}</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
 			  </div>
 			</div>
 		  </div>
