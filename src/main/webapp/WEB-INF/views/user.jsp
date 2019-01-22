@@ -71,28 +71,57 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Przyszłe wizyty:</h2>
+            <h2 class="text-white mb-10">Przyszłe wizyty</h2>
           </div>
         </div>
       </div>
     </section>
     
 <c:if test="${!empty futureVisits}">
+
 	<c:forEach items="${futureVisits}" var="visit" varStatus="stat">
 	<section id="contact" class="contact-section bg-black">
 
 		  <div class="container">
 			<div class="row">
-			  <div class="col-md-4 mb-3 mb-md-0">
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center">
-					<h3>Restauracja: ${visit.restaurant.name}</h3>
+					<h2 class="text-center font-weigth-bold mb-5">Restauracja: ${visit.restaurant.name}</h2>
 					<p>Rozpoczęcie: ${visit.start_date }</p>
-					<p>Opis: ${visit.description}</p>
-					<button onclick='hideForm("${visit.start_date}edit")'>Edytuj</button>
-					<button onclick='hideForm("${visit.start_date}delete")'>Usuń</button>
+				  </div>
+				</div>
+				 <div class="col  mb-5">
+				  <div class="card py-4 h-100">
+					<h2 class="text-center font-weight-bold">Opis</h2> <p class="text-center">${visit.description}</p>
+				  </div>
+				 </div>
+				 <div class="col mb-5">
+				  <div class="card py-4 h-100">
+					<button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditVisit">
+						Edytuj
+					</button>					
+					<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteVisit">
+						Odwołaj
+					</button>
 					<br></br>
-					<form id="${visit.start_date}edit" method="POST" action="user/editVisit" style="display:none">
+				  </div>
+				 </div>
+			   <div id="modalEditVisit" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+							<form id="${visit.start_date}edit" method="POST" action="user/editVisit">
+							  <div class="row">
+							  <div class="col-3">
+								<p class="mt-3">Od:</p>
+								<p class="mt-4">Do:</p>
+								<p class="mt-4">Opis:</p>
+							  </div>
+							  <div class="col-5  mt-2">
 					    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="visitId" value="${visit.id}"/>
                         <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -104,18 +133,39 @@
                             <errors path="end_dateString"></errors>
                         </div>
                         <input type="text" name="newDesc" placeholder="Nowy opis">
-                        <input type="submit" value="Edytuj">
-					</form>
-					<form id="${visit.start_date}delete" method="POST" action="user/deleteVisit" style="display:none">
+							  </div>
+								<input type="submit" class="btn btn-primary mr-3" value="Edytuj">
+
+							  </div>
+							 </form>
+
+    			  		  </div>
+    				  </div>
+  				  </div>
+			    </div>
+			    
+			    <div id="modalDeleteVisit" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+					<form id="${visit.start_date}delete" method="POST" action="user/deleteVisit">
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="visitId" value="${visit.id}"/>
-                        Jesteś pewny? <input type="submit" value="Odwołaj">
+                        		<h3 class="font-weight-bold">Czy na pewno chcesz odwołać wizytę?</h3>
+                        <input class="btn btn-danger" type="submit" value="Odwołaj">
                     </form>
+
+    			  		  </div>
+    				  </div>
+  				  </div>
+			    </div>
+			               
 				  </div>
 				</div>
-			  </div>
-			</div>
-		  </div>
 		</section>
     </c:forEach>
 </c:if>
@@ -125,7 +175,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Zakończone wizyty:</h2>
+            <h2 class="text-white mb-4">Zakończone wizyty</h2>
           </div>
         </div>
       </div>
@@ -143,18 +193,43 @@
 					<h3>Restauracja: ${visit.restaurant.name}</h3>
 					<p>Rozpoczęcie: ${visit.start_date }</p>
 					<p>Opis: ${visit.description}</p>
-					<button onclick='hideForm("${visit.start_date}addOpinion")'>Dodaj opinię</button>
-					<br></br>
-					<form id="${visit.start_date}addOpinion" method="POST" action="user/addOpinion" style="display:none">
-					    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-					    <input type="hidden" name="opinionId" value="${opinion.id}"/>
-					    <input type="hidden" name="userId" value="${user.id}"/>
-					    <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
-					    <input type="number" name="star" min="0" max="10" placeholder="Ocena"/>
-					    <input type="text" name="name" placeholder="Tytuł"/>
-					    <input type="text" name="desc" placeholder="Opis"/>
-					    <input type="submit" value="Dodaj opinię">
-					</form>
+					<p class="text-white-50 "><button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddOpinion">
+						Dodaj opinie</button>
+          	  		</p>
+					<br></br>				
+			 <div id="modalAddOpinion" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <a class="modal-title font-weight-bold">Dodaj opinie</a>
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+							 <form id="${visit.start_date}addOpinion" method="POST" action="user/addOpinion">
+							  <div class="row">
+							  <div class="col-3">
+								<p class="mt-2">Ocena:</p>
+								<p class="mt-4">Tytuł:</p>
+								<p class="mt-4">Opis:</p>
+							  </div>
+							  <div class="col-5  mt-2">
+ 					  			   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+					 			   <input type="hidden" name="opinionId" value="${opinion.id}"/>
+					  			   <input type="hidden" name="userId" value="${user.id}"/>
+					  			   <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
+					 			   <p><input type="number" name="star" min="0" max="10" placeholder="Ocena"/></p>
+					 			   <p><input type="text" class="form-control" name="name" placeholder="Tytuł"/></p>
+					  			   <p><input type="text" class="form-control" name="desc" placeholder="Opis"/></p>
+							  </div>
+								<input type="submit" class="btn btn-primary mr-3" value="Dodaj">
+
+							  </div>
+							  </form>
+    			  		  </div>
+    				  </div>
+  				  </div>
+			  </div> 
 				  </div>
 				</div>
 			  </div>
@@ -164,10 +239,20 @@
     </c:forEach>
 </c:if>
 
+     <!-- About Section -->
+    <section id="about" class="about-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-white mb-4">Twoje opinie</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
 <c:if test="${!empty listOpinions}">
 	<c:forEach items="${listOpinions}" var="opinion" varStatus="stat">
 	<section id="contact" class="contact-section bg-black">
-	<h1>Twoje opinie:</h1>
 	<div class="container">
         <div class="row">
     	    <div class="col-md-4 mb-3 mb-md-0">
@@ -177,21 +262,66 @@
     					<p>Ocena: ${opinion.star }</p>
     					<p>Tytuł: ${opinion.name }</p>
     					<p>Opis: ${opinion.description}</p>
-    					<button onclick='hideForm("${opinion.name}edit")'>Edytuj</button>
-                        <button onclick='hideForm("${opinion.name}delete")'>Usuń</button>
-                        <form id="${opinion.name}edit" method="POST" action="user/editOpinion" style="display:none">
+    					<p class="text-white-50 "><button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditOpinion">
+							Edytuj</button>
+          	  			</p>
+                     	<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteOpinion">
+							Usuń
+						</button>
+						              					
+			 <div id="modalEditOpinion" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <a class="modal-title font-weight-bold">Podaj nazwę nowego menu</a>
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+                      	    <form id="${opinion.name}edit" method="POST" action="user/editOpinion">
+							  <div class="row">
+							  <div class="col-3">
+								<p class="mt-2">Ocena:</p>
+								<p class="mt-4">Tytuł:</p>
+								<p class="mt-4">Opis:</p>
+							  </div>
+							  <div class="col-5  mt-2">
+ 					  			   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+					 			   <input type="hidden" name="opinionId" value="${opinion.id}"/>
+					  			   <input type="hidden" name="userId" value="${user.id}"/>
+					  			   <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
+					 			   <p><input type="number" name="newStar" min="0" max="10" placeholder="Ocena"/></p>
+					 			   <p><input type="text" name="newName" placeholder="Tytuł"></p>
+					  			   <p><input type="text" name="newDesc" placeholder="Opis"></p>
+							  </div>
+								<input type="submit" class="btn btn-primary mr-3" value="Edytuj">
+							  </div>
+							  </form>
+    			  		  </div>
+    				  </div>
+  				  </div>
+			  </div> 
+                        
+                        
+               <div id="modalDeleteOpinion" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+    			  <!-- Modal content-->
+    				  <div class="modal-content">
+      					  <div class="modal-header">
+        					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+      					  </div>
+      					  <div class="modal-body">
+                        <form id="${opinion.name}delete" method="POST" action="user/deleteOpinion">
                             <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                             <input type="hidden"  name="opinionId" value="${opinion.id}"/>
-                            <input type="number" name="newStar" min="0" max="10" placeholder="Nowa ocena"/>
-                            <input type="text" name="newName" placeholder="Nowy tytuł">
-                            <input type="text" name="newDesc" placeholder="Nowy opis">
-                            <input type="submit" value="Edytuj">
+                            <h3 class="font-weight-bold">Czy na pewno chcesz odwołać wizytę?</h3></br>
+                            <input class="btn btn-danger"  type="submit" value="Usuń">
+                            
                         </form>
-                        <form id="${opinion.name}delete" method="POST" action="user/deleteOpinion" style="display:none">
-                            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-                            <input type="hidden"  name="opinionId" value="${opinion.id}"/>
-                            Jesteś pewny? <input type="submit" value="Usuń">
-                        </form>
+    			  		  </div>
+    				  </div>
+  				  </div>
+			    </div>
 				    </div>
 		        </div>
 	        </div>

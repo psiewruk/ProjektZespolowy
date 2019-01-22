@@ -65,6 +65,7 @@
       </div>
     </nav>
     
+   
      <!-- About Section -->
     <section id="about" class="about-section text-center">
       <div class="container">
@@ -116,7 +117,7 @@
 			  <div class="container">
 				<div class="row">
 				  <div class="col mb-md-2">
-					<img class="img-fluid" src="${contextPath}/resources/img/dania/dish${dish.id}.jpg" alt="" style="width:200px; height:200px;"/>
+					<img class="img-fluid rounded-circle" src="${contextPath}/resources/img/dania/dishPlaceholder.jpg" alt="" />
 				  </div>
 				  <div class="col-md-8 mb-md-2">
 				    <div class="card h-100">	
@@ -127,10 +128,10 @@
 					  	  <p><em>${dish.description}</em></p>
 					    </div>				  
 					  </div>				
-					  <div class="col-2 mb-3 mb-md-0">
+					  <div class="col-3 mb-3 mb-md-0">
 					    <div class="card-body text-center">
 						  <h5 class="font-weight-bold">Cena</h5>
-						  <p>${dish.price}</p>
+						  <p>${dish.price} zł</p>
 					  	</div>
 					  </div>
 					 </div>
@@ -148,4 +149,5 @@
 <jsp:include page="contact.jsp"></jsp:include>
 
 <jsp:include page="footer.jsp"></jsp:include>
+
 
