@@ -96,7 +96,7 @@
      <!--<c:if test="${pageContext.request.userPrincipal.name != null}">
      
     <form:form method="POST" modelAttribute="visitForm" class="form-signin">
-        <h2 class="form-signin-heading ">Stwórz wizytę</h2>
+        <h2 class="form-signin-heading text-center text-dark ">Stwórz wizytę</h2>
         <spring:bind path="start_dateString">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="datetime-local" path="start_dateString" class="form-control" placeholder="Start"
@@ -218,7 +218,7 @@
 					<p>Użytkownik: ${visit.user.username }</p>
                     <p>Rozpoczęcie: ${visit.start_date }</p>
                     <p>Opis: ${visit.description}</p>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+                    <button class="btn btn-lg btn-primary btn-block js-scroll-trigger" type="submit">Dołącz!</button>
 				  </div>
 				</div>
 			  </div>
