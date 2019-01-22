@@ -104,7 +104,14 @@ public class UserController {
         model.addAttribute("futureVisits", futureVisits);
         model.addAttribute("listOpinions", opinionService.findByUserId(currentUser.getId()));
 
-        System.out.println(auth.getAuthorities());
+        if(auth != null) {
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
+				model.addAttribute("isUser", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
+				model.addAttribute("isManager", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
+				model.addAttribute("isAdmin", true);
+		}
         
         return ("user");
     }

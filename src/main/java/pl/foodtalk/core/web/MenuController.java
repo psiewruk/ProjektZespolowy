@@ -48,7 +48,7 @@ public class MenuController {
     private VisitService visitService;
 
     @RequestMapping(value = {"/restaurant/{res}"}, method = RequestMethod.GET)
-    public String menu(@PathVariable("res") String res, Model model) {
+    public String menu(@PathVariable("res") String res, Model model, Authentication auth) {
     	
     	HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
         ArrayList<Visit> futureVisits = new ArrayList<Visit>();
@@ -70,18 +70,27 @@ public class MenuController {
         }
 
         model.addAttribute("futureVisits", futureVisits);
+        
+        if(auth != null) {
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
+				model.addAttribute("isUser", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
+				model.addAttribute("isManager", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
+				model.addAttribute("isAdmin", true);
+		}
 
         return "restaurant";
     }
 
     
 	@RequestMapping(value = "/restaurant/{res}", method = RequestMethod.POST)
-    public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, BindingResult bindingResult, Model model, Authentication authentication) throws ParseException {
+    public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, BindingResult bindingResult, Model model, Authentication auth) throws ParseException {
     
     	DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"); 
     	
     	visitForm.setRestaurant(this.restaurantService.findByName(res));
-    	visitForm.setUser(this.userService.findByUsername(authentication.getName()));
+    	visitForm.setUser(this.userService.findByUsername(auth.getName()));
     	visitForm.setStart_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime()));
     	//visitForm.setEnd_date(new Date(formatter.parse(visitForm.getEnd_dateString()).getTime()));
         visitForm.setEnd_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime() + 7200000));
@@ -89,6 +98,7 @@ public class MenuController {
 
         System.out.println(visitForm.getStart_dateString() + "   " + visitForm.getEnd_dateString());
         System.out.println(visitForm.getStart_date() + "   "+visitForm.getEnd_date());
+        
         
         return "redirect:/restaurant/"+res;
 	}

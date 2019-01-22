@@ -39,19 +39,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">O co chodzi?</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#projects">Nowości</a>
-            </li>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
             	<form id="logoutForm" method="POST" action="${contextPath}/logout">
          		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     			</form>
+    		<c:if test="${!empty isUser}">
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
             </li>
+            </c:if>
+            <c:if test="${!empty isAdmin}">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
+            </li>
+            </c:if>
+            <c:if test="${!empty isManager}">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
+            </li>
+            </c:if>
             <li>
               <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
             </li>
@@ -79,7 +85,7 @@
             <c:if test="${pageContext.request.userPrincipal.name != null}">
              <h2 class="text-white mb-4">Możesz umówić się na spotkanie w tej restauracji!</h2>
             <button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddVisit">
-				Dodaj danie
+				Stwórz wizytę
 			  </button>
             </c:if>
           </div>

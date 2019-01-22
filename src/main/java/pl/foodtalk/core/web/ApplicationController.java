@@ -24,7 +24,16 @@ public class ApplicationController {
 	private UserService userService;
 
 	@RequestMapping(value = {"/restauratorForm"}, method = RequestMethod.GET)
-	public String management(Model model, Authentication authentication) {
+	public String management(Model model, Authentication auth) {
+		
+		if(auth != null) {
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
+				model.addAttribute("isUser", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
+				model.addAttribute("isManager", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
+				model.addAttribute("isAdmin", true);
+		}
 
 		return "restauratorForm";
 	}

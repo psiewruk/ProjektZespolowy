@@ -8,6 +8,7 @@ import pl.foodtalk.core.service.RestaurantService;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ public class RestaurantController {
     private RestaurantService restaurantService;
     
     @RequestMapping(value = {"/restaurants/{cat}"}, method = RequestMethod.GET)
-    public String restaurants(@PathVariable("cat") String cat, Model model) {
+    public String restaurants(@PathVariable("cat") String cat, Model model, Authentication auth) {
     	ArrayList<Restaurant> listRestaurants = new ArrayList<Restaurant>();
     	
     	model.addAttribute("restaurant", new Restaurant());
@@ -31,13 +32,33 @@ public class RestaurantController {
     			listRestaurants.add(d.getMenu().getRestaurant());
     	}
 		model.addAttribute("listRestaurants", listRestaurants);
+		
+		if(auth != null) {
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
+				model.addAttribute("isUser", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
+				model.addAttribute("isManager", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
+				model.addAttribute("isAdmin", true);
+		}
+		
         return "restaurants";
     }
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET)
-    public String findAll(Model model) {
+    public String findAll(Model model, Authentication auth) {
         model.addAttribute("restaurant", new Restaurant());
         model.addAttribute("listRestaurants", restaurantService.findAll());
+        
+        if(auth != null) {
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
+				model.addAttribute("isUser", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
+				model.addAttribute("isManager", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
+				model.addAttribute("isAdmin", true);
+		}
+        
         return "restaurant";
     }
 }

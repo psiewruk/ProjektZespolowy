@@ -36,19 +36,28 @@ public class ManagementController {
 	private CategoryService categoryService;
 
 	@RequestMapping(value = {"/manage"}, method = RequestMethod.GET)
-	public String management(Model model, Authentication authentication) {
+	public String management(Model model, Authentication auth) {
 
 		HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
 		model.addAttribute("dish", new Dish());
 		model.addAttribute("menu", new Menu());
 		
-		if(restaurantService.findByUserUsername(authentication.getName()) != null) {
-			for(Menu m : menuService.findByRestaurantName(restaurantService.findByUserUsername(authentication.getName()).getName()))
+		if(restaurantService.findByUserUsername(auth.getName()) != null) {
+			for(Menu m : menuService.findByRestaurantName(restaurantService.findByUserUsername(auth.getName()).getName()))
 				menuMap.put(m, dishService.findByMenuId(m.getId()));
-			model.addAttribute("restaurant", restaurantService.findByUserUsername(authentication.getName()));
+			model.addAttribute("restaurant", restaurantService.findByUserUsername(auth.getName()));
 		}
 		model.addAttribute("menuMap", menuMap);
 		model.addAttribute("listCategories", categoryService.findAll());
+		
+		if(auth != null) {
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
+				model.addAttribute("isUser", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
+				model.addAttribute("isManager", true);
+			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
+				model.addAttribute("isAdmin", true);
+		}
 
 		return "manage";
 	}
