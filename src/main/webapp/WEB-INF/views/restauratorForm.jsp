@@ -65,34 +65,42 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Wybierz interesującą Cię restaurację!</h2>
-            <p class="text-white-50">Śmiało, nie krępuj się :)</p>
+            <h2 class="text-white mb-4">Złóż wniosek o dodanie Twojej restauracji</h2>
+            <p class="text-white-50">Po zweryfikowaniu danych natychmiast odpowiemy :)</p>
           </div>
         </div>
       </div>
     </section>
     
-  	<section id="projects" class="projects-section bg-light">
+  	<section id="contact" class="contact-section bg-light">
   	<div class="container">
-	  <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-        <div class="col-xl-8 col-lg-7">
-          <form action="/restauratorForm" method="POST" id="appForm" class="form-signin">
-          	<input type="text" name="name" placeholder="Nazwa restauracji"/>
-          	<input type="text" name="description" placeholder="Kilka zdań o restauracji">
-          	<br>
-            <input type="text" name="street" placeholder="Ulica"/>
-            <input type="text" name="number" placeholder="Numer budynku/lokalu"/>
-            <input type="text" name="postcode" placeholder="Kod pocztowy"/>
-            <input type="text" name="city" placeholder="Miasto"/>
-            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-            <input type="submit" value="Wyślij wniosek"/>
+	  <div class="row">
+        <div class="col  mb-5">
+          <div class="card py-4 h-100">
+          <form action="/restauratorForm" method="POST" id="appForm">
+          <div class="row">
+          	<div class="col">
+          		<input type="text" class="form-control ml-1" name="name" placeholder="Nazwa restauracji"/>
+          		<textarea class="form-control ml-1" rows="9" cols="9" name="description"  placeholder="Kilka zdań o restauracji"></textarea>
+          	</div>
+          	<div class="col ml-0">
+          	<div class="text-center">
+            	<input type="text" class="form-control mb-1"name="street" placeholder="Ulica"/>
+            	<input type="text" class="form-control mb-1"name="number" placeholder="Numer budynku/lokalu"/>
+            	<input type="text" class="form-control mb-1"name="postcode" placeholder="Kod pocztowy"/>
+            	<input type="text" class="form-control mb-1"name="city" placeholder="Miasto"/>
+            </div>
+            <div class="col">
+            	<input type="hidden" class="form-control" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            	<div class="text-center mt-4"><input type="submit" class="btn btn-secondary" value="Wyślij wniosek"/></div>
+            </div>
+            </div>
           </form>
           </div>
-        <div class="col-xl-4 col-lg-5">
-           
           </div>
         </div>
-    </div>
+     </div>
+
     </section>
 
 <jsp:include page="footer.jsp"></jsp:include>
