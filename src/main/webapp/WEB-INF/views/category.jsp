@@ -29,7 +29,7 @@
   </head>
 
   <body id="page-top">
-  
+  <div class="bg-black">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
@@ -83,7 +83,7 @@
 	<c:forEach items="${listCategories}" var="category" varStatus="stat">
 	  <c:choose>
 		<c:when test="${ stat.count == 1 }">
-		  <section id="contact" class="contact-section bg-black">
+		  <section id="contact" class="contact-section">
 		  <div class="container">
 			<div class="row">
 			  <div class="col-md-4 mb-3 mb-md-0">
@@ -117,14 +117,13 @@
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
 				<c:set var="imageVal" value="${requestScope['image'.concat(category.id)]}" />
-					<img class="img-fluid rounded" src="data:image/jpeg;base64,${imageVal}" alt="" />
-				</a>
+					<img class="img-fluid rounded" src="data:image/jpeg;base64,${imageVal}" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
         </div>
         </section>
-        <section id="contact" class="contact-section bg-black">
+        <section id="contact" class="contact-section">
 		<div class="container">
         <div class="row">
         </c:when>
@@ -143,5 +142,22 @@
       </c:choose>
     </c:forEach>
   </c:if>
+    <!-- Footer -->
+    <footer class="small text-center text-black-50">
+      <div class="container">
+        &copy; 2019 FoodTalk
+      </div>
+    </footer>
 
-<jsp:include page="footer.jsp"></jsp:include>
+    <!-- Bootstrap core JavaScript -->
+    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="${contextPath}/resources/js/grayscale.js"></script>
+</div>
+</body>
+</html>
