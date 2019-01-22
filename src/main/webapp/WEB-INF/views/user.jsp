@@ -81,13 +81,13 @@
 
 	<c:forEach items="${futureVisits}" var="visit" varStatus="stat">
 	<section id="contact" class="contact-section bg-black">
-
+				  
 		  <div class="container">
 			<div class="row">
-				<div class="card py-4 h-100">
-				  <div class="card-body text-center">
-					<h2 class="text-center font-weigth-bold mb-5">Restauracja: ${visit.restaurant.name}</h2>
-					<p>Rozpoczęcie: ${visit.start_date }</p>
+				<div class="col  mb-5">
+				  <div class="card py-4 h-100">
+					<h3 class="text-center font-weight-bold">Restauracja</h3> <h2 class="text-center font-weight-bold mb-5">${visit.restaurant.name}</h2>
+					<a class="text-center font-weight-bold">Rozpoczęcie:</a><a class="text-center"> ${visit.start_date }</a>
 				  </div>
 				</div>
 				 <div class="col  mb-5">
@@ -97,12 +97,16 @@
 				 </div>
 				 <div class="col mb-5">
 				  <div class="card py-4 h-100">
+				  <div  class="text-center mt-4 mb-5">
 					<button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditVisit">
 						Edytuj
-					</button>					
+					</button>	
+				  </div>			
+				  <div  class="text-center mt-5 mb-3">
 					<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteVisit">
 						Odwołaj
 					</button>
+				  </div>
 					<br></br>
 				  </div>
 				 </div>
@@ -111,23 +115,31 @@
     			  <!-- Modal content-->
     				  <div class="modal-content">
       					  <div class="modal-header">
+      					      <a class="modal-title font-weight-bold">Edytuj wizytę</a>
         					  <button type="button" class="close" data-dismiss="modal">&times;</button>
       					  </div>
+
+      					  
       					  <div class="modal-body">
 							<form id="${visit.start_date}edit" method="POST" action="user/editVisit">
 							  <div class="row">
-							  <div class="col-3">
-								<p class="mt-3">Kiedy?</p>
+							  <div class="col-2">
+								<p class="mt-3">Od:</p>
+								<p class="mt-4">Do:</p>
 								<p class="mt-4">Opis:</p>
 							  </div>
-							  <div class="col-5  mt-2">
+							  <div class="col-6  mt-2">
 					    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="visitId" value="${visit.id}"/>
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <input type="datetime-local" name="start_dateString" class="form-control" placeholder="Start" autofocus="true"></input>
                             <errors path="start_dateString"><errors>
                         </div>
-                        <input type="text" name="newDesc" placeholder="Nowy opis">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <input type="datetime-local" name="end_dateString" class="form-control" placeholder="End"></input>
+                            <errors path="end_dateString"></errors>
+                        </div>
+                        <input type="text" class="form-control"name="newDesc" placeholder="Nowy opis">
 							  </div>
 								<input type="submit" class="btn btn-primary mr-3" value="Edytuj">
 
@@ -150,8 +162,8 @@
 					<form id="${visit.start_date}delete" method="POST" action="user/deleteVisit">
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="visitId" value="${visit.id}"/>
-                        		<h3 class="font-weight-bold">Czy na pewno chcesz odwołać wizytę?</h3>
-                        <input class="btn btn-danger" type="submit" value="Odwołaj">
+                        		<h3 class="font-weight-bold text-center">Czy na pewno chcesz odwołać wizytę?</h3>
+                        <div class="text-center"><input class="btn btn-danger" type="submit" value="Odwołaj"></div>
                     </form>
 
     			  		  </div>
@@ -182,15 +194,30 @@
 
 		  <div class="container">
 			<div class="row">
-			  <div class="col-md-4 mb-3 mb-md-0">
-				<div class="card py-4 h-100">
-				  <div class="card-body text-center">
-					<h3>Restauracja: ${visit.restaurant.name}</h3>
-					<p>Rozpoczęcie: ${visit.start_date }</p>
-					<p>Opis: ${visit.description}</p>
-					<p class="text-white-50 "><button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddOpinion">
+				<div class="col  mb-5">
+				  <div class="card py-4 h-100">
+					<h3 class="text-center font-weight-bold">Restauracja</h3> <h2 class="text-center font-weight-bold mb-5">${visit.restaurant.name}</h2>
+					<a class="text-center font-weight-bold">Rozpoczęcie:</a><a class="text-center"> ${visit.start_date }</a>
+				  </div>
+				</div> 
+				<div class="col  mb-5">
+				  <div class="card py-4 h-100">
+					<h2 class="text-center font-weight-bold">Opis</h2> <p class="text-center">${visit.description}</p>			  
+				  </div>
+				</div> 
+				
+								<div class="col  mb-5">
+				  <div class="card py-4 h-100">
+				  	<div class="text-center mt-5">
+						<p class="text-white-50 "><button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddOpinion">
 						Dodaj opinie</button>
           	  		</p>
+          	  		<div>
+				  </div>
+				</div> 
+				
+				
+
 					<br></br>				
 			 <div id="modalAddOpinion" class="modal fade" role="dialog">
 				  <div class="modal-dialog">
@@ -204,7 +231,7 @@
 							 <form id="${visit.start_date}addOpinion" method="POST" action="user/addOpinion">
 							  <div class="row">
 							  <div class="col-3">
-								<p class="mt-2">Ocena:</p>
+								<p class="mt-3">Ocena:</p>
 								<p class="mt-4">Tytuł:</p>
 								<p class="mt-4">Opis:</p>
 							  </div>
@@ -213,9 +240,9 @@
 					 			   <input type="hidden" name="opinionId" value="${opinion.id}"/>
 					  			   <input type="hidden" name="userId" value="${user.id}"/>
 					  			   <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
-					 			   <p><input type="number" name="star" min="0" max="10" placeholder="Ocena"/></p>
-					 			   <p><input type="text" class="form-control" name="name" placeholder="Tytuł"/></p>
-					  			   <p><input type="text" class="form-control" name="desc" placeholder="Opis"/></p>
+					 			   <p><input type="number" class="form-control" name="star" min="0" max="10" placeholder="Od 0 do 10"/></p>
+					 			   <p><input type="text" class="form-control" name="name" placeholder=""/></p>
+					  			   <p><input type="text" class="form-control" name="desc" placeholder=""/></p>
 							  </div>
 								<input type="submit" class="btn btn-primary mr-3" value="Dodaj">
 
@@ -229,7 +256,6 @@
 				</div>
 			  </div>
 			</div>
-		  </div>
 		</section>
     </c:forEach>
 </c:if>
@@ -250,26 +276,43 @@
 	<section id="contact" class="contact-section bg-black">
 	<div class="container">
         <div class="row">
-    	    <div class="col-md-4 mb-3 mb-md-0">
-    		    <div class="card py-4 h-100">
-    			    <div class="card-body text-center">
-    					<h3>Restauracja: ${opinion.restaurant.name}</h3>
-    					<p>Ocena: ${opinion.star }</p>
-    					<p>Tytuł: ${opinion.name }</p>
-    					<p>Opis: ${opinion.description}</p>
+        
+        	<div class="col  mb-5">
+				<div class="card py-4 h-100">
+    				<h3 class="text-center font-weight-bold">Restauracja</h3> <h2 class="text-center font-weight-bold mb-5">${opinion.restaurant.name}</h2>
+					<a class="text-center font-weight-bold">Ocena</a><a class="text-center"> ${opinion.star }</a>
+				</div>
+			</div> 
+        
+      		<div class="col  mb-5">
+		   	     <div class="card py-4 h-100">
+    					<h2 class="text-center font-weight-bold">Tytuł: ${opinion.name }</h2> 
+    					<p class="text-center font-weight-bold">Opis</p> <p class="text-center">${opinion.description}</p>
+				 </div>
+			</div> 
+        
+        
+        	<div class="col  mb-5">
+				 <div class="card py-4 h-100">
+				 	<div class="text-center mt-4 mb-4">
     					<p class="text-white-50 "><button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditOpinion">
 							Edytuj</button>
           	  			</p>
+          	  		</div>
+          	  		<div class="text-center mt-5 mb-3">
                      	<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteOpinion">
 							Usuń
 						</button>
+					</div>
+				 </div>
+			</div>
 						              					
 			 <div id="modalEditOpinion" class="modal fade" role="dialog">
 				  <div class="modal-dialog">
     			  <!-- Modal content-->
     				  <div class="modal-content">
       					  <div class="modal-header">
-        					  <a class="modal-title font-weight-bold">Podaj nazwę nowego menu</a>
+        					  <a class="modal-title font-weight-bold">Edytuj opinie</a>
         					  <button type="button" class="close" data-dismiss="modal">&times;</button>
       					  </div>
       					  <div class="modal-body">
@@ -285,9 +328,9 @@
 					 			   <input type="hidden" name="opinionId" value="${opinion.id}"/>
 					  			   <input type="hidden" name="userId" value="${user.id}"/>
 					  			   <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
-					 			   <p><input type="number" name="newStar" min="0" max="10" placeholder="Ocena"/></p>
-					 			   <p><input type="text" name="newName" placeholder="Tytuł"></p>
-					  			   <p><input type="text" name="newDesc" placeholder="Opis"></p>
+					 			   <p><input class="form-control" type="number" name="newStar" min="0" max="10" placeholder="Ocena"/></p>
+					 			   <p><input class="form-control" type="text" name="newName" placeholder="Tytuł"></p>
+					  			   <p><input class="form-control" type="text" name="newDesc" placeholder="Opis"></p>
 							  </div>
 								<input type="submit" class="btn btn-primary mr-3" value="Edytuj">
 							  </div>
@@ -309,8 +352,8 @@
                         <form id="${opinion.name}delete" method="POST" action="user/deleteOpinion">
                             <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                             <input type="hidden"  name="opinionId" value="${opinion.id}"/>
-                            <h3 class="font-weight-bold">Czy na pewno chcesz odwołać wizytę?</h3></br>
-                            <input class="btn btn-danger"  type="submit" value="Usuń">
+                            <h3 class="font-weight-bold text-center">Czy na pewno chcesz odwołać wizytę?</h3></br>
+                            <div class="text-center"><input class="btn btn-danger"  type="submit" value="Usuń"></div>
                             
                         </form>
     			  		  </div>
@@ -319,9 +362,6 @@
 			    </div>
 				    </div>
 		        </div>
-	        </div>
-        </div>
-    </div>
     </section>
     </c:forEach>
 </c:if>
