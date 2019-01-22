@@ -30,4 +30,7 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public Visit findById(Long id) { return visitRepository.findById(id); }
+
+    @Override
+    public Visit findSingleByRestaurantName(String name) { return visitRepository.findSingleByRestaurantName(name); }
 }

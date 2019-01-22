@@ -2,6 +2,7 @@ package pl.foodtalk.core.web;
 
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Menu;
+import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.Visit;
 import pl.foodtalk.core.service.DishService;
 import pl.foodtalk.core.service.MenuService;
@@ -12,6 +13,7 @@ import pl.foodtalk.core.service.VisitService;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,15 +51,25 @@ public class MenuController {
     public String menu(@PathVariable("res") String res, Model model) {
     	
     	HashMap<Menu, List<Dish>> menuMap = new HashMap<Menu, List<Dish>>();
+        ArrayList<Visit> futureVisits = new ArrayList<Visit>();
     	model.addAttribute("dish", new Dish());
     	model.addAttribute("menu", new Menu());
+    	model.addAttribute("visit", new Visit());
     	model.addAttribute("visitForm", new Visit());
     	model.addAttribute("restaurant", restaurantService.findByName(res));
     
     	for(Menu m : this.menuService.findByRestaurantName(res))
     		menuMap.put(m, this.dishService.findByMenuId(m.getId()));
-    
+
         model.addAttribute("menuMap", menuMap);
+
+        for(Visit v : this.visitService.findByRestaurantName(res)) {
+            if(v.getStart_date().compareTo(new Date()) > 0) {
+                futureVisits.add(v);
+            }
+        }
+
+        model.addAttribute("futureVisits", futureVisits);
 
         return "restaurant";
     }

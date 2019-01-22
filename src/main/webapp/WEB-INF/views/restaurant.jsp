@@ -145,6 +145,87 @@
     </section>
 </c:if>
 
+<c:if test="${!empty futureVisits}">
+
+    <section id="about" class="about-section text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <h2 class="text-white mb-4">Oni już tam będą!</h2>
+              </div>
+            </div>
+          </div>
+    </section>
+
+	<c:set var="listSize" value="${fn:length(futureVisits)}"/>
+	<c:forEach items="${futureVisits}" var="visit" varStatus="stat">
+	  <c:choose>
+		<c:when test="${ stat.count == 1 }">
+		  <section id="contact" class="contact-section bg-black">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-4 mb-3 mb-md-0">
+				<div class="card py-4 h-100">
+				  <div class="card-body text-center ">
+					<p>Użytkownik: ${visit.user.username }</p>
+                    <p>Rozpoczęcie: ${visit.start_date }</p>
+                    <p>Opis: ${visit.description}</p>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+				  </div>
+				</div>
+			  </div>
+		</c:when>
+
+	    <c:when test="${ stat.count == listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+			<div class="card py-4 h-100">
+			  <div class="card-body text-center">
+				<p>Użytkownik: ${visit.user.username }</p>
+                <p>Rozpoczęcie: ${visit.start_date }</p>
+                <p>Opis: ${visit.description}</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </section>
+       	</c:when>
+
+		<c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
+          <div class="col-md-4 mb-3 mb-md-0">
+			<div class="card py-4 h-100">
+			  <div class="card-body text-center">
+                <p>Użytkownik: ${visit.user.username }</p>
+                <p>Rozpoczęcie: ${visit.start_date }</p>
+                <p>Opis: ${visit.description}</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+			  </div>
+			</div>
+		  </div>
+        </div>
+        </section>
+        <section id="contact" class="contact-section bg-black">
+		<div class="container">
+        <div class="row">
+        </c:when>
+
+		<c:otherwise>
+          <div class="col-md-4 mb-3 mb-md-0">
+			<div class="card py-4 h-100">
+			  <div class="card-body text-center">
+                <p>Użytkownik: ${visit.user.username }</p>
+                <p>Rozpoczęcie: ${visit.start_date }</p>
+                <p>Opis: ${visit.description}</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Dołącz!</button>
+			  </div>
+			</div>
+		  </div>
+        </c:otherwise>
+      </c:choose>
+    </c:forEach>
+  </c:if>
+
+
   
 <jsp:include page="contact.jsp"></jsp:include>
 

@@ -257,7 +257,7 @@ background-size: cover;
 
 .contact-section .card {
   border: 0;
-  border-bottom: 0.25rem solid #64a19d;
+  border: 0.25rem solid #64a19d;
 }
 
 .contact-section .card h4 {
@@ -310,7 +310,8 @@ a:focus, a:hover {
 }
 
 .bg-black {
-  background-color: #64a19d !important;
+  background: url("../img/sml-bg.jpg"); !important;
+  background-size: 337px 338px;
 }
 
 .bg-primary {
