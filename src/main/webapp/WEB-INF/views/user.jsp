@@ -62,7 +62,6 @@
               <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
             </li>
             </c:if>
-            </c:if>
             <c:if test="${pageContext.request.userPrincipal.name == null}">
               <li class="nav-item">
                 <a class="nav-link" href="${contextPath}/login">Logowanie</a>
