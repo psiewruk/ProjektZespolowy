@@ -40,19 +40,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">O co chodzi?</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#projects">Nowości</a>
-            </li>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
             	<form id="logoutForm" method="POST" action="${contextPath}/logout">
          		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     			</form>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
-            </li>
             <li>
               <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
             </li>
