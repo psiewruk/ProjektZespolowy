@@ -11,5 +11,4 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     Category findById(Long id);
     @Transactional
     Long deleteById(Long id);
-    byte[] findImgById(Long id);
 }

@@ -7,14 +7,12 @@ import javax.persistence.*;
 public class Category {
     private Long id;
     private String name;
-    private byte[] image;
 
     public Category() { super(); }
 
     public Category(String name, byte[] image) {
         super();
         this.name = name;
-        this.image = image;
     }
     
     public Category(String name) {
@@ -40,11 +38,4 @@ public class Category {
         this.name = name;
     }
 
-	public byte[] getImage() {
-		return image;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
 }

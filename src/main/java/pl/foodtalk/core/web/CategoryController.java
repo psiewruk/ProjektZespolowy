@@ -21,13 +21,6 @@ public class CategoryController {
 
     @RequestMapping(value = {"/category"}, method = RequestMethod.GET)
     public String categoryIMG(Model model, Authentication auth) throws UnsupportedEncodingException {
-
-      	for(Category c : categoryService.findAll()) {
-    		Base64 b = new Base64();
-    		byte[] encodeBase64 = b.encode(c.getImage());
-            String base64Encoded = new String(encodeBase64, "UTF-8");
-            model.addAttribute("image"+c.getId(), base64Encoded);
-    	}
     	
     	model.addAttribute("category", new CategoryIMG());
 		model.addAttribute("listCategories", this.categoryService.findAll());
