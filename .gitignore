@@ -252,4 +252,6 @@ node_modules
 docs/_book
 test/
 
+application.properties
+
 # End of https://www.gitignore.io/api/node,vuejs
