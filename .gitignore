@@ -252,6 +252,5 @@ node_modules
 docs/_book
 test/
 
-application.properties
-
-# End of https://www.gitignore.io/api/node,vuejs
+src/main/resources/application.properties
+src/main/resources/application.properties

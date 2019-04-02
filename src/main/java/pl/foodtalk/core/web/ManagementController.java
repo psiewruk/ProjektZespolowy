@@ -7,6 +7,8 @@ import pl.foodtalk.core.service.DishService;
 import pl.foodtalk.core.service.MenuService;
 import pl.foodtalk.core.service.RestaurantService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ManagementController {
@@ -70,7 +73,8 @@ public class ManagementController {
 	public String editMenu(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("menuId") Long menuId) {
 
 		Menu menu = menuService.findById(menuId);
-		menu.setName(newName);
+		if(newName.length() != 0)
+			menu.setName(newName);
 		menuService.save(menu);
 
 		return "redirect:/manage";
@@ -115,7 +119,7 @@ public class ManagementController {
 
 	@RequestMapping(value = {"/manage/addDish"}, method = RequestMethod.POST)
 	public String addDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
-						  @RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId) {
+						  @RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId) throws IllegalStateException, IOException {
 
 		Dish dish = new Dish(newPrice, newName, newDesc, categoryService.findById(categoryId), menuService.findById(menuId));
 		dishService.save(dish);

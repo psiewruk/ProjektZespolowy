@@ -12,6 +12,8 @@
         <intercept-url pattern="/manage" access="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')"/>
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/user" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <intercept-url pattern="/login" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_USER','ROLE_MANAGER','ROLE_ADMIN')"/>
+        <intercept-url pattern="/login?logout" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_USER','ROLE_MANAGER','ROLE_ADMIN')"/>
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
     </http>

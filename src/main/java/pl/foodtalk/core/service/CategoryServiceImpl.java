@@ -1,7 +1,6 @@
 package pl.foodtalk.core.service;
 
 import pl.foodtalk.core.model.Category;
-import pl.foodtalk.core.model.CategoryIMG;
 import pl.foodtalk.core.repository.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

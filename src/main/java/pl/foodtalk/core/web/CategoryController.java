@@ -1,12 +1,10 @@
 package pl.foodtalk.core.web;
 
 import pl.foodtalk.core.model.Category;
-import pl.foodtalk.core.model.CategoryIMG;
 import pl.foodtalk.core.service.CategoryService;
 
 import java.io.UnsupportedEncodingException;
 
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,7 @@ public class CategoryController {
     @RequestMapping(value = {"/category"}, method = RequestMethod.GET)
     public String categoryIMG(Model model, Authentication auth) throws UnsupportedEncodingException {
     	
-    	model.addAttribute("category", new CategoryIMG());
+    	model.addAttribute("category", new Category());
 		model.addAttribute("listCategories", this.categoryService.findAll());
 		
 		if(auth != null) {
