@@ -37,7 +37,7 @@ public class Menu {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name="restaurant_id")
     public Restaurant getRestaurant() {
     	return restaurant;
