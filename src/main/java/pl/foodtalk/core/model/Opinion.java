@@ -42,13 +42,13 @@ public class Opinion {
 
     public void setDescription(String description) { this.description = description; }
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id")
     public Restaurant getRestaurant() { return restaurant; }
 
     public void setRestaurant(Restaurant restaurant) { this.restaurant = restaurant; }
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     public User getUser() { return user; }
 

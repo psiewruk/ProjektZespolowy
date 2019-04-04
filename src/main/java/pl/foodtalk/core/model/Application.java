@@ -47,7 +47,7 @@ public class Application {
         this.name = name;
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     public User getUser() { 
     	return user; }

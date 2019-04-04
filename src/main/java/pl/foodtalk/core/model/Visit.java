@@ -47,7 +47,7 @@ public class Visit {
         this.end_date = end_date;
     }
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
@@ -57,7 +57,7 @@ public class Visit {
         this.user = user;
     }
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id")
     public Restaurant getRestaurant() {
         return restaurant;
