@@ -17,7 +17,7 @@
                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                 <h4 class="text-uppercase m-0">Adres</h4>
                 <hr class="my-4">
-                <div class="small text-black-50">Polani 64, Gdańsk</div>
+                <div class="small text-black-50">Jana Bażyńskiego 8, Gdańsk</div>
               </div>
             </div>
           </div>
@@ -28,9 +28,7 @@
                 <i class="fas fa-envelope text-primary mb-2"></i>
                 <h4 class="text-uppercase m-0">Email</h4>
                 <hr class="my-4">
-                <div class="small text-black-50">
-                  <a href="#">ug@poczta.pl</a>
-                </div>
+              <div class="small text-black-50">ug@poczta.pl</div>
               </div>
             </div>
           </div>
@@ -41,7 +39,7 @@
                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
                 <h4 class="text-uppercase m-0">Telefon</h4>
                 <hr class="my-4">
-                <div class="small text-black-50">+48 666-232-826</div>
+                <div class="small text-black-50">+48 58 523 30 00</div>
               </div>
             </div>
           </div>

@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%> <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+         pageEncoding="utf-8"%> <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
     <!-- Footer -->
-    <footer class="bg-black small text-center text-white-50">
+    <footer class="bg-black big text-center text-black-50">
       <div class="container">
-        &copy; 2019 FoodTalk
+          &copy; 2019 FoodTalk
       </div>
     </footer>
 

@@ -78,12 +78,13 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2 class="text-white mb-4">Na co masz ochotę?</h2>
-            <p class="text-white-50">Po wybraniu interesującego Cię dania poprostu kliknij je! ;)</p>
+            <p class="text-white-50">Po wybraniu interesującego Cię dania poprostu je kliknij!</p>
           </div>
         </div>
       </div>
     </section>
-    
+
+
   <c:if test="${!empty listCategories}">
 	<c:set var="listSize" value="${fn:length(listCategories)}"/>
 	<c:forEach items="${listCategories}" var="category" varStatus="stat">
@@ -96,7 +97,7 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
 				  </div>
 				</div>
 			  </div>
@@ -107,11 +108,12 @@
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
 		</div>
+          </div>
 	  </section>           
        	</c:when>	
 
@@ -120,23 +122,22 @@
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
-        </div>
-        </section>
+
         <section id="contact" class="contact-section">
 		<div class="container">
         <div class="row">
         </c:when>
-                
+
 		<c:otherwise>
           <div class="col-md-4 mb-3 mb-md-0">
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
@@ -144,22 +145,8 @@
       </c:choose>
     </c:forEach>
   </c:if>
-    <!-- Footer -->
-    <footer class="small text-center text-black-50">
-      <div class="container">
-        &copy; 2019 FoodTalk
-      </div>
-    </footer>
+        </div></div></section>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="${contextPath}/resources/js/grayscale.js"></script>
-</div>
-</body>
+  <jsp:include page="footer.jsp"></jsp:include>
+  </body>
 </html>

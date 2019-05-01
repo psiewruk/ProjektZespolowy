@@ -299,7 +299,8 @@ function clicked(e)
 
 
 <jsp:include page="contact.jsp"></jsp:include>
-
 <jsp:include page="footer.jsp"></jsp:include>
-
-
+</div>
+        </section>
+  </body>
+</html>

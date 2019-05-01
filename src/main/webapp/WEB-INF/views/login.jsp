@@ -75,7 +75,7 @@
 
 <div class="container">
     <form method="POST" action="${contextPath}/login" class="form-signin">
-        <center><h2 class="form-signin-heading">Zaloguj się</h2></center>
+        <center><h2 class="form-signin-heading">Zaloguj się!</h2></center>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
@@ -87,68 +87,9 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj!</button><br>
             <center><h4 class="form-signin-heading"><a href="${contextPath}/registration" style="color: white;">Stwórz konto</a></h4></center>
         </div>
-
+      <jsp:include page="footerClear.jsp"></jsp:include>
     </form>
-
 </div>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <div class="container">
-
-        <div class="row">
-        
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Adres</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">Polani 64, Gdańsk</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-envelope text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Email</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">
-                  <a href="#">ug@poczta.pl</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-80">
-              <div class="card-body text-center">
-                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Telefon</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">+48 666-232-826</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Footer -->
-    <footer class=" small text-center text-white">
-        &copy; 2019 FoodTalk
-    </footer>
-
-</div>
-    <!-- Bootstrap core JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="${contextPath}/resources/js/grayscale.js"></script>
+  </div>
   </body>
 </html>
