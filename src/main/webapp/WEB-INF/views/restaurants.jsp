@@ -29,7 +29,7 @@
   </head>
 
   <body id="page-top">
-  
+  <div class="bg-seamless">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
@@ -83,28 +83,29 @@
         </div>
       </div>
     </section>
-    
-<c:if test="${!empty listRestaurants}">
-  	<section id="projects" class="projects-section big bg-seamless">
-  	<div class="container">
-	<c:forEach items="${listRestaurants}" var="restaurant">
-	  <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-        <div class="col-xl-8 col-lg-7">
-          <a href="/restaurant/${restaurant.name}"><img class="img-fluid mb-3 mb-lg-0" src="${contextPath}/resources/img/restauracje/${restaurant.name}.jpg" alt=""></a>
-          </div>
-        <div class="col-xl-4 col-lg-5">
-           <a href="/restaurant/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
-              <h4>${restaurant.name}</h4>
-              <p class="font-green mb-0">${restaurant.description}</p>
-            </div></a>
-          </div>
-        </div>
-    </c:forEach>
-    </div>
-    </section>
-</c:if>
 
-<jsp:include page="contact.jsp"></jsp:include>
-<jsp:include page="footer.jsp"></jsp:include>
+  <c:if test="${!empty listRestaurants}">
+      <section id="projects" class="projects-section big bg-seamless">
+      <div class="container">
+      <c:forEach items="${listRestaurants}" var="restaurant">
+        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+          <div class="col-xl-8 col-lg-7">
+            <a href="/restaurant/${restaurant.name}"><img class="img-fluid mb-3 mb-lg-0" src="${contextPath}/resources/img/restauracje/${restaurant.name}.jpg" alt=""></a>
+            </div>
+          <div class="col-xl-4 col-lg-5">
+             <a href="/restaurant/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
+                <h4>${restaurant.name}</h4>
+                <p class="font-green mb-0">${restaurant.description}</p>
+              </div></a>
+            </div>
+          </div>
+      </c:forEach>
+      </div>
+      </section>
+  </c:if>
+  </div>
+
+      <jsp:include page="contact.jsp"></jsp:include>
+      <jsp:include page="footer.jsp"></jsp:include>
   </body>
 </html>

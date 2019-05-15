@@ -29,7 +29,7 @@
   </head>
 
   <body id="page-top">
-  
+  <div class="bg-seamless">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
@@ -71,20 +71,20 @@
         </div>
       </div>
     </nav>
-    
-     <!-- About Section -->
-    <section id="about" class="about-section text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Złóż wniosek o dodanie Twojej restauracji</h2>
-            <p class="text-white-50">Po zweryfikowaniu danych natychmiast odpowiemy :)</p>
+
+      <!-- About Section -->
+      <section id="about" class="about-section text-center">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 mx-auto">
+                      <h2 class="text-white mb-4">Złóż wniosek o dodanie Twojej restauracji</h2>
+                      <p class="text-white-50">Po zweryfikowaniu danych natychmiast odpowiemy :)</p>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-    </section>
+      </section>
     
-  	<section id="contact" class="contact-section bg-light">
+  	<section id="contact" class="contact-section bg-seamless">
   	<div class="container">
 	  <div class="row">
         <div class="col  mb-5">
@@ -104,18 +104,19 @@
             </div>
             <div class="col">
             	<input type="hidden" class="form-control" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-            	<div class="text-center mt-4"><input type="submit" class="btn btn-secondary" value="Wyślij wniosek"/></div>
+            	<div class="text-center mt-4"><input type="submit" class="btn btn-primarya js-scroll-trigger" value="Wyślij wniosek"/></div>
             </div>
             </div>
+          </div>
           </form>
           </div>
           </div>
         </div>
      </div>
-
     </section>
+  </div>
 
       <jsp:include page="contact.jsp"></jsp:include>
-<jsp:include page="footer.jsp"></jsp:include>
+      <jsp:include page="footer.jsp"></jsp:include>
   </body>
 </html>

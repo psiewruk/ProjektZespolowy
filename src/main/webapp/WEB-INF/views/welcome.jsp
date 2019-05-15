@@ -18,7 +18,7 @@
 
 	<script src="https://unpkg.com/scrollreveal"></script>
     <!-- Bootstrap core CSS -->
-    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
