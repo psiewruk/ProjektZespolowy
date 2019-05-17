@@ -92,7 +92,7 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="about-section text-center">
+    <section id="about" class="about-section-welcome text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto explainReveal">
@@ -111,7 +111,7 @@
         <!-- Project One Row -->
         <div class="row slide-left justify-content-center no-gutters mb-5 mb-lg-0">
           <div class="col-lg-6">
-            <img class="img-fluid" src="${contextPath}/resources/img/welcome/Aplikacja.png" alt="">
+            <img class="img-fluid" src="${contextPath}/resources/img/site/Aplikacja.png" alt="">
           </div>
           <div class="col-lg-6">
             <div class="bg-black text-center h-100 project">
@@ -127,9 +127,9 @@
         </div>
 
         <!-- Project Two Row -->
-        <div class="row slide-right justify-content-center no-gutters">
+        <div class="row slide-right justify-content-center no-gutters mb-5 mb-lg-0">
           <div class="col-lg-6">
-            <img class="img-fluid" src="${contextPath}/resources/img/welcome/Promocje.jpg" alt="">
+            <img class="img-fluid" src="${contextPath}/resources/img/site/Promocje.jpg" alt="">
           </div>
           <div class="col-lg-6 order-lg-first">
             <div class="bg-black text-center h-100 project">
@@ -147,7 +147,7 @@
 		<!-- Project Three Row -->
         <div class="row slide-left justify-content-center no-gutters mb-5 mb-lg-0">
           <div class="col-lg-6">
-            <img class="img-fluid" src="${contextPath}/resources/img/welcome/Nasza opinia.jpg" alt="">
+            <img class="img-fluid" src="${contextPath}/resources/img/site/Nasza%20opinia.jpg" alt="">
           </div>
           <div class="col-lg-6">
             <div class="bg-black text-center h-100 project">

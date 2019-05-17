@@ -114,7 +114,7 @@
 		  </div>
 		</div>
           </div>
-	  </section>           
+	  </section>
        	</c:when>	
 
 		<c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
@@ -126,27 +126,35 @@
 			  </div>
 			</div>
 		  </div>
-
         <section id="contact" class="contact-section">
 		<div class="container">
-        <div class="row">
+            <div class="row">
         </c:when>
 
 		<c:otherwise>
-          <div class="col-md-4 mb-3 mb-md-0">
-			<div class="card py-4 h-100">
-			  <div class="card-body text-center">
-				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
-			  </div>
-			</div>
-		  </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <a href="/restaurants/${category.name}">
+                            <img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
+                    </div>
+                </div>
+            </div>
         </c:otherwise>
       </c:choose>
     </c:forEach>
   </c:if>
-        </div></div></section>
+            </div>
+        </div>
+       <section id="contact" class="contact-section">
+       <div class="container">
+       <div class="row">
+       </div>
+       </div>
+       </section>
 
   <jsp:include page="footer.jsp"></jsp:include>
+        </section>
+  </div>
   </body>
 </html>
