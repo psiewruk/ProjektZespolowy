@@ -13,8 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    
+
 
     <title>FoodTalk</title>
+    
+    <!-- Bootstrap ScrollReveal -->
+	<script src="https://unpkg.com/scrollreveal"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +35,7 @@
 
   <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
+      <div class="navbarReveal container">
         <a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
@@ -71,23 +76,55 @@
       </div>
     </nav>
     
-    <section id="admin" class="about-section text-center">
+	<section id="admin" class="about-section text-center">
+	
       <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Panel administracyjny</h2>
-			  
-			  <button class="btn btn-secondary" onclick='hideForm("catManage")'>KATEGORIE</button>
-			  <button class="btn btn-secondary" onclick='hideForm("resManage")'>RESTAURACJE</button>
-			  <button class="btn btn-secondary" onclick='hideForm("userManage")'>UŻYTKOWNICY</button>
-			  <button class="btn btn-secondary" onclick='hideForm("appManage")'>WNIOSKI</button>
-			   
+      	<div class="row">
+          <div class="col-lg-8 mx-auto startReveal">
+            <h1 class="text-white mb-4">Panel administracyjny</h1>
+            <h4 class="text-white mb4">Zarządzaj aplikacją w sprawny i przejrzysty sposób </h4>
 			<br/><br/>       
+		  </div>
           </div>
         </div>
-      </div>
     </section>
     
+    <section id="main" class="bg-seamless">
+    	<div class="contarier">
+    		<div class="row">
+    			<div class="col">
+    			</div>
+    			<div class="col-8">
+    				<div class="row">
+    					<div id="test1" class="col-md-6 p-5">    					
+    						<img id="test2" class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/category.jpg" alt="">
+    						<button class="btn btn-block btn-danger p-5 buttonReveal-L" onclick='hideForm("catManage")' >Kategorie</button>
+    					</div>
+    					<div class="col-md-6 p-5"> 
+    						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/users.png" alt="">
+    						<button class="btn btn-block btn-info p-5 buttonReveal-R" onclick='hideForm("userManage")'>Użytkownicy</button>
+    					</div>
+    				</div>
+    				<div class="row">
+    					<div class="col-md-6 p-5"> 
+    						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/restaurant.png" alt="">
+    						<button class="btn btn-block btn-success p-5 buttonReveal-L" onclick='hideForm("resManage")'>Restauracje</button>
+    					</div>
+    					<div class="col-md-6 p-5"> 
+    						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/survey.png" alt="">
+    						<button class="btn btn-block btn-warning p-5 buttonReveal-R" onclick='hideForm("appManage")'>Wnioski</button>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col">		
+    			</div>
+    		</div>
+    	</div>	
+    	                
+    </section>
+   
+   <!-- -----------------------    Modal   --------------------------------- -->
+
     <section>
     <div id="modalAddCategory" class="modal fade" role="dialog">
 				  <div class="modal-dialog">
@@ -156,6 +193,7 @@
 		</div>
 </section>
 <section id="catManage" style="display:none;">
+<div class="bg-seamless">
 <button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddCategory">
 				Dodaj kategorię
 </button>
@@ -275,6 +313,7 @@
 
 
 <section id="resManage" style="display:none">
+<div class="bg-seamless">
 <button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddRestaurant">
 				Dodaj restaurację
 </button>
@@ -426,6 +465,7 @@
 </section>
 
 <section id="userManage" style="display:none">
+<div class="bg-seamless">
 <c:if test="${!empty listUsers}">
 	<c:set var="listSize" value="${fn:length(listUsers)}"/>
 	<c:forEach items="${listUsers}" var="user" varStatus="stat">
@@ -565,6 +605,7 @@
 </section>
 
 <section id="appManage" style="display:none">
+<div class="bg-seamless">
 <c:if test="${!empty listApplications}">
 	<c:set var="listSize" value="${fn:length(listUsers)}"/>
 	<c:forEach items="${listApplications}" var="application" varStatus="stat">
@@ -674,7 +715,50 @@
   </c:if>
 </section>
 
+
+    
+
 <script>
+
+window.sr = ScrollReveal();
+sr.reveal('.buttonReveal-L', {
+	duration :2500,
+	origin:'left',
+	distance:'30px'
+})
+
+window.sr = ScrollReveal();
+sr.reveal('.buttonReveal-R', {
+	duration :2500,
+	origin:'right',
+	distance:'30px'
+})
+
+window.sr = ScrollReveal();
+sr.reveal('.iconReveal', {
+	duration :2500,
+	origin:'top',
+	distance:'30px'
+})	
+
+window.sr = ScrollReveal();
+sr.reveal('.startReveal', {
+		duration :2000,
+		origin:'top',
+		distance:'70px'
+})
+
+window.sr = ScrollReveal();
+sr.reveal('.navbarReveal', {
+		duration :1500,
+		origin:'top',
+		distance:'30px'
+})
+
+</script>
+
+<script>
+
 function hideForm(id) {
   var x = document.getElementById(id);
   if (x.style.display === "none") {
