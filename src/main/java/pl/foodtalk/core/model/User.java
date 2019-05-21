@@ -1,6 +1,9 @@
 package pl.foodtalk.core.model;
 
 import javax.persistence.*;
+
+import java.util.List;
+
 import java.util.Set;
 
 @Entity
@@ -11,6 +14,7 @@ public class User {
     private String password;
     private String passwordConfirm;
     private Set<Role> roles;
+    private List<Visit> visits;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,5 +59,15 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_visit", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns =  @JoinColumn(name = "visit_id"))
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 }
