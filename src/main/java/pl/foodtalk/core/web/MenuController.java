@@ -2,13 +2,12 @@ package pl.foodtalk.core.web;
 
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Menu;
-import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.Visit;
-import pl.foodtalk.core.service.DishService;
-import pl.foodtalk.core.service.MenuService;
-import pl.foodtalk.core.service.RestaurantService;
+import pl.foodtalk.core.repository.DishRepository;
+import pl.foodtalk.core.repository.MenuRepository;
+import pl.foodtalk.core.repository.RestaurantRepository;
+import pl.foodtalk.core.repository.VisitRepository;
 import pl.foodtalk.core.service.UserService;
-import pl.foodtalk.core.service.VisitService;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -33,19 +32,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MenuController {
 
     @Autowired
-    private MenuService menuService;
+    private MenuRepository menuRepository;
     
     @Autowired
-    private DishService dishService;
+    private DishRepository dishRepository;
     
     @Autowired
-    private RestaurantService restaurantService;
+    private RestaurantRepository restaurantRepository;
     
     @Autowired
     private UserService userService;
     
     @Autowired
-    private VisitService visitService;
+    private VisitRepository visitRepository;
 
     @RequestMapping(value = {"/restaurant/{res}"}, method = RequestMethod.GET)
     public String menu(@PathVariable("res") String res, Model model, Authentication auth) {
@@ -56,14 +55,14 @@ public class MenuController {
     	model.addAttribute("menu", new Menu());
     	model.addAttribute("visit", new Visit());
     	model.addAttribute("visitForm", new Visit());
-    	model.addAttribute("restaurant", restaurantService.findByName(res));
+    	model.addAttribute("restaurant", restaurantRepository.findByName(res));
     
-    	for(Menu m : this.menuService.findByRestaurantName(res))
-    		menuMap.put(m, this.dishService.findByMenuId(m.getId()));
+    	for(Menu m : this.menuRepository.findByRestaurantName(res))
+    		menuMap.put(m, this.dishRepository.findByMenuId(m.getId()));
 
         model.addAttribute("menuMap", menuMap);
 
-        for(Visit v : this.visitService.findByRestaurantName(res)) {
+        for(Visit v : this.visitRepository.findByRestaurantName(res)) {
             if(v.getStart_date().compareTo(new Date()) > 0) {
                 futureVisits.add(v);
             }
@@ -89,12 +88,12 @@ public class MenuController {
     
     	DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"); 
     	
-    	visitForm.setRestaurant(this.restaurantService.findByName(res));
+    	visitForm.setRestaurant(this.restaurantRepository.findByName(res));
     	visitForm.setUser(this.userService.findByUsername(auth.getName()));
     	visitForm.setStart_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime()));
     	//visitForm.setEnd_date(new Date(formatter.parse(visitForm.getEnd_dateString()).getTime()));
         visitForm.setEnd_date(new Date(formatter.parse(visitForm.getStart_dateString()).getTime() + 7200000));
-        visitService.save(visitForm);
+        visitRepository.save(visitForm);
 
         System.out.println(visitForm.getStart_dateString() + "   " + visitForm.getEnd_dateString());
         System.out.println(visitForm.getStart_date() + "   "+visitForm.getEnd_date());
@@ -106,7 +105,7 @@ public class MenuController {
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
     public String findAll(Model model) {
         model.addAttribute("menu", new Menu());
-        model.addAttribute("listMenus", menuService.findAll());
+        model.addAttribute("listMenus", menuRepository.findAll());
         return "menu";
     }
 }

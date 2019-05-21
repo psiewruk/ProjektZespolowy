@@ -1,7 +1,7 @@
 package pl.foodtalk.core.web;
 
 import pl.foodtalk.core.model.Category;
-import pl.foodtalk.core.service.CategoryService;
+import pl.foodtalk.core.repository.CategoryRepository;
 
 import java.io.UnsupportedEncodingException;
 
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CategoryController {
     @Autowired
-    private CategoryService categoryService;
+    private CategoryRepository categoryRepository;
 
     @RequestMapping(value = {"/category"}, method = RequestMethod.GET)
     public String categoryIMG(Model model, Authentication auth) throws UnsupportedEncodingException {
     	
     	model.addAttribute("category", new Category());
-		model.addAttribute("listCategories", this.categoryService.findAll());
+		model.addAttribute("listCategories", this.categoryRepository.findAll());
 		
 		if(auth != null) {
 			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))

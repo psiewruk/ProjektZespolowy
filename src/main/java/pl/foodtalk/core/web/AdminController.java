@@ -16,39 +16,39 @@ import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.Role;
 import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.repository.RoleRepository;
-import pl.foodtalk.core.service.AddressService;
-import pl.foodtalk.core.service.ApplicationService;
-import pl.foodtalk.core.service.CategoryService;
-import pl.foodtalk.core.service.RestaurantService;
+import pl.foodtalk.core.repository.AddressRepository;
+import pl.foodtalk.core.repository.ApplicationRepository;
+import pl.foodtalk.core.repository.CategoryRepository;
+import pl.foodtalk.core.repository.RestaurantRepository;
 import pl.foodtalk.core.service.UserService;
 
 @Controller
 public class AdminController {
 
     @Autowired
-    private RestaurantService restaurantService;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryRepository categoryRepository;
 
     @Autowired
     private UserService userService;
 
     @Autowired
-    private AddressService addressService;
+    private AddressRepository addressRepository;
 
     @Autowired
     private RoleRepository roleRepository;
     
     @Autowired
-    private ApplicationService applicationService;
+    private ApplicationRepository applicationService;
 
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String admin(Model model, Authentication auth) {
         model.addAttribute("category", new Category());
-        model.addAttribute("listCategories", this.categoryService.findAll());
+        model.addAttribute("listCategories", this.categoryRepository.findAll());
         model.addAttribute("restaurant", new Restaurant());
-        model.addAttribute("listRestaurants", this.restaurantService.findAll());
+        model.addAttribute("listRestaurants", this.restaurantRepository.findAll());
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userService.findAll());
         model.addAttribute("role", new Role());
@@ -73,25 +73,25 @@ public class AdminController {
     @RequestMapping(value = {"/admin/addCategory"}, method = RequestMethod.POST)
     public String addCategory(Model model, @RequestParam("categoryName") String categoryName) {
         Category category = new Category(categoryName);
-        categoryService.save(category);
+        categoryRepository.save(category);
 
         return "redirect:/admin";
     }
 
     @RequestMapping(value = {"/admin/editCategory"}, method = RequestMethod.POST)
     public String editCategory(Model model, @RequestParam("newName") String newName, @RequestParam("categoryId") Long categoryId) {
-        Category category = categoryService.findById(categoryId);
+        Category category = categoryRepository.findById(categoryId);
 
         if(newName.length() != 0)
             category.setName(newName);
-        categoryService.save(category);
+        categoryRepository.save(category);
 
         return "redirect:/admin";
     }
 
     @RequestMapping(value = {"/admin/deleteCategory"}, method = RequestMethod.POST)
     public String deleteCategory(Model model, @RequestParam("categoryId") Long categoryId) {
-        categoryService.deleteById(categoryId);
+        categoryRepository.deleteById(categoryId);
 
         return "redirect:/admin";
     }
@@ -105,11 +105,11 @@ public class AdminController {
                                 @RequestParam("city") String city,@RequestParam("username") String username) {
 
         Address address = new Address(street,number,code,city);
-        addressService.save(address);
+        addressRepository.save(address);
         User user = userService.findByUsername(username);
 
         Restaurant restaurant = new Restaurant(name,address,user,desc);
-        restaurantService.save(restaurant);
+        restaurantRepository.save(restaurant);
 
         return "redirect:/admin";
     }
@@ -120,7 +120,7 @@ public class AdminController {
                                  @RequestParam("newStreet") String newStreet, @RequestParam("newNumber") String newNumber,
                                  @RequestParam("newCode") String newCode, @RequestParam("newCity") String newCity) {
 
-        Restaurant restaurant = restaurantService.findById(restaurantId);
+        Restaurant restaurant = restaurantRepository.findById(restaurantId);
         Address address = restaurant.getAddress();
 
         if(newName.length() != 0)
@@ -136,8 +136,8 @@ public class AdminController {
         if(newCity.length() != 0)
             address.setCity(newCity);
 
-        addressService.save(address);
-        restaurantService.save(restaurant);
+        addressRepository.save(address);
+        restaurantRepository.save(restaurant);
 
         return "redirect:/admin";
     }
@@ -145,7 +145,7 @@ public class AdminController {
     @RequestMapping(value = {"/admin/deleteRestaurant"}, method = RequestMethod.POST)
     public String deleteRestaurant(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId) {
 
-        restaurantService.deleteById(restaurantId);
+        restaurantRepository.deleteById(restaurantId);
 
         return "redirect:/admin";
     }
@@ -183,10 +183,10 @@ public class AdminController {
         Application app = applicationService.findById(applicationId);
         
         Address addr = new Address(app.getStreet(), app.getNumber(), app.getPost_code(), app.getCity());
-        addressService.save(addr);
+        addressRepository.save(addr);
         
         Restaurant res = new Restaurant(app.getName(), addr, app.getUser(), app.getDescription());
-        restaurantService.save(res);
+        restaurantRepository.save(res);
         
         return "redirect:/admin";
     }

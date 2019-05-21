@@ -1,7 +1,7 @@
 package pl.foodtalk.core.web;
 
 import pl.foodtalk.core.model.Application;
-import pl.foodtalk.core.service.ApplicationService;
+import pl.foodtalk.core.repository.ApplicationRepository;
 import pl.foodtalk.core.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ApplicationController {
 
 	@Autowired
-	private ApplicationService applicationService;
+	private ApplicationRepository applicationRepository;
 
 	@Autowired
 	private UserService userService;
@@ -45,7 +45,7 @@ public class ApplicationController {
 
 		Application app = new Application(name, description, street, number, postcode, city, userService.findByUsername(authentication.getName()));
 
-		applicationService.save(app);
+		applicationRepository.save(app);
 		
 		return "redirect:/restauratorForm";
 	}

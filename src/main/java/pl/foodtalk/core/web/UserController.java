@@ -5,11 +5,13 @@ import pl.foodtalk.core.model.Opinion;
 import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.model.Visit;
+import pl.foodtalk.core.repository.OpinionRepository;
+import pl.foodtalk.core.repository.RestaurantRepository;
+import pl.foodtalk.core.repository.VisitRepository;
 import pl.foodtalk.core.service.*;
 import pl.foodtalk.core.validator.UserValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,13 +29,13 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private VisitService visitService;
+    private VisitRepository visitRepository;
 
     @Autowired
-    private OpinionService opinionService;
+    private OpinionRepository opinionRepository;
 
     @Autowired
-    private RestaurantService restaurantService;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
     private SecurityService securityService;
@@ -94,7 +96,7 @@ public class UserController {
         ArrayList<Visit> prevVisits = new ArrayList<Visit>();
         ArrayList<Visit> futureVisits = new ArrayList<Visit>();
         
-        for(Visit v : visitService.findByUserId(currentUser.getId())) {
+        for(Visit v : visitRepository.findByUserId(currentUser.getId())) {
         	if(v.getEnd_date().compareTo(new Date())< 0)
         		prevVisits.add(v);
         	else  futureVisits.add(v);
@@ -102,7 +104,7 @@ public class UserController {
         
         model.addAttribute("previousVisits", prevVisits);
         model.addAttribute("futureVisits", futureVisits);
-        model.addAttribute("listOpinions", opinionService.findByUserId(currentUser.getId()));
+        model.addAttribute("listOpinions", opinionRepository.findByUserId(currentUser.getId()));
 
         if(auth != null) {
 			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
@@ -123,7 +125,7 @@ public class UserController {
                             @RequestParam("newDesc") String newDesc, @RequestParam("start_dateString") String startDateString) throws ParseException {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        Visit visit = visitService.findById(visitId);
+        Visit visit = visitRepository.findById(visitId);
 
         if (startDateString.length() != 0) {
             visit.setStart_date(new Date(formatter.parse(startDateString).getTime()));
@@ -131,7 +133,7 @@ public class UserController {
         }
         if (newDesc.length() != 0)
             visit.setDescription(newDesc);
-        visitService.save(visit);
+        visitRepository.save(visit);
         
 
         return "redirect:/user";
@@ -140,7 +142,7 @@ public class UserController {
     @RequestMapping(value = {"/user/deleteVisit"}, method = RequestMethod.POST)
     public String deleteVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId) {
 
-        visitService.deleteById(visitId);
+        visitRepository.deleteById(visitId);
 
         return "redirect:/user";
     }
@@ -152,9 +154,9 @@ public class UserController {
                              @RequestParam("star") int star, @RequestParam("name") String name, @RequestParam("desc") String desc) {
 
         User currentUser = userService.findByUsername(authentication.getName());
-        Restaurant restaurant = restaurantService.findById(restaurantId);
+        Restaurant restaurant = restaurantRepository.findById(restaurantId);
         Opinion opinion = new Opinion(star, name, desc, restaurant, currentUser);
-        opinionService.save(opinion);
+        opinionRepository.save(opinion);
 
         return "redirect:/user";
     }
@@ -164,7 +166,7 @@ public class UserController {
                               @RequestParam("newStar") int newStar, @RequestParam("newName") String newName,
                               @RequestParam("newDesc") String newDesc) {
 
-        Opinion opinion = opinionService.findById(opinionId);
+        Opinion opinion = opinionRepository.findById(opinionId);
 
         if (newStar > 0)
             opinion.setStar(newStar);
@@ -172,7 +174,7 @@ public class UserController {
             opinion.setName(newName);
         if (newDesc.length() != 0)
             opinion.setDescription(newDesc);
-        opinionService.save(opinion);
+        opinionRepository.save(opinion);
 
         return "redirect:/user";
     }
@@ -180,7 +182,7 @@ public class UserController {
     @RequestMapping(value = {"/user/deleteOpinion"}, method = RequestMethod.POST)
     public String deleteOpinion(Model model, Authentication authentication, @RequestParam("opinionId") Long opinionId) {
 
-        opinionService.deleteById(opinionId);
+        opinionRepository.deleteById(opinionId);
 
         return "redirect:/user";
     }
