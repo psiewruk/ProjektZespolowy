@@ -43,9 +43,9 @@ public class ApplicationController {
 			@RequestParam("street") String street, @RequestParam("number") String number, @RequestParam("postcode") String postcode, 
 			@RequestParam("city") String city) {
 
-		Application app = new Application(name, description, street, number, postcode, city, userService.findByUsername(authentication.getName()));
+		Application application = new Application(name, description, street, number, postcode, city, userService.findByUsername(authentication.getName()));
 
-		applicationRepository.save(app);
+		applicationRepository.save(application);
 		
 		return "redirect:/restauratorForm";
 	}

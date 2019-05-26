@@ -50,12 +50,6 @@ public class UserController {
         return "registration";
     }
 
-    @RequestMapping(value = "/restaurantStatic", method = RequestMethod.GET)
-    public String restaurantStatic(Model model) {
-
-        return "restaurantStatic";
-    }
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
@@ -118,7 +112,7 @@ public class UserController {
         return ("user");
     }
 
-    //ZARZĄDZANIE WIZYTAMI USERA
+    //ZARZADZANIE WIZYTAMI USERA
 
     @RequestMapping(value = {"/user/editVisit"}, method = RequestMethod.POST)
     public String editVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId,
@@ -147,7 +141,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    //ZARZĄDZANIE OPINIAMI USERA
+    //ZARZADZANIE OPINIAMI USERA
 
     @RequestMapping(value = {"/user/addOpinion"}, method = RequestMethod.POST)
     public String addOpinion(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId,

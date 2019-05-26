@@ -68,7 +68,7 @@ public class AdminController {
         return "admin";
     }
 
-    //ZARZĄDZANIE KATEGORIAMI
+    //ZARZADZANIE KATEGORIAMI
 
     @RequestMapping(value = {"/admin/addCategory"}, method = RequestMethod.POST)
     public String addCategory(Model model, @RequestParam("categoryName") String categoryName) {
@@ -96,7 +96,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    //ZARZĄDZANIE RESTAURACJAMI
+    //ZARZADZANIE RESTAURACJAMI
 
     @RequestMapping(value = {"/admin/addRestaurant"}, method = RequestMethod.POST)
     public String addRestaurant(Model model, Authentication authentication, @RequestParam("restaurantName") String name,
@@ -180,13 +180,13 @@ public class AdminController {
     @RequestMapping(value = {"/admin/approveApp"}, method = RequestMethod.POST)
     public String approveApp(Model model, Authentication authentication, @RequestParam("applicationId") Long applicationId) {
 
-        Application app = applicationService.findById(applicationId);
+        Application application = applicationService.findById(applicationId);
         
-        Address addr = new Address(app.getStreet(), app.getNumber(), app.getPost_code(), app.getCity());
-        addressRepository.save(addr);
+        Address address = new Address(application.getStreet(), application.getNumber(), application.getPost_code(), application.getCity());
+        addressRepository.save(address);
         
-        Restaurant res = new Restaurant(app.getName(), addr, app.getUser(), app.getDescription());
-        restaurantRepository.save(res);
+        Restaurant restaurant = new Restaurant(application.getName(), address, application.getUser(), application.getDescription());
+        restaurantRepository.save(restaurant);
         
         return "redirect:/admin";
     }
