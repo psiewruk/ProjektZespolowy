@@ -82,8 +82,7 @@
       	<div class="row">
           <div class="col-lg-8 mx-auto startReveal">
             <h1 class="text-white mb-4">Panel administracyjny</h1>
-            <h4 class="text-white mb4">Zarządzaj aplikacją w sprawny i przejrzysty sposób </h4>
-			<br/><br/>       
+            <p class="text-white-50">Zarządzaj aplikacją w sprawny i przejrzysty sposób</p>
 		  </div>
           </div>
         </div>

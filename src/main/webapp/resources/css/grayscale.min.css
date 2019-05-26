@@ -274,7 +274,7 @@
   .projects-section .featured-text
   {
     padding: 0 0 0 2rem;
-    border-left: 0.5rem solid #64a19d;
+    border-left: 0.5rem solid #5A7302;
   }
 }
 
@@ -466,7 +466,8 @@ footer
   margin-top: 10px;
 }
 
-.has-error {
+.has-error
+{
   font-weight: bold;
   color: red;
 }
@@ -480,4 +481,10 @@ footer
 {
   color: #5A7302;
   font-size: 75%;
+}
+
+.nimg
+{
+  height: 460px;
+  width: 680px;
 }

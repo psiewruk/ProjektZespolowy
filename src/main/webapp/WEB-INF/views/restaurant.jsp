@@ -76,8 +76,8 @@
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
               <h2 class="text-white mb-4">Możesz umówić się na spotkanie w tej restauracji!</h2>
-              <button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddVisit">
-              Stwórz wizytę
+              <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddVisit">
+                Stwórz wizytę
               </button>
             </c:if>
           </div>

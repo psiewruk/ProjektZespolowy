@@ -75,10 +75,9 @@
             <input name="password" type="password" class="form-control" placeholder="Hasło"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj!</button><br>
-            <center>
-              <h4 class="form-signin-heading"><a href="${contextPath}/registration" style="color: white;">Stwórz konto</a></h4>
-            </center>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj!</button>
+              <h4 class="btn btn-lg btn-primary btn-block"><a href="${contextPath}/registration" style="color: black;">Stwórz konto</a></h4>
+
           </div>
           <jsp:include page="footerClear.jsp"></jsp:include>
         </form>
