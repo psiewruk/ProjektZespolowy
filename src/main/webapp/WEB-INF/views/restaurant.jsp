@@ -137,7 +137,11 @@
     </div>
     <c:if test="${!empty menuMap}">
       <c:set var="listSize" value="${fn:length(listCategories)}"/>
+      <center>
+      <a class="bg-white"></a></center>
       <section id="contact" class="contact-section">
+        <h1 class="text-center font-weight-bold">${restaurant.name}</h1>
+        <p class="text-center font-weight-bold">${restaurant.address.street} ${restaurant.address.number} ${restaurant.address.post_code} ${restaurant.address.city}</p>
         <h1 class="text-center font-weight-bold">Nasze menu</h1>
         <c:forEach items="${menuMap}" var="map" varStatus="stat">
           <c:if test="${!empty map.value}">

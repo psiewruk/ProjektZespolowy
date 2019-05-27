@@ -198,6 +198,12 @@
   color: black;
 }
 
+.bnt-green
+{
+  background-color: #5A7302;
+  color: black;
+}
+
 .btn-primary:hover
 {
   background-color: #F28705;
@@ -487,4 +493,9 @@ footer
 {
   height: 460px;
   width: 680px;
+}
+
+.my-bold
+{
+  font-weight: bold;
 }

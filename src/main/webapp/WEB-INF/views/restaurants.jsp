@@ -94,8 +94,9 @@
             </div>
           <div class="col-xl-4 col-lg-5">
              <a href="/restaurant/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
-                <h4>${restaurant.name}</h4>
-                <p class="font-green mb-0">${restaurant.description}</p>
+                <a class="my-bold"></a><h4>${restaurant.name}</h4>
+                <p class="font-green mb-0">${restaurant.description}</p><br>
+               <a href="/restaurant/${restaurant.name}" class="btn bnt-green js-scroll-trigger startReveal">Wejdź!</a>
               </div>
              </a>
             </div>

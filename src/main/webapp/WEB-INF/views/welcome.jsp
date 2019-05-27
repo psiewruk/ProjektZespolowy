@@ -12,15 +12,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>FoodTalk</title>
-    <!-- Bootstrap ScrollReveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <!-- Bootstrap core CSS -->
-    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template -->
+    <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
     <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
   <body id="page-top-login">
@@ -72,7 +68,6 @@
           </div>
         </div>
       </nav>
-      <!-- Header -->
       <header class="masthead">
         <div class="container d-flex h-100 align-items-center" >
           <div class="mx-auto text-center">
@@ -81,7 +76,6 @@
           </div>
         </div>
       </header>
-      <!-- About Section -->
       <section id="about" class="about-section-welcome text-center">
         <div class="container">
           <div class="row">
@@ -92,10 +86,8 @@
           </div>
         </div>
       </section>
-      <!-- Projects Section -->
       <section id="projects" class="projects-section">
         <div class="container">
-          <!-- Project One Row -->
           <div class="row slide-left justify-content-center no-gutters mb-5 mb-lg-0">
             <div class="col-lg-6">
               <img class="img-fluid" src="${contextPath}/resources/img/site/Aplikacja.png" alt="">
@@ -112,7 +104,6 @@
               </div>
             </div>
           </div>
-          <!-- Project Two Row -->
           <div class="row slide-right justify-content-center no-gutters mb-5 mb-lg-0">
             <div class="col-lg-6">
               <img class="img-fluid" src="${contextPath}/resources/img/site/Promocje.jpg" alt="">
@@ -129,7 +120,6 @@
               </div>
             </div>
           </div>
-          <!-- Project Three Row -->
           <div class="row slide-left justify-content-center no-gutters mb-5 mb-lg-0">
             <div class="col-lg-6">
               <img class="img-fluid" src="${contextPath}/resources/img/site/Nasza%20opinia.jpg" alt="">
@@ -149,42 +139,8 @@
         </div>
       </section>
     </div>
-    <script>
-      window.sr = ScrollReveal();
-      sr.reveal('.startReveal', {
-      	duration :2000,
-      	origin:'bottom',
-      	distance:'70px'
-      })	
-      
-      window.sr = ScrollReveal();
-      sr.reveal('.explainReveal', {
-      	duration :1000,
-      	origin:'bottom',
-      	distance:'30px'
-      })	
-      
-      window.sr = ScrollReveal();
-      sr.reveal('.navbarReveal', {
-      	duration :1500,
-      	origin:'top',
-      	distance:'30px'
-      })	
-      
-      window.sr = ScrollReveal();
-      sr.reveal('.slide-left', {
-      	duration :2000,
-      	origin:'left',
-      	distance:'110px'
-      })	
-      
-      window.sr = ScrollReveal();
-      sr.reveal('.slide-right', {
-      	duration :2000,
-      	origin:'right',
-      	distance:'110px'
-      })	
-    </script>
+
+    <jsp:include page="script.jsp"></jsp:include>
     <jsp:include page="contact.jsp"></jsp:include>
     <jsp:include page="footer.jsp"></jsp:include>
   </body>
