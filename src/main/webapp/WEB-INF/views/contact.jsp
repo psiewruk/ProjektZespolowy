@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
   pageEncoding="utf-8"%> 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<!-- Contact Section -->
 <section id="contact" class="contact-section bg-black">
   <div class="container">
     <div class="row">
