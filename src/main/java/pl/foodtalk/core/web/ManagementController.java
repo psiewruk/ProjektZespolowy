@@ -7,6 +7,9 @@ import pl.foodtalk.core.repository.DishRepository;
 import pl.foodtalk.core.repository.MenuRepository;
 import pl.foodtalk.core.repository.RestaurantRepository;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -16,14 +19,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.ServletContext;
 
 @Controller
 public class ManagementController {
-
+	
+	@Autowired
+	private ServletContext servletContext;
+	
 	@Autowired
 	private MenuRepository menuRepository;
 
@@ -63,9 +70,7 @@ public class ManagementController {
 		return "manage";
 	}
 
-	//
 	//ZARZADZANIE MENU
-	//
 
 	@RequestMapping(value = {"/manage/editMenu"}, method = RequestMethod.POST)
 	public String editMenu(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("menuId") Long menuId) {
@@ -95,9 +100,7 @@ public class ManagementController {
 		return "redirect:/manage";
 	}
 
-	//
 	//ZARZADZANIE DISH
-	//
 
 	@RequestMapping(value = {"/manage/editDish"}, method = RequestMethod.POST)
 	public String editDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
@@ -117,10 +120,32 @@ public class ManagementController {
 
 	@RequestMapping(value = {"/manage/addDish"}, method = RequestMethod.POST)
 	public String addDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
-						  @RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId) throws IllegalStateException, IOException {
+						  @RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId, 
+						  @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
 
+		System.out.println("\n\n" + servletContext.getRealPath("/resources/img/") + "\n\n");
+		
 		Dish dish = new Dish(newPrice, newName, newDesc, categoryRepository.findById(categoryId), menuRepository.findById(menuId));
 		dishRepository.save(dish);
+		
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				File dir = new File(servletContext.getRealPath("resources/img/") + "/restaurants/restaurant" + restaurantId + "/dishes/");
+				if (!dir.exists())
+					dir.mkdirs();
+
+				File serverFile = new File(dir.getAbsolutePath() + File.separator + dish.getId() + ".jpg");
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+			} catch (Exception e) {
+				return "You failed to upload " + dish.getId() + ".jpg" + " => " + e.getMessage();
+			}
+		}
+		
 
 		return "redirect:/manage";
 	}

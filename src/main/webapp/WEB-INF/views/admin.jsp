@@ -13,8 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-
+ 
 
     <title>FoodTalk</title>
     
@@ -759,12 +758,12 @@ sr.reveal('.navbarReveal', {
 <script>
 
 function hideForm(id) {
-  var x = document.getElementById(id);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+  document.getElementById("appManage").style.display = "none";
+  document.getElementById("catManage").style.display = "none";
+  document.getElementById("userManage").style.display = "none";
+  document.getElementById("resManage").style.display = "none";
+  
+  document.getElementById(id).style.display = "block";
 }
 </script>
 

@@ -167,13 +167,14 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="modal-body">
-                    <form id="${map.key.name}add" method="POST" action="manage/addDish">
+                    <form id="${map.key.name}add" method="POST" action="manage/addDish?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
                       <div class="row">
                         <div class="col-3">
                           <p class="mt-2">Nazwa:</p>
                           <p class="mt-3">Opis:</p>
                           <p class="mt-4">Cena:</p>
                           <p class="mt-4">Kategoria:</p>
+                          <p class="mt-4">Obrazek:</p>
                         </div>
                         <div class="col">
                           <input type="text" class="mb-2 form-control" name="newName" required/>
@@ -186,9 +187,11 @@
                               </c:forEach>
                             </c:if>
                           </select>
+                          <input type="file" name="file">
                         </div>
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="menuId" value="${map.key.id}"/>
+                        <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
                         <input type="submit" class="btn btn-primary mr-3" value="Dodaj">
                       </div>
                     </form>
@@ -200,7 +203,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col mb-md-2">
-                    <img class="img-fluid rounded-circle" src="${contextPath}/resources/img/dania/dish${dish.id}.jpg" alt="" style="width:300px; height:300px;"/>
+                    <img class="img-fluid rounded-circle" src="${contextPath}/resources/img/restaurants/restaurant${restaurant.id}/dishes/${dish.id}.jpg" alt="" style="width:300px; height:300px;"/>
                   </div>
                   <div class="col-md-8 mb-md-2">
                     <div class="card h-100">

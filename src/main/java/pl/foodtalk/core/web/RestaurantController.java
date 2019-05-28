@@ -120,7 +120,6 @@ public class RestaurantController {
 
         return "restaurant";
     }
-
     
 	@RequestMapping(value = "/restaurant/{res}", method = RequestMethod.POST)
     public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, BindingResult bindingResult, Model model, Authentication auth) throws ParseException {

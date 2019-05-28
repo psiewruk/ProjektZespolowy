@@ -90,7 +90,7 @@
       <c:forEach items="${listRestaurants}" var="restaurant">
         <div class="row align-items-center no-gutters mb-4 mb-lg-5">
           <div class="col-xl-8 col-lg-7">
-            <a href="/restaurant/${restaurant.name}"><img class="img-fluid mb-3 mb-lg-0 nimg" src="${contextPath}/resources/img/restauracje/${restaurant.name}.jpg" alt="" ></a>
+            <a href="/restaurant/${restaurant.name}"><img class="img-fluid mb-3 mb-lg-0 nimg" src="${contextPath}/resources/img/restaurants/restaurant${restaurant.id}/main.jpg" alt="" ></a>
             </div>
           <div class="col-xl-4 col-lg-5">
              <a href="/restaurant/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
