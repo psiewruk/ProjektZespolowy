@@ -7,31 +7,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
- 
-
     <title>FoodTalk</title>
-    
-    <!-- Bootstrap ScrollReveal -->
 	<script src="https://unpkg.com/scrollreveal"></script>
-
-    <!-- Bootstrap core CSS -->
     <link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
     <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
-
   <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="navbarReveal container">
@@ -712,52 +700,9 @@
     </c:forEach>
   </c:if>
 </section>
-
-
-    
-
 <script>
-
-window.sr = ScrollReveal();
-sr.reveal('.buttonReveal-L', {
-	duration :2500,
-	origin:'left',
-	distance:'30px'
-})
-
-window.sr = ScrollReveal();
-sr.reveal('.buttonReveal-R', {
-	duration :2500,
-	origin:'right',
-	distance:'30px'
-})
-
-window.sr = ScrollReveal();
-sr.reveal('.iconReveal', {
-	duration :2500,
-	origin:'top',
-	distance:'30px'
-})	
-
-window.sr = ScrollReveal();
-sr.reveal('.startReveal', {
-		duration :2000,
-		origin:'top',
-		distance:'70px'
-})
-
-window.sr = ScrollReveal();
-sr.reveal('.navbarReveal', {
-		duration :1500,
-		origin:'top',
-		distance:'30px'
-})
-
-</script>
-
-<script>
-
-function hideForm(id) {
+function hideForm(id)
+{
   document.getElementById("appManage").style.display = "none";
   document.getElementById("catManage").style.display = "none";
   document.getElementById("userManage").style.display = "none";
@@ -766,7 +711,7 @@ function hideForm(id) {
   document.getElementById(id).style.display = "block";
 }
 </script>
-
+	<jsp:include page="script.jsp"></jsp:include>
 	<jsp:include page="contact.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>
   </body>

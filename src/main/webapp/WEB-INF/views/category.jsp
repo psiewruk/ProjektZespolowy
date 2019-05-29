@@ -84,7 +84,7 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
 				  </div>
 				</div>
 			  </div>
@@ -94,7 +94,7 @@
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
@@ -107,7 +107,7 @@
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
@@ -120,7 +120,7 @@
                 <div class="card py-4 h-100">
                     <div class="card-body text-center">
                         <a href="/restaurants/${category.name}">
-                            <img class="img-fluid rounded" src="${contextPath}/resources/img/restauracje/restaurantPlaceholder.jpg" alt="" /></a>
+                            <img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -128,16 +128,13 @@
       </c:choose>
     </c:forEach>
   </c:if>
+  </div>
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="row">
             </div>
         </div>
-       <section id="contact" class="contact-section">
-       <div class="container">
-       <div class="row">
-       </div>
-       </div>
-       </section>
+    </section>
   <jsp:include page="footer.jsp"></jsp:include>
-        </section>
-  </div>
   </body>
 </html>
