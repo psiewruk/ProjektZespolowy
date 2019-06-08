@@ -33,17 +33,17 @@
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
-                <c:if test="${!empty isUser}">
+                <c:if test='${role.contains("ROLE_USER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isAdmin}">
+                <c:if test='${role.contains("ROLE_ADMIN")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isManager}">
+                <c:if test='${role.contains("ROLE_MANAGER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
                   </li>
@@ -75,7 +75,7 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj!</button>
               <h4 class="btn btn-lg btn-primary btn-block"><a href="${contextPath}/registration" style="color: black;">Stwórz konto</a></h4>
           </div>
-          <jsp:include page="footerClear.jsp"></jsp:include>
+          <jsp:include page="footerClear.jsp"/>
         </form>
       </div>
     </div>

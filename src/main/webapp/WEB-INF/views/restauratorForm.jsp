@@ -31,34 +31,34 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-           <c:if test="${pageContext.request.userPrincipal.name != null}">
-            	<form id="logoutForm" method="POST" action="${contextPath}/logout">
-         		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    			</form>
-    		<c:if test="${!empty isUser}">
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
-                </li>
-            </c:if>
-            <c:if test="${!empty isAdmin}">
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
-                </li>
-            </c:if>
-            <c:if test="${!empty isManager}">
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
-                </li>
-            </c:if>
-                <li>
-                  <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
-                </li>
-            </c:if>
-            <c:if test="${pageContext.request.userPrincipal.name == null}">
-                <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/login">Logowanie</a>
-              </li>
-            </c:if>
+              <c:if test="${pageContext.request.userPrincipal.name != null}">
+                  <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  </form>
+                  <c:if test='${role.contains("ROLE_USER")}'>
+                      <li class="nav-item">
+                          <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
+                      </li>
+                  </c:if>
+                  <c:if test='${role.contains("ROLE_ADMIN")}'>
+                      <li class="nav-item">
+                          <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
+                      </li>
+                  </c:if>
+                  <c:if test='${role.contains("ROLE_MANAGER")}'>
+                      <li class="nav-item">
+                          <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
+                      </li>
+                  </c:if>
+                  <li>
+                      <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
+                  </li>
+              </c:if>
+              <c:if test="${pageContext.request.userPrincipal.name == null}">
+                  <li class="nav-item">
+                      <a class="nav-link" href="${contextPath}/login">Logowanie</a>
+                  </li>
+              </c:if>
           </ul>
         </div>
       </div>

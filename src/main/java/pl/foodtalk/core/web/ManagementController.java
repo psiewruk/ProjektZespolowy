@@ -10,9 +10,9 @@ import pl.foodtalk.core.repository.RestaurantRepository;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -57,15 +57,9 @@ public class ManagementController {
 		}
 		model.addAttribute("menuMap", menuMap);
 		model.addAttribute("listCategories", categoryRepository.findAll());
-		
-		if(auth != null) {
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
-				model.addAttribute("isUser", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
-				model.addAttribute("isManager", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
-				model.addAttribute("isAdmin", true);
-		}
+
+		if(auth != null)
+			model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
 
 		return "manage";
 	}
@@ -104,7 +98,7 @@ public class ManagementController {
 
 	@RequestMapping(value = {"/manage/editDish"}, method = RequestMethod.POST)
 	public String editDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
-						   @RequestParam("newDesc") String newDesc, @RequestParam("dishId") Long dishId) {
+						   @RequestParam("newDesc") String newDesc, @RequestParam("dishId") Long dishId, @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) {
 
 		Dish dish = dishRepository.findById(dishId);
 		if(newName.length() != 0)
@@ -114,6 +108,7 @@ public class ManagementController {
 		if(newPrice != null)
 			dish.setPrice(newPrice);
 		dishRepository.save(dish);
+		saveDishImage(file, restaurantId, dish.getId());
 
 		return "redirect:/manage";
 	}
@@ -121,31 +116,13 @@ public class ManagementController {
 	@RequestMapping(value = {"/manage/addDish"}, method = RequestMethod.POST)
 	public String addDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
 						  @RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId, 
-						  @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+						  @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) throws IllegalStateException {
 
 		System.out.println("\n\n" + servletContext.getRealPath("/resources/img/") + "\n\n");
 		
 		Dish dish = new Dish(newPrice, newName, newDesc, categoryRepository.findById(categoryId), menuRepository.findById(menuId));
 		dishRepository.save(dish);
-		
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-
-				File dir = new File(servletContext.getRealPath("resources/img/") + "/restaurants/restaurant" + restaurantId + "/dishes/");
-				if (!dir.exists())
-					dir.mkdirs();
-
-				File serverFile = new File(dir.getAbsolutePath() + File.separator + dish.getId() + ".jpg");
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-
-			} catch (Exception e) {
-				return "You failed to upload " + dish.getId() + ".jpg" + " => " + e.getMessage();
-			}
-		}
-		
+		saveDishImage(file, restaurantId, dish.getId());
 
 		return "redirect:/manage";
 	}
@@ -156,5 +133,49 @@ public class ManagementController {
 		dishRepository.deleteById(dishId);
 
 		return "redirect:/manage";
+	}
+
+	@RequestMapping(value = {"/manage/changePhoto"}, method = RequestMethod.POST)
+	public String changePhoto(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) {
+
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				File dir = new File(servletContext.getRealPath("resources/img/restaurants") + "/restaurant" + restaurantId);
+				if (!dir.exists())
+					dir.mkdirs();
+
+				File imageFile = new File(dir.getAbsolutePath() + "/main.jpg");
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(imageFile));
+				stream.write(bytes);
+				stream.close();
+
+			} catch (Exception e) {
+				System.err.println("Upload obrazka zakonczony niepowodzeniem:\n" + e.getMessage());
+			}
+		}
+
+		return "redirect:/manage";
+	}
+
+	private void saveDishImage(MultipartFile file, Long restaurantId, Long dishId){
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				File dir = new File(servletContext.getRealPath("resources/img/restaurants") + "/restaurant" + restaurantId + "/dishes/");
+				if (!dir.exists())
+					dir.mkdirs();
+
+				File imageFile = new File(dir.getAbsolutePath() + File.separator + dishId + ".jpg");
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(imageFile));
+				stream.write(bytes);
+				stream.close();
+
+			} catch (Exception e) {
+				System.err.println("Upload obrazka zakonczony niepowodzeniem:\n" + e.getMessage());
+			}
+		}
 	}
 }

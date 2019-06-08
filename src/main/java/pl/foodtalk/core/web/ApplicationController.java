@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.stream.Collectors;
+
 @Controller
 public class ApplicationController {
 
@@ -25,15 +27,9 @@ public class ApplicationController {
 
 	@RequestMapping(value = {"/restauratorForm"}, method = RequestMethod.GET)
 	public String management(Model model, Authentication auth) {
-		
-		if(auth != null) {
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
-				model.addAttribute("isUser", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
-				model.addAttribute("isManager", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
-				model.addAttribute("isAdmin", true);
-		}
+
+		if(auth != null)
+			model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
 
 		return "restauratorForm";
 	}

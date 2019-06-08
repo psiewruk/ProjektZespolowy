@@ -1,6 +1,7 @@
 package pl.foodtalk.core.web;
 
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -55,15 +56,9 @@ public class AdminController {
         model.addAttribute("listRoles", roleRepository.findAll());
         model.addAttribute("application", new Application());
         model.addAttribute("listApplications", applicationService.findAll());
-        
-        if(auth != null) {
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
-				model.addAttribute("isUser", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
-				model.addAttribute("isManager", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
-				model.addAttribute("isAdmin", true);
-		}
+
+        if(auth != null)
+            model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
         
         return "admin";
     }

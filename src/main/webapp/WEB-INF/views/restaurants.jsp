@@ -31,27 +31,27 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <c:if test="${pageContext.request.userPrincipal.name != null}">
-            	<form id="logoutForm" method="POST" action="${contextPath}/logout">
-         		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    			</form>
-    		<c:if test="${!empty isUser}">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
-            </li>
-            </c:if>
-            <c:if test="${!empty isAdmin}">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
-            </li>
-            </c:if>
-            <c:if test="${!empty isManager}">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
-            </li>
-            </c:if>
-            <li>
-              <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
-            </li>
+              <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+              </form>
+              <c:if test='${role.contains("ROLE_USER")}'>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
+                </li>
+              </c:if>
+              <c:if test='${role.contains("ROLE_ADMIN")}'>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
+                </li>
+              </c:if>
+              <c:if test='${role.contains("ROLE_MANAGER")}'>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
+                </li>
+              </c:if>
+              <li>
+                <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
+              </li>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name == null}">
               <li class="nav-item">
@@ -80,9 +80,9 @@
           <div class="col-xl-8 col-lg-7">
             <a href="/restaurant/${restaurant.name}"><img class="img-fluid mb-3 mb-lg-0 nimg" src="${contextPath}/resources/img/restaurants/restaurant${restaurant.id}/main.jpg" alt="" ></a>
             </div>
-          <div class="col-xl-4 col-lg-5">
+            <div class="col-xl-4 col-lg-5">
              <a href="/restaurant/${restaurant.name}"> <div class="featured-text text-center text-lg-left">
-                <a class="my-bold"></a><h4>${restaurant.name}</h4>
+               <a class="my-bold"></a><h4>${restaurant.name}</h4>
                 <p class="font-green mb-0">${restaurant.description}</p><br>
                <a href="/restaurant/${restaurant.name}" class="btn bnt-green js-scroll-trigger startReveal">Wejdź!</a>
               </div>

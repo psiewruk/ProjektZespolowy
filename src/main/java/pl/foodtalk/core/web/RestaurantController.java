@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -55,15 +56,9 @@ public class RestaurantController {
     			listRestaurants.add(d.getMenu().getRestaurant());
     	}
 		model.addAttribute("listRestaurants", listRestaurants);
-		
-		if(auth != null) {
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
-				model.addAttribute("isUser", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
-				model.addAttribute("isManager", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
-				model.addAttribute("isAdmin", true);
-		}
+
+		if(auth != null)
+			model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
 		
         return "restaurants";
     }
@@ -72,15 +67,9 @@ public class RestaurantController {
     public String findAll(Model model, Authentication auth) {
         model.addAttribute("restaurant", new Restaurant());
         model.addAttribute("listRestaurants", restaurantRepository.findAll());
-        
-        if(auth != null) {
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
-				model.addAttribute("isUser", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
-				model.addAttribute("isManager", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
-				model.addAttribute("isAdmin", true);
-		}
+
+		if(auth != null)
+			model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
         
         return "restaurant";
     }
@@ -108,15 +97,9 @@ public class RestaurantController {
         }
 
         model.addAttribute("futureVisits", futureVisits);
-        
-        if(auth != null) {
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER")))
-				model.addAttribute("isUser", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER")))
-				model.addAttribute("isManager", true);
-			if(auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN")))
-				model.addAttribute("isAdmin", true);
-		}
+
+		if(auth != null)
+			model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
 
         return "restaurant";
     }

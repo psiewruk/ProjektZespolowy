@@ -33,17 +33,17 @@
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
-                <c:if test="${!empty isUser}">
+                <c:if test='${role.contains("ROLE_USER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isAdmin}">
+                <c:if test='${role.contains("ROLE_ADMIN")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isManager}">
+                <c:if test='${role.contains("ROLE_MANAGER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
                   </li>
@@ -69,25 +69,25 @@
           <spring:bind path="username">
             <div class="form-group ${status.error ? 'has-error' : ''}">
               <form:input type="text" path="username" class="form-control" placeholder="Nazwa"
-                autofocus="true"></form:input>
-              <form:errors path="username"></form:errors>
+                autofocus="true"/>
+              <form:errors path="username"/>
             </div>
           </spring:bind>
           <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-              <form:input type="password" path="password" class="form-control" placeholder="Hasło"></form:input>
-              <form:errors path="password"></form:errors>
+              <form:input type="password" path="password" class="form-control" placeholder="Hasło"/>
+              <form:errors path="password"/>
             </div>
           </spring:bind>
           <spring:bind path="passwordConfirm">
             <div class="form-group ${status.error ? 'has-error' : ''}">
               <form:input type="password" path="passwordConfirm" class="form-control"
-                placeholder="Potwierdź hasło"></form:input>
-              <form:errors path="passwordConfirm"></form:errors>
+                placeholder="Potwierdź hasło"/>
+              <form:errors path="passwordConfirm"/>
             </div>
           </spring:bind>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Stwórz!</button>
-          <jsp:include page="footerClear.jsp"></jsp:include>
+          <jsp:include page="footerClear.jsp"/>
         </form:form>
       </div>
     </div>

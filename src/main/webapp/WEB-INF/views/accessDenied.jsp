@@ -33,11 +33,23 @@
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
-                </li>
+                <c:if test='${role.contains("ROLE_USER")}'>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
+                  </li>
+                </c:if>
+                <c:if test='${role.contains("ROLE_ADMIN")}'>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
+                  </li>
+                </c:if>
+                <c:if test='${role.contains("ROLE_MANAGER")}'>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
+                  </li>
+                </c:if>
                 <li>
-                  <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Logout</a>
+                  <a class="nav-link js-scroll-trigger" onclick="document.forms['logoutForm'].submit()" style="cursor:pointer;"> Wyloguj</a>
                 </li>
               </c:if>
               <c:if test="${pageContext.request.userPrincipal.name == null}">
@@ -49,7 +61,6 @@
           </div>
         </div>
       </nav>
-      <form method="POST" action="${contextPath}/login" class="form-signin">
         <div class="container d-flex h-100 align-items-center" >
           <div class="mx-auto text-center">
             <h1 class="mx-auto my-0 text-uppercase">#403</h1>
@@ -57,8 +68,7 @@
             <a href="${contextPath}/" class="btn btn-primary js-scroll-trigger">Powrót</a>
           </div>
         </div>
-      </form>
-      <jsp:include page="footerClear.jsp"></jsp:include>
+      <jsp:include page="footerClear.jsp"/>
     </div>
   </body>
 </html>

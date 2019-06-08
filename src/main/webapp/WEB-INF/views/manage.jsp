@@ -34,17 +34,17 @@
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
-                <c:if test="${!empty isUser}">
+                <c:if test='${role.contains("ROLE_USER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isAdmin}">
+                <c:if test='${role.contains("ROLE_ADMIN")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isManager}">
+                <c:if test='${role.contains("ROLE_MANAGER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
                   </li>
@@ -69,8 +69,10 @@
               <c:if test="${!empty restaurant}">
                 <h2 class="text-white mb-4">Panel zarządzania restauracją </h2>
                 <h1 class="text-white mb-4">${restaurant.name}</h1>
-                <p class="text-white-50 "><button class="btn btn-primary" data-toggle="modal" data-target="#modalAddMenu">
-                  Dodaj menu</button>
+                <p class="text-white-50 ">
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddMenu">Dodaj menu</button>
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#modalChangePhoto">Zmień zdjęcie</button>
+                  <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#modalChangePhoto">Zmień opis</button>  Do zrobienia -->
                 </p>
                 <div id="modalAddMenu" class="modal fade" role="dialog">
                   <div class="modal-dialog">
@@ -85,6 +87,30 @@
                             <div class="col-8  mt-2">
                               <input type="text" class="form-control" name="menuName">
                               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </div>
+                            <div class="col-3">
+                              <input type="submit" class="btn btn-primary"  value="Dodaj">
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="modalChangePhoto" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <a class="modal-title font-weight-bold">Wybierz zdjęcie: </a>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="changePhoto" method="POST" action="manage/changePhoto?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+                          <div class="row">
+                            <div class="col-8  mt-2">
+                              <input type="file" name="file">
+                              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                              <input type="hidden" name="restaurantId" value="${restaurant.id}"/>
                             </div>
                             <div class="col-3">
                               <input type="submit" class="btn btn-primary"  value="Dodaj">
@@ -230,20 +256,23 @@
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                      <form id="${dish.name}edit" method="POST" action="manage/editDish">
+                                      <form id="${dish.name}edit" method="POST" action="manage/editDish?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
                                         <div class="row">
                                           <div class="col-3">
                                             <p class="mt-2">Nazwa:</p>
                                             <p class="mt-3">Opis:</p>
                                             <p class="mt-4">Cena:</p>
+                                            <p class="mt-4">Obrazek: </p>
                                           </div>
                                           <div class="col-5">
                                             <input type="text" name="newName" class="mb-2 form-control"/>
                                             <input type="text" name="newDesc" class="mb-2 form-control"/>
                                             <input type="text" name="newPrice"class="mb-2 form-control"/>
+                                            <input type="file" name="file">
                                           </div>
-                                          <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-                                          <input type="hidden"  name="dishId" value="${dish.id}"/>
+                                          <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                                          <input type="hidden" name="dishId" value="${dish.id}"/>
+                                          <input type="hidden" name="restaurantId" value="${restaurant.id}"/>
                                           <input type="submit" class="btn btn-primary" value="Zapisz">
                                         </div>
                                       </form>
@@ -287,5 +316,5 @@
         }
       </script>
     </div>
-    <jsp:include page="contact.jsp"></jsp:include>
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="contact.jsp"/>
+    <jsp:include page="footer.jsp"/>

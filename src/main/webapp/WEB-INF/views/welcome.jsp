@@ -40,17 +40,17 @@
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
-                <c:if test="${!empty isUser}">
+                <c:if test='${role.contains("ROLE_USER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isAdmin}">
+                <c:if test='${role.contains("ROLE_ADMIN")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/admin">Panel administratora</a>
                   </li>
                 </c:if>
-                <c:if test="${!empty isManager}">
+                <c:if test='${role.contains("ROLE_MANAGER")}'>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="${contextPath}/manage">Zarządzanie restauracją</a>
                   </li>
@@ -139,8 +139,8 @@
         </div>
       </section>
     </div>
-    <jsp:include page="script.jsp"></jsp:include>
-    <jsp:include page="contact.jsp"></jsp:include>
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="script.jsp"/>
+    <jsp:include page="contact.jsp"/>
+    <jsp:include page="footer.jsp"/>
   </body>
 </html>
