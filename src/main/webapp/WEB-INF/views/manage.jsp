@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-  pageEncoding="utf-8"%> 
+  pageEncoding="utf-8"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,15 +198,15 @@
                         <div class="col">
                           <input type="text" class="mb-2 form-control" name="newName" required/>
                           <input type="text" class="mb-2 form-control" name="newDesc"  required/>
-                          <input type="text" class="mb-2 form-control" name="newPrice" required/> 
-                          <select class="form-control" name="cat" class="mt-1">
+                          <input type="text" class="mb-2 form-control" name="newPrice" required pattern="^\d*(\.\d{0,2})?$"/>
+                          <select class="form-control" name="cat" class="mt-1" required>
                             <c:if test="${!empty listCategories}">
                               <c:forEach items="${listCategories}" var="category">
                                 <option value="${category.id}">${category.name}</option>
                               </c:forEach>
                             </c:if>
                           </select>
-                          <input type="file" name="file">
+                          <input type="file" name="file" required>
                         </div>
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="menuId" value="${map.key.id}"/>
@@ -237,7 +238,7 @@
                             </div>
                             <div class="row">
                               <div class="col">
-                                <button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditDish">
+                                <button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditDish${dish.id}">
                                 Edytuj
                                 </button>
                               </div>
@@ -248,11 +249,11 @@
                                   <input class="btn btn-danger" type="submit" onclick="clicked(event)" value="Usuń"/>
                                 </form>
                               </div>
-                              <div id="modalEditDish" class="modal fade" role="dialog">
+                              <div id="modalEditDish${dish.id}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <a class="modal-title font-weight-bold">Edytuj danie</a>
+                                      <a class="modal-title font-weight-bold">Edytuj danie ${dish.name}</a>
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
@@ -267,7 +268,7 @@
                                           <div class="col-5">
                                             <input type="text" name="newName" class="mb-2 form-control"/>
                                             <input type="text" name="newDesc" class="mb-2 form-control"/>
-                                            <input type="text" name="newPrice"class="mb-2 form-control"/>
+                                            <input type="text" name="newPrice"class="mb-2 form-control" pattern="^\d*(\.\d{0,2})?$"/>
                                             <input type="file" name="file">
                                           </div>
                                           <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
@@ -287,7 +288,7 @@
                           <div class="card-body text-center">
                             <br/><br/><br/><br/>
                             <h5 class="font-weight-bold">Cena</h5>
-                            <p>${dish.price} zł</p>
+                            <p><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${dish.price}"/> zł</p>
                           </div>
                         </div>
                       </div>
@@ -300,18 +301,7 @@
         </section>
       </c:if>
       <script>
-        function hideForm(id) {
-          var x = document.getElementById(id);
-          if (x.style.display === "none") {
-            x.style.display = "block";
-          } else {
-            x.style.display = "none";
-          }
-        }
-      </script>
-      <script>
-        function clicked(e)
-        {
+        function clicked(e) {
             if(!confirm('Jesteś pewien?'))e.preventDefault();
         }
       </script>
