@@ -97,7 +97,7 @@ public class AdminController {
     public String addRestaurant(Model model, Authentication authentication, @RequestParam("restaurantName") String name,
                                 @RequestParam("desc") String desc, @RequestParam("street") String street,
                                 @RequestParam("number") String number, @RequestParam("code") String code,
-                                @RequestParam("city") String city,@RequestParam("username") String username) {
+                                @RequestParam("city") String city, @RequestParam("username") String username) {
 
         Address address = new Address(street,number,code,city);
         addressRepository.save(address);

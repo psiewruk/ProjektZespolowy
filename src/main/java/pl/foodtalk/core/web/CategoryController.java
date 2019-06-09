@@ -3,7 +3,6 @@ package pl.foodtalk.core.web;
 import pl.foodtalk.core.model.Category;
 import pl.foodtalk.core.repository.CategoryRepository;
 
-import java.io.UnsupportedEncodingException;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package pl.foodtalk.core.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "visit")
@@ -15,7 +15,7 @@ public class Visit {
     private String end_dateString;
     private User user;
     private Restaurant restaurant;
-    private List<User> guests;
+    private Set<User> guests;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -69,12 +69,13 @@ public class Visit {
         this.restaurant = restaurant;
     }
 
-    @ManyToMany(mappedBy = "visits")
-    public List<User> getGuests() {
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_visit", joinColumns = @JoinColumn(name = "visit_id"), inverseJoinColumns =  @JoinColumn(name = "user_id"))
+    public Set<User> getGuests() {
         return guests;
     }
 
-    public void setGuests(List<User> guests) {
+    public void setGuests(Set<User> guests) {
         this.guests = guests;
     }
 

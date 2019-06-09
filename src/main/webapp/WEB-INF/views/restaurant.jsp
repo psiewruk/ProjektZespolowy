@@ -186,7 +186,12 @@
                         <p>Użytkownik: ${visit.user.username }</p>
                         <p>Rozpoczęcie: ${visit.start_date }</p>
                         <p>Opis: ${visit.description}</p>
-                        <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
+                        <form method="post" action="/joinVisit">
+                          <input class="btn btn-primary" type="submit" value="Dołącz">
+                          <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                          <input type="hidden" name="visitId" value="${visit.id}"/>
+                          <input type="hidden" name="restaurantName" value="${restaurant.name}"/>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -198,7 +203,12 @@
                   <p>Użytkownik: ${visit.user.username }</p>
                   <p>Rozpoczęcie: ${visit.start_date }</p>
                   <p>Opis: ${visit.description}</p>
-                    <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
+                  <form method="post" action="/joinVisit">
+                    <input class="btn btn-primary" type="submit" value="Dołącz">
+                    <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                    <input type="hidden" name="visitId" value="${visit.id}"/>
+                    <input type="hidden" name="restaurantName" value="${restaurant.name}"/>
+                  </form>
             </div>
             </div>
             </div>
@@ -211,7 +221,12 @@
                   <p>Użytkownik: ${visit.user.username }</p>
                   <p>Rozpoczęcie: ${visit.start_date }</p>
                   <p>Opis: ${visit.description}</p>
-                    <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
+                  <form method="post" action="/joinVisit">
+                    <input class="btn btn-primary" type="submit" value="Dołącz">
+                    <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                    <input type="hidden" name="visitId" value="${visit.id}"/>
+                    <input type="hidden" name="restaurantName" value="${restaurant.name}"/>
+                  </form>
             </div>
             </div>
             </div>
@@ -227,7 +242,12 @@
                   <p>Użytkownik: ${visit.user.username }</p>
                   <p>Rozpoczęcie: ${visit.start_date }</p>
                   <p>Opis: ${visit.description}</p>
-                    <button class="btn btn-primary" type="submit" onclick="clicked(event)">Dołącz!</button>
+                  <form method="post" action="/joinVisit">
+                    <input class="btn btn-primary" type="submit" value="Dołącz">
+                    <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                    <input type="hidden" name="visitId" value="${visit.id}"/>
+                    <input type="hidden" name="restaurantName" value="${restaurant.name}"/>
+              </form>
             </div>
             </div>
             </div>

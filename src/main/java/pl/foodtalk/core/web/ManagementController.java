@@ -1,10 +1,7 @@
 package pl.foodtalk.core.web;
 
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.foodtalk.core.model.Dish;
 import pl.foodtalk.core.model.Menu;
-import pl.foodtalk.core.model.User;
 import pl.foodtalk.core.repository.CategoryRepository;
 import pl.foodtalk.core.repository.DishRepository;
 import pl.foodtalk.core.repository.MenuRepository;

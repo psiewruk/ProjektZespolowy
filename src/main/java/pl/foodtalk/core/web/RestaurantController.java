@@ -1,9 +1,7 @@
 package pl.foodtalk.core.web;
 
-import pl.foodtalk.core.model.Dish;
-import pl.foodtalk.core.model.Menu;
-import pl.foodtalk.core.model.Restaurant;
-import pl.foodtalk.core.model.Visit;
+import org.springframework.web.bind.annotation.*;
+import pl.foodtalk.core.model.*;
 import pl.foodtalk.core.repository.DishRepository;
 import pl.foodtalk.core.repository.MenuRepository;
 import pl.foodtalk.core.repository.RestaurantRepository;
@@ -24,10 +22,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RestaurantController {
@@ -121,4 +115,16 @@ public class RestaurantController {
         
         return "redirect:/restaurant/"+res;
 	}
+
+    @RequestMapping(value = "/joinVisit", method = RequestMethod.POST)
+    public String visit(Model model, Authentication auth, @RequestParam("restaurantName") String restaurantName, @RequestParam("visitId") Long visitId) {
+        User currentUser = userService.findByUsername(auth.getName());
+        Visit visit = visitRepository.findById(visitId);
+
+        visit.getGuests().add(currentUser);
+        currentUser.getVisits().add(visit);
+        visitRepository.save(visit);
+
+        return "redirect:/restaurant/"+restaurantName;
+    }
 }
