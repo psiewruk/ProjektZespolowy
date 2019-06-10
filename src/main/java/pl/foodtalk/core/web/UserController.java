@@ -110,7 +110,7 @@ public class UserController {
     //ZARZADZANIE WIZYTAMI USERA
 
     @RequestMapping(value = {"/user/editVisit"}, method = RequestMethod.POST)
-    public String editVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId,
+    public String editVisit(@RequestParam("visitId") Long visitId,
                             @RequestParam("newDesc") String newDesc, @RequestParam("start_dateString") String startDateString) throws ParseException {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
@@ -129,7 +129,7 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/user/deleteVisit"}, method = RequestMethod.POST)
-    public String deleteVisit(Model model, Authentication authentication, @RequestParam("visitId") Long visitId) {
+    public String deleteVisit(@RequestParam("visitId") Long visitId) {
 
         visitRepository.deleteById(visitId);
 
@@ -139,7 +139,7 @@ public class UserController {
     //ZARZADZANIE OPINIAMI USERA
 
     @RequestMapping(value = {"/user/addOpinion"}, method = RequestMethod.POST)
-    public String addOpinion(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId,
+    public String addOpinion(Authentication authentication, @RequestParam("restaurantId") Long restaurantId,
                              @RequestParam("star") int star, @RequestParam("name") String name, @RequestParam("desc") String desc) {
 
         User currentUser = userService.findByUsername(authentication.getName());
@@ -151,7 +151,7 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/user/editOpinion"}, method = RequestMethod.POST)
-    public String editOpinion(Model model, Authentication authentication, @RequestParam("opinionId") Long opinionId,
+    public String editOpinion(@RequestParam("opinionId") Long opinionId,
                               @RequestParam("newStar") int newStar, @RequestParam("newName") String newName,
                               @RequestParam("newDesc") String newDesc) {
 
@@ -169,10 +169,22 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/user/deleteOpinion"}, method = RequestMethod.POST)
-    public String deleteOpinion(Model model, Authentication authentication, @RequestParam("opinionId") Long opinionId) {
+    public String deleteOpinion(@RequestParam("opinionId") Long opinionId) {
 
         opinionRepository.deleteById(opinionId);
 
         return "redirect:/user";
+    }
+
+    @RequestMapping(value = "/joinVisit", method = RequestMethod.POST)
+    public String joinVisit(Authentication auth, @RequestParam("restaurantName") String restaurantName, @RequestParam("visitId") Long visitId) {
+        User currentUser = userService.findByUsername(auth.getName());
+        Visit visit = visitRepository.findById(visitId);
+
+        visit.getGuests().add(currentUser);
+        currentUser.getVisits().add(visit);
+        visitRepository.save(visit);
+
+        return "redirect:/restaurant/"+restaurantName;
     }
 }

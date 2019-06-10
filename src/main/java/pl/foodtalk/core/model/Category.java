@@ -10,11 +10,6 @@ public class Category {
 
     public Category() { super(); }
 
-    public Category(String name, byte[] image) {
-        super();
-        this.name = name;
-    }
-    
     public Category(String name) {
         super();
         this.name = name;

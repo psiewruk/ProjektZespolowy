@@ -138,7 +138,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = {"/admin/deleteRestaurant"}, method = RequestMethod.POST)
-    public String deleteRestaurant(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId) {
+    public String deleteRestaurant(@RequestParam("restaurantId") Long restaurantId) {
 
         restaurantRepository.deleteById(restaurantId);
 
@@ -148,7 +148,7 @@ public class AdminController {
     //ZARZADZANIE UZYTKOWNIKAMI
     
     @RequestMapping(value = {"/admin/editUser"}, method = RequestMethod.POST)
-    public String editUser(Model model, Authentication authentication,@RequestParam("userId") Long userId,
+    public String editUser(@RequestParam("userId") Long userId,
                                  @RequestParam("newUsername") String newUsername, @RequestParam("newRole") Long newRole) {
 
         User user = userService.findById(userId);
@@ -164,7 +164,7 @@ public class AdminController {
     }
     
     @RequestMapping(value = {"/admin/deleteUser"}, method = RequestMethod.POST)
-    public String deleteUser(Model model, Authentication authentication, @RequestParam("userId") Long userId) {
+    public String deleteUser(@RequestParam("userId") Long userId) {
 
         userService.deleteById(userId);
 
@@ -173,7 +173,7 @@ public class AdminController {
     
     //ZARZADZANIE WNIOSKAMI
     @RequestMapping(value = {"/admin/approveApp"}, method = RequestMethod.POST)
-    public String approveApp(Model model, Authentication authentication, @RequestParam("applicationId") Long applicationId) {
+    public String approveApp(@RequestParam("applicationId") Long applicationId) {
 
         Application application = applicationService.findById(applicationId);
         
@@ -187,7 +187,7 @@ public class AdminController {
     }
     
     @RequestMapping(value = {"/admin/discardApp"}, method = RequestMethod.POST)
-    public String discardApp(Model model, Authentication authentication, @RequestParam("applicationId") Long applicationId) {
+    public String discardApp(@RequestParam("applicationId") Long applicationId) {
 
         applicationService.deleteById(applicationId);
 
