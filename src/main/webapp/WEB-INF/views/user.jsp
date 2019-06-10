@@ -172,9 +172,10 @@
         </div>
       </div>
     </section>
+    <section class ="bg-seamless">
     <c:if test="${!empty previousVisits}">
       <c:forEach items="${previousVisits}" var="visit" varStatus="stat">
-        <section id="contact" class="contact-section bg-black">
+        <section id="contact" class="contact-section">
           <div class="container">
             <div class="row">
               <div class="col  mb-5">
@@ -238,6 +239,7 @@
         </section>
       </c:forEach>
     </c:if>
+    </section>
     <section id="about" class="about-section text-center">
       <div class="container">
         <div class="row">

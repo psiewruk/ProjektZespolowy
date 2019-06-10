@@ -84,7 +84,7 @@
 				<div class="card py-4 h-100">
 				  <div class="card-body text-center ">
 					<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/category/category${category.id}/main.jpg" alt="" /></a>
 				  </div>
 				</div>
 			  </div>
@@ -94,7 +94,7 @@
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/category/category${category.id}/main.jpg" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
@@ -107,7 +107,7 @@
 			<div class="card py-4 h-100">
 			  <div class="card-body text-center">
 				<a href="/restaurants/${category.name}">
-					<img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+					<img class="img-fluid rounded" src="${contextPath}/resources/img/category/category${category.id}/main.jpg" alt="" /></a>
 			  </div>
 			</div>
 		  </div>
@@ -120,7 +120,7 @@
                 <div class="card py-4 h-100">
                     <div class="card-body text-center">
                         <a href="/restaurants/${category.name}">
-                            <img class="img-fluid rounded" src="${contextPath}/resources/img/restaurantPlaceholder.jpg" alt="" /></a>
+                            <img class="img-fluid rounded" src="${contextPath}/resources/img/category/category${category.id}/main.jpg" alt="" /></a>
                     </div>
                 </div>
             </div>
