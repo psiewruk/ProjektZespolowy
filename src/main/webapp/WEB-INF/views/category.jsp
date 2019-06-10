@@ -134,7 +134,7 @@
             <div class="row">
             </div>
         </div>
-    </section>
+    </section></div>
   <jsp:include page="footer.jsp"/>
   </body>
 </html>
