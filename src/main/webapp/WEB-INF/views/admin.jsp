@@ -600,7 +600,7 @@
 													${application.street}
 												<c:out value=" "></c:out>
 													${application.number}<br/>
-													${application.postCode}
+													${application.post_code}
 												<c:out value=" "></c:out>
 													${application.city}
 											</p>
@@ -624,7 +624,7 @@
 								<div class="card-body text-center ">
 									<h3> Wniosek nr ${application.id}</h3>
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
-											${application.postCode}<c:out value=" "></c:out>${application.city}</p>
+											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
 									<form id="${application.id}approve" method="POST" action="admin/approveApp">
 										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 										<input type="hidden"  name="applicationId" value="${application.id}"/>
@@ -647,7 +647,7 @@
 								<div class="card-body text-center ">
 									<h3> Wniosek nr ${application.id}</h3>
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
-											${application.postCode}<c:out value=" "></c:out>${application.city}</p>
+											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
 									<form id="${application.id}approve" method="POST" action="admin/approveApp">
 										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 										<input type="hidden"  name="applicationId" value="${application.id}"/>
@@ -673,7 +673,7 @@
 								<div class="card-body text-center ">
 									<h3> Wniosek nr ${application.id}</h3>
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
-											${application.postCode}<c:out value=" "></c:out>${application.city}</p>
+											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
 									<form id="${application.id}approve" method="POST" action="admin/approveApp">
 										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 										<input type="hidden"  name="applicationId" value="${application.id}"/>
