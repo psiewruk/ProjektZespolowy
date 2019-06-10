@@ -20,12 +20,12 @@ public class MainController {
     }
     
     @RequestMapping(value = {"/accessDenied"}, method = RequestMethod.GET)
-    public String accessDenied(Model model) {
+    public String accessDenied() {
         return "accessDenied";
     }
     
     @RequestMapping(value = {"/notFound"}, method = RequestMethod.GET)
-    public String notFound(Model model) {
+    public String notFound() {
         return "notFound";
     }
 }

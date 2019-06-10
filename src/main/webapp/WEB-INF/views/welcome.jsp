@@ -139,7 +139,7 @@
         </div>
       </section>
     </div>
-    <jsp:include page="script.jsp"/>
+
     <jsp:include page="contact.jsp"/>
     <jsp:include page="footer.jsp"/>
   </body>

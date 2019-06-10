@@ -282,8 +282,8 @@ DROP TABLE IF EXISTS `visit`;
 CREATE TABLE `visit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(50) DEFAULT NULL,
-  `start_date` datetime DEFAULT NULL,
-  `end_date` datetime DEFAULT NULL,
+  `startDate` datetime DEFAULT NULL,
+  `endDate` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `restaurant_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),

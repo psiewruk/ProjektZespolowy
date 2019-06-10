@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 
 @Controller
 public class RestaurantController {
@@ -99,7 +98,7 @@ public class RestaurantController {
     }
     
 	@RequestMapping(value = "/restaurant/{res}", method = RequestMethod.POST)
-    public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, BindingResult bindingResult, Model model, Authentication auth) throws ParseException {
+    public String visit(@ModelAttribute("visitForm") Visit visitForm, @PathVariable("res") String res, Authentication auth) throws ParseException {
     
     	DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"); 
     	
@@ -115,16 +114,4 @@ public class RestaurantController {
         
         return "redirect:/restaurant/"+res;
 	}
-
-    @RequestMapping(value = "/joinVisit", method = RequestMethod.POST)
-    public String visit(Model model, Authentication auth, @RequestParam("restaurantName") String restaurantName, @RequestParam("visitId") Long visitId) {
-        User currentUser = userService.findByUsername(auth.getName());
-        Visit visit = visitRepository.findById(visitId);
-
-        visit.getGuests().add(currentUser);
-        currentUser.getVisits().add(visit);
-        visitRepository.save(visit);
-
-        return "redirect:/restaurant/"+restaurantName;
-    }
 }

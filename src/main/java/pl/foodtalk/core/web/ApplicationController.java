@@ -35,7 +35,7 @@ public class ApplicationController {
 	}
 
 	@RequestMapping(value = {"/restauratorForm"}, method = RequestMethod.POST)
-	public String application(Model model, Authentication authentication, @RequestParam("name") String name, @RequestParam("description") String description,
+	public String application(Authentication authentication, @RequestParam("name") String name, @RequestParam("description") String description,
 			@RequestParam("street") String street, @RequestParam("number") String number, @RequestParam("postcode") String postcode, 
 			@RequestParam("city") String city) {
 

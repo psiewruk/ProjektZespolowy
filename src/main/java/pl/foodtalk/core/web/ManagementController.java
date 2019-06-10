@@ -67,7 +67,7 @@ public class ManagementController {
 	//ZARZADZANIE MENU
 
 	@RequestMapping(value = {"/manage/editMenu"}, method = RequestMethod.POST)
-	public String editMenu(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("menuId") Long menuId) {
+	public String editMenu(@RequestParam("newName") String newName, @RequestParam("menuId") Long menuId) {
 
 		Menu menu = menuRepository.findById(menuId);
 		if(newName.length() != 0)
@@ -78,7 +78,7 @@ public class ManagementController {
 	}
 
 	@RequestMapping(value = {"/manage/deleteMenu"}, method = RequestMethod.POST)
-	public String deleteMenu(Model model, Authentication authentication, @RequestParam("menuId") Long menuId) {
+	public String deleteMenu(@RequestParam("menuId") Long menuId) {
 
 		menuRepository.deleteById(menuId);
 
@@ -86,7 +86,7 @@ public class ManagementController {
 	}
 
 	@RequestMapping(value = {"/manage/addMenu"}, method = RequestMethod.POST)
-	public String addMenu(Model model, Authentication authentication, @RequestParam("menuName") String menuName) {
+	public String addMenu(Authentication authentication, @RequestParam("menuName") String menuName) {
 
 		Menu menu = new Menu(menuName, restaurantRepository.findByUserUsername(authentication.getName()));
 		menuRepository.save(menu);
@@ -97,8 +97,9 @@ public class ManagementController {
 	//ZARZADZANIE DISH
 
 	@RequestMapping(value = {"/manage/editDish"}, method = RequestMethod.POST)
-	public String editDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
-						   @RequestParam("newDesc") String newDesc, @RequestParam("dishId") Long dishId, @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) {
+	public String editDish(@RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
+						   @RequestParam("newDesc") String newDesc, @RequestParam("dishId") Long dishId,
+						   @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) {
 
 		Dish dish = dishRepository.findById(dishId);
 		if(newName.length() != 0)
@@ -114,7 +115,7 @@ public class ManagementController {
 	}
 
 	@RequestMapping(value = {"/manage/addDish"}, method = RequestMethod.POST)
-	public String addDish(Model model, Authentication authentication, @RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
+	public String addDish(@RequestParam("newName") String newName, @RequestParam("newPrice") Float newPrice,
 						  @RequestParam("newDesc") String newDesc, @RequestParam("menuId") Long menuId, @RequestParam("cat") Long categoryId, 
 						  @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) throws IllegalStateException {
 
@@ -128,7 +129,7 @@ public class ManagementController {
 	}
 
 	@RequestMapping(value = {"/manage/deleteDish"}, method = RequestMethod.POST)
-	public String deleteDish(Model model, Authentication authentication, @RequestParam("dishId") Long dishId) {
+	public String deleteDish(@RequestParam("dishId") Long dishId) {
 
 		dishRepository.deleteById(dishId);
 
@@ -136,7 +137,7 @@ public class ManagementController {
 	}
 
 	@RequestMapping(value = {"/manage/changePhoto"}, method = RequestMethod.POST)
-	public String changePhoto(Model model, Authentication authentication, @RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) {
+	public String changePhoto(@RequestParam("restaurantId") Long restaurantId, @RequestParam("file") MultipartFile file) {
 
 		if (!file.isEmpty()) {
 			try {

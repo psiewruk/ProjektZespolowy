@@ -14,5 +14,4 @@ public interface VisitRepository extends JpaRepository<Visit, Long>{
     @Transactional
     Long deleteById(Long id);
     Visit findById(Long id);
-    Visit findSingleByRestaurantName(String name);
 }

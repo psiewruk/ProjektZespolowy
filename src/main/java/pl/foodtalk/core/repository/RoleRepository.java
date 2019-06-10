@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import pl.foodtalk.core.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long>{
-	Set<Role> findByName(String name);
 	Set<Role> findById(Long id);
 }
