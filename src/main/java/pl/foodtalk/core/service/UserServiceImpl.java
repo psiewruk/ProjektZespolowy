@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,6 +27,10 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<>(roleRepository.findById((long) 1)));
         userRepository.save(user);
     }
+    public void saveWPC(User user){
+        user.setRoles(new HashSet<>(roleRepository.findById((long) 1)));
+        userRepository.save(user);
+    }
 
     @Override
     public User findByUsername(String username) {
@@ -41,6 +46,7 @@ public class UserServiceImpl implements UserService {
     	return userRepository.findAll(); }
     
     @Override
+    @Transactional
     public Long deleteById(Long id) {
     	return userRepository.deleteById(id);
     }

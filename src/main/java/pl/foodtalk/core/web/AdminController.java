@@ -16,11 +16,7 @@ import pl.foodtalk.core.model.Category;
 import pl.foodtalk.core.model.Restaurant;
 import pl.foodtalk.core.model.Role;
 import pl.foodtalk.core.model.User;
-import pl.foodtalk.core.repository.RoleRepository;
-import pl.foodtalk.core.repository.AddressRepository;
-import pl.foodtalk.core.repository.ApplicationRepository;
-import pl.foodtalk.core.repository.CategoryRepository;
-import pl.foodtalk.core.repository.RestaurantRepository;
+import pl.foodtalk.core.repository.*;
 import pl.foodtalk.core.service.UserService;
 
 @Controller
@@ -34,6 +30,9 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private AddressRepository addressRepository;
@@ -66,7 +65,7 @@ public class AdminController {
     //ZARZADZANIE KATEGORIAMI
 
     @RequestMapping(value = {"/admin/addCategory"}, method = RequestMethod.POST)
-    public String addCategory(Model model, @RequestParam("categoryName") String categoryName) {
+    public String addCategory(@RequestParam("categoryName") String categoryName) {
         Category category = new Category(categoryName);
         categoryRepository.save(category);
 
@@ -74,7 +73,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = {"/admin/editCategory"}, method = RequestMethod.POST)
-    public String editCategory(Model model, @RequestParam("newName") String newName, @RequestParam("categoryId") Long categoryId) {
+    public String editCategory(@RequestParam("newName") String newName, @RequestParam("categoryId") Long categoryId) {
         Category category = categoryRepository.findById(categoryId);
 
         if(newName.length() != 0)
@@ -85,7 +84,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = {"/admin/deleteCategory"}, method = RequestMethod.POST)
-    public String deleteCategory(Model model, @RequestParam("categoryId") Long categoryId) {
+    public String deleteCategory(@RequestParam("categoryId") Long categoryId) {
         categoryRepository.deleteById(categoryId);
 
         return "redirect:/admin";
@@ -94,7 +93,7 @@ public class AdminController {
     //ZARZADZANIE RESTAURACJAMI
 
     @RequestMapping(value = {"/admin/addRestaurant"}, method = RequestMethod.POST)
-    public String addRestaurant(Model model, Authentication authentication, @RequestParam("restaurantName") String name,
+    public String addRestaurant(@RequestParam("restaurantName") String name,
                                 @RequestParam("desc") String desc, @RequestParam("street") String street,
                                 @RequestParam("number") String number, @RequestParam("code") String code,
                                 @RequestParam("city") String city, @RequestParam("username") String username) {
@@ -110,7 +109,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = {"/admin/editRestaurant"}, method = RequestMethod.POST)
-    public String editRestaurant(Model model, Authentication authentication,@RequestParam("restaurantId") Long restaurantId,
+    public String editRestaurant(@RequestParam("restaurantId") Long restaurantId,
                                  @RequestParam("newName") String newName, @RequestParam("newDesc") String newDesc,
                                  @RequestParam("newStreet") String newStreet, @RequestParam("newNumber") String newNumber,
                                  @RequestParam("newCode") String newCode, @RequestParam("newCity") String newCity) {
@@ -158,7 +157,7 @@ public class AdminController {
         if(newRole != null)
         	user.setRoles(new HashSet<>(roleRepository.findById(newRole)));
 
-        userService.save(user);
+        userRepository.save(user);
 
         return "redirect:/admin";
     }
@@ -182,6 +181,12 @@ public class AdminController {
         
         Restaurant restaurant = new Restaurant(application.getName(), address, application.getUser(), application.getDescription());
         restaurantRepository.save(restaurant);
+
+        User user = userService.findById(application.getUser().getId());
+        user.setRoles(new HashSet<>(roleRepository.findById((long) 2)));
+        userRepository.save(user);
+
+        applicationService.deleteById(applicationId);
         
         return "redirect:/admin";
     }
