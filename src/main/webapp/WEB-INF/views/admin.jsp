@@ -22,7 +22,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	<link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
 </head>
-<body id="page-top">
+<body id="page-top" class="bg-seamless">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 	<div class="navbarReveal container">
 		<a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
@@ -75,7 +75,7 @@
 	</div>
 </section>
 </section>
-<section id="main" class="bg-seamless">
+<section id="main">
 	<div class="contarier">
 		<div class="row">
 			<div class="col">
@@ -184,7 +184,7 @@
 	</div>
 </section>
 <section id="catManage" style="display:none;">
-	<div class="bg-seamless">
+	<div>
 		<button class="btn btn-primary" data-toggle="modal" data-target="#modalAddCategory">
 			Dodaj kategorię
 		</button>
@@ -429,7 +429,7 @@
 		</c:if>
 </section>
 <section id="resManage" style="display:none">
-	<div class="bg-seamless">
+	<div>
 		<button class="btn btn-primary" data-toggle="modal" data-target="#modalAddRestaurant">
 			Dodaj restaurację
 		</button>
@@ -698,7 +698,7 @@
 		</c:if>
 </section>
 <section id="userManage" style="display:none">
-	<div class="bg-seamless">
+	<div>
 		<c:if test="${!empty listUsers}">
 			<c:set var="listSize" value="${fn:length(listUsers)}"/>
 			<c:forEach items="${listUsers}" var="user" varStatus="stat">
@@ -953,7 +953,7 @@
 		</c:if>
 </section>
 <section id="appManage" style="display:none">
-	<div class="bg-seamless">
+	<div>
 		<c:if test="${!empty listApplications}">
 			<c:set var="listSize" value="${fn:length(listUsers)}"/>
 			<c:forEach items="${listApplications}" var="application" varStatus="stat">
