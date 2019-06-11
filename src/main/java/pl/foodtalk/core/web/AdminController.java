@@ -157,7 +157,7 @@ public class AdminController {
         if(newRole != null)
         	user.setRoles(new HashSet<>(roleRepository.findById(newRole)));
 
-        userService.save(user);
+        userRepository.save(user);
 
         return "redirect:/admin";
     }
