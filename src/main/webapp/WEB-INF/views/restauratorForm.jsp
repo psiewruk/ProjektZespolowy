@@ -63,6 +63,43 @@
         </div>
       </div>
     </nav>
+        <c:if test="${application != null}">
+            <section id="about" class="about-section text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h2 class="text-white mb-4">Twój wniosek nie został jeszcze rozpatrzony</h2>
+                            <p class="text-white-50">Jeśli uważasz, że trwa to zbyt długo skontaktuj się z administracją</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="contact-section container">
+                <div class="card py-4 w-100 h-25">
+                    <div class="row ml-3 mr-3">
+                        <div class="col-5 mb-1">
+                            <h3 class="text-center font-weight-bold">Restauracja</h3>
+                            <h2 class="text-center font-weight-bold mb-5">${application.name}</h2>
+                            <h3 class="text-center font-weight-bold">Adres:</h3>
+                            <div class="text-center">${application.street} ${application.number}<br>${application.post_code} ${application.city}</div>
+                        </div>
+                        <div class="col-6 mb-5 ml-3 mr-3">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <h2 class=" font-weight-bold">Opis</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-center">${application.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${application == null}">
       <section id="about" class="about-section text-center">
         <div class="container">
           <div class="row">
@@ -103,6 +140,7 @@
           </div>
         </div>
       </section>
+      </c:if>
     </div>
 
     <jsp:include page="contact.jsp"></jsp:include>

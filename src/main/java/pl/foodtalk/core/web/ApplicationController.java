@@ -1,6 +1,8 @@
 package pl.foodtalk.core.web;
 
 import pl.foodtalk.core.model.Application;
+import pl.foodtalk.core.model.User;
+import pl.foodtalk.core.model.Visit;
 import pl.foodtalk.core.repository.ApplicationRepository;
 import pl.foodtalk.core.service.UserService;
 
@@ -30,6 +32,9 @@ public class ApplicationController {
 
 		if(auth != null)
 			model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
+
+		model.addAttribute("application", applicationRepository.findByUserId(this.userService.findByUsername(auth.getName()).getId()));
+
 
 		return "restauratorForm";
 	}

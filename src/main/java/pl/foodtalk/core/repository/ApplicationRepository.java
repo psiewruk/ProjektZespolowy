@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
     Application findById(Long id);
+    Application findByUserId(Long id);
     @Transactional
     Long deleteById(Long id);
 }
