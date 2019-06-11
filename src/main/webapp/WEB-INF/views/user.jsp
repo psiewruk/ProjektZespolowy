@@ -33,6 +33,9 @@
               <form id="logoutForm" method="POST" action="${contextPath}/logout">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
               </form>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="${contextPath}/restauratorForm">Wniosek o restaurację</a>
+              </li>
               <c:if test='${role.contains("ROLE_USER")}'>
                 <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="${contextPath}/user">Twoje konto</a>
@@ -61,11 +64,11 @@
         </div>
       </div>
     </nav>
-    <section id="about" class="about-section text-center">
+    <section id="about" class="about-section text-center ">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-10">Przyszłe wizyty</h2>
+            <h2 class="text-white mb-10 cosss">Przyszłe wizyty</h2>
           </div>
         </div>
       </div>
@@ -167,7 +170,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Zakończone wizyty</h2>
+            <h2 class="text-white mb-10 cosss">Zakończone wizyty</h2>
           </div>
         </div>
       </div>
@@ -244,14 +247,14 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2 class="text-white mb-4">Twoje opinie</h2>
+            <h2 class="text-white mb-10 cosss">Twoje opinie</h2>
           </div>
         </div>
       </div>
     </section>
     <c:if test="${!empty listOpinions}">
       <c:forEach items="${listOpinions}" var="opinion" varStatus="stat">
-        <section id="contact" class="contact-section bg-black">
+        <section id="contact" class="contact-section bg-seamless">
           <div class="container">
             <div class="row">
               <div class="col  mb-5">
