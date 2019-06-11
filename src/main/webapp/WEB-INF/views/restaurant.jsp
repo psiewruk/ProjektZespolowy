@@ -162,7 +162,7 @@
         </div>
       </section>
     </c:if>
-    <c:if test="${!empty futureVisits}">
+    <c:if test="${!empty futureVisits && pageContext.request.userPrincipal.name != null}">
       <section id="about" class="about-section text-center">
         <div class="container">
           <div class="row">
