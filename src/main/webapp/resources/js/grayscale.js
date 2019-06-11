@@ -24,6 +24,14 @@ function hideForm(id) {
   document.getElementById(id).style.display = "block";
 }
 
+function hideFormUser(id) {
+	  document.getElementById("futVisitsManage").style.display = "none";
+	  document.getElementById("comVisitsManage").style.display = "none";
+	  document.getElementById("opinionsManage").style.display = "none";
+
+	  document.getElementById(id).style.display = "block";
+	}
+
 window.sr = ScrollReveal();
 sr.reveal('.startReveal', {
   duration :2000,
