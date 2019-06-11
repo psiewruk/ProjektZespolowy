@@ -74,6 +74,7 @@
 		</div>
 	</div>
 </section>
+</section>
 <section id="main" class="bg-seamless">
 	<div class="contarier">
 		<div class="row">
@@ -81,24 +82,32 @@
 			</div>
 			<div class="col-8">
 				<div class="row">
-					<div id="test1" class="col-md-6 p-5">
+					<div class="col-md-3 p-2 mt-5">
 						<img id="test2" class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/category.jpg" alt="">
-						<button class="btn btn-block btn-danger p-5 buttonReveal-L" onclick='hideForm("catManage")' >Kategorie</button>
 					</div>
-					<div class="col-md-6 p-5">
+					<div class="col-md-3 p-2 mt-5">
 						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/users.png" alt="">
-						<button class="btn btn-block btn-info p-5 buttonReveal-R" onclick='hideForm("userManage")'>Użytkownicy</button>
+					</div>
+					<div class="col-md-3 p-2 mt-5">
+						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/restaurant.png" alt="">
+					</div>
+					<div class="col-md-3 p-2 mt-5">
+						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/survey.png" alt="">
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-6 p-5">
-						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/restaurant.png" alt="">
+				<div class="row">	
+					<div  class="col-md-3 p-2 mb-5">
+						<button class="btn btn-block btn-danger p-5 buttonReveal-L" onclick='hideForm("catManage")' >Kategorie</button>
+					</div>
+					<div class="col-md-3 p-2 mb-5">
+						<button class="btn btn-block btn-info p-5 buttonReveal-R" onclick='hideForm("userManage")'>Użytkownicy</button>
+					</div>
+					<div class="col-md-3 p-2 mb-5">
 						<button class="btn btn-block btn-success p-5 buttonReveal-L" onclick='hideForm("resManage")'>Restauracje</button>
 					</div>
-					<div class="col-md-6 p-5">
-						<img class="w-25 mx-auto d-block iconReveal" src="${contextPath}/resources/img/ikony/survey.png" alt="">
+					<div class="col-md-3 p-2 mb-5">
 						<button class="btn btn-block btn-warning p-5 buttonReveal-R" onclick='hideForm("appManage")'>Wnioski</button>
-					</div>
+					</div>					
 				</div>
 			</div>
 			<div class="col">
@@ -176,7 +185,7 @@
 </section>
 <section id="catManage" style="display:none;">
 	<div class="bg-seamless">
-		<button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddCategory">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modalAddCategory">
 			Dodaj kategorię
 		</button>
 		<c:if test="${!empty listCategories}">
@@ -191,19 +200,54 @@
 										<div class="card py-4 h-100">
 											<div class="card-body text-center ">
 												<h3> ${category.name}</h3>
-												<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
-												<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
-												<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
-													<input type="text" name="newName" placeholder="Nowa nazwa"/>
-													<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-													<input type="hidden"  name="categoryId" value="${category.id}"/>
-													<input type="submit" class="btn btn-primary" value="Wyślij">
-												</form>
-												<form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
-													<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-													<input type="hidden"  name="categoryId" value="${category.id}"/>
-													Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-												</form>
+								
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat1">Edytuj</button>
+								<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat1">Usuń</button>
+								             				
+           						<div id="modalEditCat1" class="modal fade" role="dialog">
+                         			<div class="modal-dialog">
+                                    	<div class="modal-content">
+                                    		<div class="modal-header">
+                    							<a class="font-weight-bold">Podaj nową nazwę</a>
+                                          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+                  							</div>
+                  						<div class="modal-body text-center">
+                   							 <form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:block">
+                      							<div class="row">
+                       								<div class="col-8  mt-2">
+                          								<input type="text" name="newName" placeholder="Nowa nazwa"/>
+                          								<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                          								<input type="hidden"  name="categoryId" value="${category.id}"/>
+                        							</div>
+                        						<div class="col-3">
+                          							<input type="submit" class="btn btn-primary" value="Wyślij">
+                        						</div>
+                      							</div>
+                    						</form>
+                  						</div>
+                						</div>
+              						</div>
+            					</div> 
+				<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat1">Usuń</button>
+												
+              <div id="modalDelCat1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:block">
+                        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                        <input type="hidden"  name="categoryId" value="${category.id}"/>
+                        <h3 class="font-weight-bold text-center">Czy na pewno chcesz usunąć kategorię? </h3>
+                        <div class="text-center"><input class="btn btn-danger"  type="submit" value="Usuń"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+									
 											</div>
 										</div>
 									</div>
@@ -213,19 +257,52 @@
 						<div class="card py-4 h-100">
 							<div class="card-body text-center ">
 								<h3> ${category.name}</h3>
-								<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
-								<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
-								<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
-									<input type="text" name="newName" placeholder="Nowa nazwa"/>
-									<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-									<input type="hidden"  name="categoryId" value="${category.id}"/>
-									<input type="submit" class="btn btn-primary" value="Wyślij">
-								</form>
-								<form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
-									<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-									<input type="hidden"  name="categoryId" value="${category.id}"/>
-									Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-								</form>
+																
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat2">Edytuj</button>             				
+           						<div id="modalEditCat2" class="modal fade" role="dialog">
+                         			<div class="modal-dialog">
+                                    	<div class="modal-content">
+                                    		<div class="modal-header">
+                    							<a class="font-weight-bold">Podaj nową nazwę</a>
+                                          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+                  							</div>
+                  						<div class="modal-body text-center">
+                   							 <form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:block">
+                      							<div class="row">
+                       								<div class="col-8  mt-2">
+                          								<input type="text" name="newName" placeholder="Nowa nazwa"/>
+                          								<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                          								<input type="hidden"  name="categoryId" value="${category.id}"/>
+                        							</div>
+                        						<div class="col-3">
+                          							<input type="submit" class="btn btn-primary" value="Wyślij">
+                        						</div>
+                      							</div>
+                    						</form>
+                  						</div>
+                						</div>
+              						</div>
+            					</div>
+            					
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat2">Usuń</button>
+												
+              <div id="modalDelCat2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:block">
+                        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                        <input type="hidden"  name="categoryId" value="${category.id}"/>
+                        <h3 class="font-weight-bold text-center">Czy na pewno chcesz usunąć kategorię? </h3>
+                        <div class="text-center"><input class="btn btn-danger"  type="submit" value="Usuń"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 							</div>
 						</div>
 					</div>
@@ -237,19 +314,52 @@
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
 									<h3> ${category.name}</h3>
-									<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
-										<input type="text" name="newName" placeholder="Nowa nazwa"/>
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="categoryId" value="${category.id}"/>
-										<input type="submit" class="btn btn-primary" value="Wyślij">
-									</form>
-									<form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="categoryId" value="${category.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat3">Edytuj</button>             				
+           						<div id="modalEditCat3" class="modal fade" role="dialog">
+                         			<div class="modal-dialog">
+                                    	<div class="modal-content">
+                                    		<div class="modal-header">
+                    							<a class="font-weight-bold">Podaj nową nazwę</a>
+                                          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+                  							</div>
+                  						<div class="modal-body text-center">
+                   							 <form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:block">
+                      							<div class="row">
+                       								<div class="col-8  mt-2">
+                          								<input type="text" name="newName" placeholder="Nowa nazwa"/>
+                          								<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                          								<input type="hidden"  name="categoryId" value="${category.id}"/>
+                        							</div>
+                        						<div class="col-3">
+                          							<input type="submit" class="btn btn-primary" value="Wyślij">
+                        						</div>
+                      							</div>
+                    						</form>
+                  						</div>
+                						</div>
+              						</div>
+            					</div>
+            					
+													<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat3">Usuń</button>
+												
+              <div id="modalDelCat3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:block">
+                        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                        <input type="hidden"  name="categoryId" value="${category.id}"/>
+                        <h3 class="font-weight-bold text-center">Czy na pewno chcesz usunąć kategorię? </h3>
+                        <div class="text-center"><input class="btn btn-danger"  type="submit" value="Usuń"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 								</div>
 							</div>
 						</div>
@@ -264,19 +374,52 @@
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
 									<h3> ${category.name}</h3>
-									<button onclick='hideForm("${category.name}edit")'class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${category.name}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:none">
-										<input type="text" name="newName" placeholder="Nowa nazwa"/>
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="categoryId" value="${category.id}"/>
-										<input type="submit" class="btn btn-primary" value="Wyślij">
-									</form>
-									<form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="categoryId" value="${category.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+									
+																	<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat4">Edytuj</button>             				
+           						<div id="modalEditCat4" class="modal fade" role="dialog">
+                         			<div class="modal-dialog">
+                                    	<div class="modal-content">
+                                    		<div class="modal-header">
+                    							<a class="font-weight-bold">Podaj nową nazwę</a>
+                                          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+                  							</div>
+                  						<div class="modal-body text-center">
+                   							 <form id="${category.name}edit" method="POST" action="admin/editCategory" style="display:block">
+                      							<div class="row">
+                       								<div class="col-8  mt-2">
+                          								<input type="text" name="newName" placeholder="Nowa nazwa"/>
+                          								<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                          								<input type="hidden"  name="categoryId" value="${category.id}"/>
+                        							</div>
+                        						<div class="col-3">
+                          							<input type="submit" class="btn btn-primary" value="Wyślij">
+                        						</div>
+                      							</div>
+                    						</form>
+                  						</div>
+                						</div>
+              						</div>
+            					</div>
+            									
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat4">Usuń</button>
+												
+              <div id="modalDelCat4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="${category.name}delete" method="POST" action="admin/deleteCategory" style="display:block">
+                        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                        <input type="hidden"  name="categoryId" value="${category.id}"/>
+                        <h3 class="font-weight-bold text-center">Czy na pewno chcesz usunąć kategorię? </h3>
+                        <div class="text-center"><input class="btn btn-danger"  type="submit" value="Usuń"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 								</div>
 							</div>
 						</div>
@@ -287,7 +430,7 @@
 </section>
 <section id="resManage" style="display:none">
 	<div class="bg-seamless">
-		<button class="btn btn-secondary" data-toggle="modal" data-target="#modalAddRestaurant">
+		<button class="btn btn-primary" data-toggle="modal" data-target="#modalAddRestaurant">
 			Dodaj restaurację
 		</button>
 		<c:if test="${!empty listRestaurants}">
@@ -314,25 +457,55 @@
 													<c:out value=" "/>
 														${restaurant.address.city}
 												</p>
-												<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
-												<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
-												<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
-													<input type="text" name="newName" placeholder="Nowa nazwa"/>
-													<input type="text" name="newDesc" placeholder="Opis">
-													<br>Adres: </br>
-													<input type="text" name="newStreet" placeholder="Ulica">
-													<input type="text" name="newNumber" placeholder="Numer">
-													<input type="text" name="newCode" placeholder="Kod pocztowy">
-													<input type="text" name="newCity" placeholder="Miasto">
-													<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-													<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-													<input type="submit" value="Wyślij" class="btn btn-primary">
-												</form>
-												<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
-													<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-													<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-													Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-												</form>
+												
+										
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes1">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes1">Usuń</button>
+					
+			<div id="modalEditRes1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+					<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant">
+						<input type="text" name="newName" placeholder="Nowa nazwa"/>
+						<input type="text" name="newDesc" placeholder="Opis">
+						<br>Adres: </br>
+						<input type="text" name="newStreet" placeholder="Ulica">
+						<input type="text" name="newNumber" placeholder="Numer">
+						<input type="text" name="newCode" placeholder="Kod pocztowy">
+						<input type="text" name="newCity" placeholder="Miasto">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Wyślij" class="btn btn-primary">
+					</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="modalDelRes1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
 											</div>
 										</div>
 									</div>
@@ -345,25 +518,53 @@
 									<p> ${restaurant.description} <p>
 									<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 											${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
-									<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
-										<input type="text" name="newName" placeholder="Nowa nazwa"/>
-										<input type="text" name="newDesc" placeholder="Opis">
-										<br>Adres: </br>
-										<input type="text" name="newStreet" placeholder="Ulica">
-										<input type="text" name="newNumber" placeholder="Numer">
-										<input type="text" name="newCode" placeholder="Kod pocztowy">
-										<input type="text" name="newCity" placeholder="Miasto">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-										<input type="submit" value="Wyślij" class="btn btn-primary">
-									</form>
-									<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes2">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes2">Usuń</button>
+					
+			<div id="modalEditRes2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+					<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant">
+						<input type="text" name="newName" placeholder="Nowa nazwa"/>
+						<input type="text" name="newDesc" placeholder="Opis">
+						<br>Adres: </br>
+						<input type="text" name="newStreet" placeholder="Ulica">
+						<input type="text" name="newNumber" placeholder="Numer">
+						<input type="text" name="newCode" placeholder="Kod pocztowy">
+						<input type="text" name="newCity" placeholder="Miasto">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Wyślij" class="btn btn-primary">
+					</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="modalDelRes2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
 								</div>
 							</div>
 						</div>
@@ -378,25 +579,52 @@
 									<p> ${restaurant.description} <p>
 									<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 											${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
-									<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
-										<input type="text" name="newName" placeholder="Nowa nazwa"/>
-										<input type="text" name="newDesc" placeholder="Opis">
-										<br>Adres: </br>
-										<input type="text" name="newStreet" placeholder="Ulica">
-										<input type="text" name="newNumber" placeholder="Numer">
-										<input type="text" name="newCode" placeholder="Kod pocztowy">
-										<input type="text" name="newCity" placeholder="Miasto">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-										<input type="submit" value="Wyślij" class="btn btn-primary">
-									</form>
-									<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes3">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes3">Usuń</button>
+					
+			<div id="modalEditRes3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+					<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant">
+						<input type="text" name="newName" placeholder="Nowa nazwa"/>
+						<input type="text" name="newDesc" placeholder="Opis">
+						<br>Adres: </br>
+						<input type="text" name="newStreet" placeholder="Ulica">
+						<input type="text" name="newNumber" placeholder="Numer">
+						<input type="text" name="newCode" placeholder="Kod pocztowy">
+						<input type="text" name="newCity" placeholder="Miasto">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Wyślij" class="btn btn-primary">
+					</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="modalDelRes3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 								</div>
 							</div>
 						</div>
@@ -414,25 +642,53 @@
 									<p> ${restaurant.description} <p>
 									<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 											${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
-									<button onclick='hideForm("${restaurant.name}edit")' class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${restaurant.name}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant" style="display:none">
-										<input type="text" name="newName" placeholder="Nowa nazwa"/>
-										<input type="text" name="newDesc" placeholder="Opis">
-										<br>Adres: </br>
-										<input type="text" name="newStreet" placeholder="Ulica">
-										<input type="text" name="newNumber" placeholder="Numer">
-										<input type="text" name="newCode" placeholder="Kod pocztowy">
-										<input type="text" name="newCity" placeholder="Miasto">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-										<input type="submit" value="Wyślij" class="btn btn-primary">
-									</form>
-									<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes4">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes4">Usuń</button>
+					
+			<div id="modalEditRes4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+					<form id="${restaurant.name}edit" method="POST" action="admin/editRestaurant">
+						<input type="text" name="newName" placeholder="Nowa nazwa"/>
+						<input type="text" name="newDesc" placeholder="Opis">
+						<br>Adres: </br>
+						<input type="text" name="newStreet" placeholder="Ulica">
+						<input type="text" name="newNumber" placeholder="Numer">
+						<input type="text" name="newCode" placeholder="Kod pocztowy">
+						<input type="text" name="newCity" placeholder="Miasto">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Wyślij" class="btn btn-primary">
+					</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="modalDelRes4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${restaurant.name}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${restaurant.name}delete" method="POST" action="admin/deleteRestaurant">
+						<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+						<input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
+						<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 								</div>
 							</div>
 						</div>
@@ -455,26 +711,58 @@
 										<div class="card py-4 h-100">
 											<div class="card-body text-center ">
 												<h3> ${user.username}</h3>
-												<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
-												<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
-												<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
-													<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
-													<select name="newRole">
-														<c:if test="${!empty listRoles}">
-															<c:forEach items="${listRoles}" var="role">
-																<option value="${role.id}">${role.name}</option>
-															</c:forEach>
-														</c:if>
-													</select>
-													<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-													<input type="hidden"  name="userId" value="${user.id}"/>
-													<input type="submit" value="Wyślij" class="btn btn-primary">
-												</form>
-												<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
-													<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-													<input type="hidden"  name="userId" value="${user.id}"/>
-													Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-												</form>
+												
+												<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr1">Edytuj</button>
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr1">Usuń</button>
+												
+												
+			<div id="modalEditUsr1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Edytuj - ${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:block">
+							<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+								<select name="newRole">
+								<c:if test="${!empty listRoles}">
+									<c:forEach items="${listRoles}" var="role">
+										<option value="${role.id}">${role.name}</option>
+									</c:forEach>
+								</c:if>
+							</select>
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<input type="submit" value="Wyślij" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelUsr1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:block">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<a>Czy na pewno chcesz usunąć użytkownika ${user.username} ?</a>
+							<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+												
+
 											</div>
 										</div>
 									</div>
@@ -484,26 +772,55 @@
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
 									<h3> ${user.username}</h3>
-									<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
-										<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
-										<select name="newRole">
-											<c:if test="${!empty listRoles}">
-												<c:forEach items="${listRoles}" var="role">
-													<option value="${role.id}">${role.name}</option>
-												</c:forEach>
-											</c:if>
-										</select>
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="userId" value="${user.id}"/>
-										<input type="submit" value="Wyślij" class="btn btn-primary">
-									</form>
-									<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="userId" value="${user.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr2">Edytuj</button>
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr2">Usuń</button>
+												
+												
+			<div id="modalEditUsr2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Edytuj - ${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:block">
+							<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+								<select name="newRole">
+								<c:if test="${!empty listRoles}">
+									<c:forEach items="${listRoles}" var="role">
+										<option value="${role.id}">${role.name}</option>
+									</c:forEach>
+								</c:if>
+							</select>
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<input type="submit" value="Wyślij" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelUsr2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:block">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<a>Czy na pewno chcesz usunąć użytkownika ${user.username} ?</a>
+							<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 								</div>
 							</div>
 						</div>
@@ -515,26 +832,55 @@
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
 									<h3> ${user.username}</h3>
-									<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
-										<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
-										<select name="newRole">
-											<c:if test="${!empty listRoles}">
-												<c:forEach items="${listRoles}" var="role">
-													<option value="${role.id}">${role.name}</option>
-												</c:forEach>
-											</c:if>
-										</select>
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="userId" value="${user.id}"/>
-										<input type="submit" value="Wyślij" class="btn btn-primary">
-									</form>
-									<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="userId" value="${user.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr3">Edytuj</button>
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr3">Usuń</button>
+												
+												
+			<div id="modalEditUsr3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Edytuj - ${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:block">
+							<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+								<select name="newRole">
+								<c:if test="${!empty listRoles}">
+									<c:forEach items="${listRoles}" var="role">
+										<option value="${role.id}">${role.name}</option>
+									</c:forEach>
+								</c:if>
+							</select>
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<input type="submit" value="Wyślij" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelUsr3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:block">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<a>Czy na pewno chcesz usunąć użytkownika ${user.username} ?</a>
+							<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 								</div>
 							</div>
 						</div>
@@ -549,26 +895,55 @@
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
 									<h3> ${user.username}</h3>
-									<button onclick='hideForm("${user.username}edit")' class="btn btn-primary">Edytuj</button>
-									<button onclick='hideForm("${user.username}delete")' class="btn btn-danger">Usuń</button>
-									<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:none">
-										<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
-										<select name="newRole">
-											<c:if test="${!empty listRoles}">
-												<c:forEach items="${listRoles}" var="role">
-													<option value="${role.id}">${role.name}</option>
-												</c:forEach>
-											</c:if>
-										</select>
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="userId" value="${user.id}"/>
-										<input type="submit" value="Wyślij" class="btn btn-primary">
-									</form>
-									<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:none">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="userId" value="${user.id}"/>
-										Jesteś pewny? <input type="submit" value="Usuń" class="btn btn-danger">
-									</form>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr4">Edytuj</button>
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr4">Usuń</button>
+												
+												
+			<div id="modalEditUsr4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Edytuj - ${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}edit" method="POST" action="admin/editUser" style="display:block">
+							<input type="text" name="newUsername" placeholder="Nowa nazwa użytkownika"/>
+								<select name="newRole">
+								<c:if test="${!empty listRoles}">
+									<c:forEach items="${listRoles}" var="role">
+										<option value="${role.id}">${role.name}</option>
+									</c:forEach>
+								</c:if>
+							</select>
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<input type="submit" value="Wyślij" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelUsr4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>${user.username}</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${user.username}delete" method="POST" action="admin/deleteUser" style="display:block">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="userId" value="${user.id}"/>
+							<a>Czy na pewno chcesz usunąć użytkownika ${user.username} ?</a>
+							<input type="submit" value="Usuń" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 								</div>
 							</div>
 						</div>
@@ -600,20 +975,51 @@
 													${application.street}
 												<c:out value=" "></c:out>
 													${application.number}<br/>
-													${application.postCode}
+													${application.post_code}
 												<c:out value=" "></c:out>
 													${application.city}
 											</p>
-											<form id="${application.id}approve" method="POST" action="admin/approveApp">
-												<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-												<input type="hidden"  name="applicationId" value="${application.id}"/>
-												<input type="submit" value = "Zatwierdz" class="btn btn-primary">
-											</form>
-											<form id="${application.id}delete" method="POST" action="admin/discardApp">
-												<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-												<input type="hidden"  name="applicationId" value="${application.id}"/>
-												<input type="submit" value="Odrzuć" class="btn btn-danger">
-											</form>
+											
+	<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp1">Edytuj</button>
+	<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp1">Usuń</button>
+		
+											
+			<div id="modalAccApp1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Zatwierdz</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}approve" method="POST" action="admin/approveApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value = "Zatwierdz" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelApp1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Odrzuć</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}delete" method="POST" action="admin/discardApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value="Odrzuć" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 										</div>
 									</div>
 								</div>
@@ -624,17 +1030,48 @@
 								<div class="card-body text-center ">
 									<h3> Wniosek nr ${application.id}</h3>
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
-											${application.postCode}<c:out value=" "></c:out>${application.city}</p>
-									<form id="${application.id}approve" method="POST" action="admin/approveApp">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="applicationId" value="${application.id}"/>
-										<input type="submit" value = "Zatwierdz" class="btn btn-primary">
-									</form>
-									<form id="${application.id}delete" method="POST" action="admin/discardApp">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="applicationId" value="${application.id}"/>
-										<input type="submit" value="Odrzuć" class="btn btn-danger">
-									</form>
+											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp2">Edytuj</button>
+	<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp2">Usuń</button>
+		
+											
+			<div id="modalAccApp2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Zatwierdz</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}approve" method="POST" action="admin/approveApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value = "Zatwierdz" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelApp2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Odrzuć</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}delete" method="POST" action="admin/discardApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value="Odrzuć" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
 								</div>
 							</div>
 						</div>
@@ -647,17 +1084,48 @@
 								<div class="card-body text-center ">
 									<h3> Wniosek nr ${application.id}</h3>
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
-											${application.postCode}<c:out value=" "></c:out>${application.city}</p>
-									<form id="${application.id}approve" method="POST" action="admin/approveApp">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="applicationId" value="${application.id}"/>
-										<input type="submit" value = "Zatwierdz" class="btn btn-primary">
-									</form>
-									<form id="${application.id}delete" method="POST" action="admin/discardApp">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="applicationId" value="${application.id}"/>
-										<input type="submit" value="Odrzuć" class="btn btn-danger">
-									</form>
+											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp3">Edytuj</button>
+	<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp3">Usuń</button>
+		
+											
+			<div id="modalAccApp3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Zatwierdz</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}approve" method="POST" action="admin/approveApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value = "Zatwierdz" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelApp3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Odrzuć</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}delete" method="POST" action="admin/discardApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value="Odrzuć" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
 								</div>
 							</div>
 						</div>
@@ -673,17 +1141,48 @@
 								<div class="card-body text-center ">
 									<h3> Wniosek nr ${application.id}</h3>
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
-											${application.postCode}<c:out value=" "></c:out>${application.city}</p>
-									<form id="${application.id}approve" method="POST" action="admin/approveApp">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="applicationId" value="${application.id}"/>
-										<input type="submit" value = "Zatwierdz" class="btn btn-primary">
-									</form>
-									<form id="${application.id}delete" method="POST" action="admin/discardApp">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										<input type="hidden"  name="applicationId" value="${application.id}"/>
-										<input type="submit" value="Odrzuć" class="btn btn-danger">
-									</form>
+											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp4">Edytuj</button>
+	<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp4">Usuń</button>
+		
+											
+			<div id="modalAccApp4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Zatwierdz</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}approve" method="POST" action="admin/approveApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value = "Zatwierdz" class="btn btn-primary">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<div id="modalDelApp4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <a>Odrzuć</a>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+						<form id="${application.id}delete" method="POST" action="admin/discardApp">
+							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+							<input type="hidden"  name="applicationId" value="${application.id}"/>
+							<input type="submit" value="Odrzuć" class="btn btn-danger">
+						</form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
 								</div>
 							</div>
 						</div>
@@ -696,4 +1195,3 @@
 <jsp:include page="footer.jsp"/>
 </body>
 </html>
-

@@ -324,7 +324,6 @@
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="opinionId" value="${opinion.id}"/>
                         <h3 class="font-weight-bold text-center">Czy na pewno chcesz odwołać wizytę?</h3>
-                        </br>
                         <div class="text-center"><input class="btn btn-danger"  type="submit" value="Usuń"></div>
                       </form>
                     </div>
