@@ -163,7 +163,7 @@
       </section>
     </c:if>
     <c:if test="${!empty futureVisits && pageContext.request.userPrincipal.name != null}">
-      <section id="about" class="about-section text-center">
+      <section  class="about-section text-center">
         <div class="container">
           <div class="row">
             <div class="col-lg-8 mx-auto explainReveal">
@@ -213,6 +213,8 @@
             </div>
             </div>
             </div>
+            </div>
+          </section>
           </c:when>
           <c:when test="${stat.count % 3 == 0 && stat.count < listSize }">
             <div class="col-md-4 mb-3 mb-md-0">
@@ -231,6 +233,8 @@
             </div>
             </div>
             </div>
+            </div>
+          </section>
           <section id="contact" class="contact-section">
             <div class="container">
             <div class="row">
@@ -256,16 +260,6 @@
       </c:forEach>
     </c:if>
     </div>
-    <script>
-      function hideForm(id) {
-        var x = document.getElementById(id);
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
-      }
-    </script>
     </div>
 
   </div>

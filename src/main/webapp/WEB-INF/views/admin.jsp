@@ -161,10 +161,10 @@
 											<div class="card-body text-center ">
 												<h3> ${category.name}</h3>
 								
-								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat1">Edytuj</button>
-								<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat1">Usuń</button>
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat${category.id}">Edytuj</button>
+								<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat${category.id}">Usuń</button>
 								             				
-           						<div id="modalEditCat1" class="modal fade" role="dialog">
+           						<div id="modalEditCat${category.id}" class="modal fade" role="dialog">
                          			<div class="modal-dialog">
                                     	<div class="modal-content">
                                     		<div class="modal-header">
@@ -191,7 +191,7 @@
             					</div> 
 
 												
-              <div id="modalDelCat1" class="modal fade" role="dialog">
+              <div id="modalDelCat${category.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -219,8 +219,8 @@
 							<div class="card-body text-center ">
 								<h3> ${category.name}</h3>
 																
-								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat2">Edytuj</button>             				
-           						<div id="modalEditCat2" class="modal fade" role="dialog">
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat${category.id}">Edytuj</button>
+           						<div id="modalEditCat${category.id}" class="modal fade" role="dialog">
                          			<div class="modal-dialog">
                                     	<div class="modal-content">
                                     		<div class="modal-header">
@@ -246,9 +246,9 @@
               						</div>
             					</div>
             					
-												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat2">Usuń</button>
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat${category.id}">Usuń</button>
 												
-              <div id="modalDelCat2" class="modal fade" role="dialog">
+              <div id="modalDelCat${category.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -278,8 +278,8 @@
 								<div class="card-body text-center ">
 									<h3> ${category.name}</h3>
 
-								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat3">Edytuj</button>             				
-           						<div id="modalEditCat3" class="modal fade" role="dialog">
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat${category.id}">Edytuj</button>
+           						<div id="modalEditCat${category.id}" class="modal fade" role="dialog">
                          			<div class="modal-dialog">
                                     	<div class="modal-content">
                                     		<div class="modal-header">
@@ -305,9 +305,9 @@
               						</div>
             					</div>
             					
-													<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat3">Usuń</button>
+													<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat${category.id}">Usuń</button>
 												
-              <div id="modalDelCat3" class="modal fade" role="dialog">
+              <div id="modalDelCat${category.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -339,8 +339,8 @@
 								<div class="card-body text-center ">
 									<h3> ${category.name}</h3>
 									
-								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat4">Edytuj</button>             				
-           						<div id="modalEditCat4" class="modal fade" role="dialog">
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditCat${category.id}">Edytuj</button>
+           						<div id="modalEditCat${category.id}" class="modal fade" role="dialog">
                          			<div class="modal-dialog">
                                     	<div class="modal-content">
                                     		<div class="modal-header">
@@ -366,9 +366,9 @@
               						</div>
             					</div>
             									
-			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat4">Usuń</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelCat${category.id}">Usuń</button>
 												
-              <div id="modalDelCat4" class="modal fade" role="dialog">
+              <div id="modalDelCat${category.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -421,10 +421,10 @@
 												</p>
 												
 										
-			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes1">Edytuj</button>
-			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes1">Usuń</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes${restaurant.id}">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes${restaurant.id}">Usuń</button>
 					
-			<div id="modalEditRes1" class="modal fade" role="dialog">
+			<div id="modalEditRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -467,7 +467,7 @@
               
      
               
-              <div id="modalDelRes1" class="modal fade" role="dialog">
+              <div id="modalDelRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -499,10 +499,10 @@
 									<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 											${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
 
-			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes2">Edytuj</button>
-			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes2">Usuń</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes${restaurant.id}">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes${restaurant.id}">Usuń</button>
 					
-			<div id="modalEditRes2" class="modal fade" role="dialog">
+			<div id="modalEditRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -542,7 +542,7 @@
                 </div>
               </div>
               
-              <div id="modalDelRes2" class="modal fade" role="dialog">
+              <div id="modalDelRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -575,10 +575,10 @@
 									<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 											${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
 
-			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes3">Edytuj</button>
-			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes3">Usuń</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes${restaurant.id}">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes${restaurant.id}">Usuń</button>
 					
-			<div id="modalEditRes3" class="modal fade" role="dialog">
+			<div id="modalEditRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -618,7 +618,7 @@
                 </div>
               </div>
               
-              <div id="modalDelRes3" class="modal fade" role="dialog">
+              <div id="modalDelRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -653,10 +653,10 @@
 									<p> ul. <c:out value=" "/> ${restaurant.address.street } <c:out value=" "/> ${restaurant.address.number }<br/>
 											${restaurant.address.post_code} <c:out value=" "/> ${restaurant.address.city} </p>
 
-			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes4">Edytuj</button>
-			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes4">Usuń</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditRes${restaurant.id}">Edytuj</button>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelRes${restaurant.id}">Usuń</button>
 					
-			<div id="modalEditRes4" class="modal fade" role="dialog">
+			<div id="modalEditRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -696,7 +696,7 @@
                 </div>
               </div>
               
-              <div id="modalDelRes4" class="modal fade" role="dialog">
+              <div id="modalDelRes${restaurant.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -736,11 +736,11 @@
 										<div class="card py-4 h-100">
 											<div class="card-body text-center ">
 												<h3> ${user.username}</h3>												
-												<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr1">Edytuj</button>
-												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr1">Usuń</button>
+												<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr${user.id}">Edytuj</button>
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr${user.id}">Usuń</button>
 												
 												
-			<div id="modalEditUsr1" class="modal fade" role="dialog">
+			<div id="modalEditUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -781,7 +781,7 @@
                 </div>
               </div>
 
-			<div id="modalDelUsr1" class="modal fade" role="dialog">
+			<div id="modalDelUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -812,11 +812,11 @@
 								<div class="card-body text-center ">
 									<h3> ${user.username}</h3>
 
-<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr2">Edytuj</button>
-												<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr2">Usuń</button>
+									<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr${user.id}">Edytuj</button>
+									<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr${user.id}">Usuń</button>
 												
 												
-			<div id="modalEditUsr2" class="modal fade" role="dialog">
+			<div id="modalEditUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -857,7 +857,7 @@
                 </div>
               </div>
 
-			<div id="modalDelUsr2" class="modal fade" role="dialog">
+			<div id="modalDelUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -889,11 +889,11 @@
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
 									<h3> ${user.username}</h3>
-										<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr3">Edytuj</button>
-										<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr3">Usuń</button>
+										<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr${user.id}">Edytuj</button>
+										<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr${user.id}">Usuń</button>
 												
 												
-			<div id="modalEditUsr3" class="modal fade" role="dialog">
+			<div id="modalEditUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -934,7 +934,7 @@
                 </div>
               </div>
 
-			<div id="modalDelUsr3" class="modal fade" role="dialog">
+			<div id="modalDelUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -969,11 +969,11 @@
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
 									<h3> ${user.username}</h3>
-										<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr4">Edytuj</button>
-										<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr4">Usuń</button>
+										<button class="btn btn-primary" data-toggle="modal" data-target="#modalEditUsr${user.id}">Edytuj</button>
+										<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelUsr${user.id}">Usuń</button>
 												
 												
-			<div id="modalEditUsr4" class="modal fade" role="dialog">
+			<div id="modalEditUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1014,7 +1014,7 @@
                 </div>
               </div>
 
-			<div id="modalDelUsr4" class="modal fade" role="dialog">
+			<div id="modalDelUsr${user.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1071,11 +1071,11 @@
 													${application.city}
 											</p>
 											
-	<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp1">Zatwierdz</button>
-	<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp1">Odrzuć</button>
-		
+	<button class="btn btn-primary align-self-end" data-toggle="modal" data-target="#modalAccApp${application.id}1">Zatwierdz</button>
+	<button class="btn btn-danger align-self-end" data-toggle="modal" data-target="#modalDelApp${application.id}">Odrzuć</button>
+
 											
-			<div id="modalAccApp1" class="modal fade" role="dialog">
+			<div id="modalAccApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1093,7 +1093,7 @@
                 </div>
               </div>
 
-			<div id="modalDelApp1" class="modal fade" role="dialog">
+			<div id="modalDelApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1124,11 +1124,11 @@
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
 											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
 
-									<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp2">Zatwierdz</button>
-									<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp2">Odrzuć</button>
+									<button class="btn btn-primary align-self-end" data-toggle="modal" data-target="#modalAccApp${application.id}">Zatwierdz</button>
+									<button class="btn btn-danger align-self-end" data-toggle="modal" data-target="#modalDelApp${application.id}">Odrzuć</button>
 		
 											
-			<div id="modalAccApp2" class="modal fade" role="dialog">
+			<div id="modalAccApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1146,7 +1146,7 @@
                 </div>
               </div>
 
-			<div id="modalDelApp2" class="modal fade" role="dialog">
+			<div id="modalDelApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1179,11 +1179,11 @@
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
 											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
 
-											<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp3">Zatwierdz</button>
-											<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp3">Odrzuć</button>
+											<button class="btn btn-primary align-self-end" data-toggle="modal" data-target="#modalAccApp${application.id}">Zatwierdz</button>
+											<button class="btn btn-danger align-self-end" data-toggle="modal" data-target="#modalDelApp${application.id}">Odrzuć</button>
 		
 											
-			<div id="modalAccApp3" class="modal fade" role="dialog">
+			<div id="modalAccApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1201,7 +1201,7 @@
                 </div>
               </div>
 
-			<div id="modalDelApp3" class="modal fade" role="dialog">
+			<div id="modalDelApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1213,7 +1213,7 @@
 						<form id="${application.id}delete" method="POST" action="admin/discardApp">
 							<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 							<input type="hidden"  name="applicationId" value="${application.id}"/>
-							<input type="submit" value="Odrzuć" class="btn btn-danger">
+							<input type="submit" value="Odrzuć" class="btn btn-danger ">
 						</form>
                     </div>
                   </div>
@@ -1236,11 +1236,11 @@
 									<h3> Wniosek nr ${application.id}</h3>
 									<p>Adres: ul. <c:out value=" "></c:out> ${application.street} <c:out value=" "></c:out> ${application.number}<br/>
 											${application.post_code}<c:out value=" "></c:out>${application.city}</p>
-											<button class="btn btn-primary" data-toggle="modal" data-target="#modalAccApp4">Zatwierdz</button>
-											<button class="btn btn-danger" data-toggle="modal" data-target="#modalDelApp4">Odrzuć</button>
+											<button class="btn btn-primary align-self-end" data-toggle="modal" data-target="#modalAccApp${application.id}">Zatwierdz</button>
+											<button class="btn btn-danger align-self-end" data-toggle="modal" data-target="#modalDelApp${application.id}">Odrzuć</button>
 		
 											
-			<div id="modalAccApp4" class="modal fade" role="dialog">
+			<div id="modalAccApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1258,7 +1258,7 @@
                 </div>
               </div>
 
-			<div id="modalDelApp4" class="modal fade" role="dialog">
+			<div id="modalDelApp${application.id}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1285,7 +1285,9 @@
 			</c:forEach>
 		</c:if>
 </section>
-<jsp:include page="contact.jsp"/>
-<jsp:include page="footer.jsp"/>
+<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="${contextPath}/resources/js/grayscale.js"></script>
 </body>
 </html>

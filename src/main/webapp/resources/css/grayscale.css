@@ -481,3 +481,7 @@ footer
   color: #5A7302;
   font-size: 75%;
 }
+
+.maxw100 {
+  max-width: 100% !Important;
+}

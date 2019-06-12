@@ -120,6 +120,7 @@
           <section id="contact" class="contact-section p-5">
             <div class="container">
               <div class="card py-4 w-100 h-25">
+
               <div class="row ml-3 mr-3">
                 <div class="col-5 mb-1">	
                     <h3 class="text-center font-weight-bold">Restauracja</h3>
@@ -139,19 +140,25 @@
                    		</div>
 					</div>					
 					<div class="row">
-						<div class="col-6">
-                    		<div  class="text-center mt-1 mb-1">
-                     			<button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditVisit">Edytuj</button>	
-                    		</div>
-                    	</div>
-                    	<div class="col-6">
-                    		<div  class="text-center mt-1 mb-1">
-                      			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteVisit">Odwołaj</button>
-                    		</div>
-                    	</div>
-					</div>
+                        <div class="col">
+                            <h2 class=" font-weight-bold">Goscie</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <c:forEach items="${visit.guests}" var="guest" varStatus="stats">
+                                <p>${guest.username}</p>
+                            </c:forEach>
+                        </div>
+                    </div>
+				</div>
                 </div>
+                  <div class="col-7 mb-5">
+                      <button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditVisit">Edytuj</button>
 
+                      <button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteVisit">Odwołaj</button>
+
+                  </div>
 
                 <div id="modalEditVisit" class="modal fade" role="dialog">
                   <div class="modal-dialog">

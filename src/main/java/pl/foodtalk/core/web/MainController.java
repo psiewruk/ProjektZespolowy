@@ -15,7 +15,7 @@ public class MainController {
     public String welcome(Model model, Authentication auth) {
     	if(auth != null)
 			model.addAttribute("role", auth.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.toSet()));
-    	
+
         return "welcome";
     }
     
