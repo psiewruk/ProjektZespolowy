@@ -130,7 +130,7 @@
                 <div class="col-6 mb-5 ml-3 mr-3">
                 	<div class="row">
                 		<div class="col text-center">
-                    	<h2 class=" font-weight-bold">Opis</h2>
+                    		<h2 class=" font-weight-bold">Opis</h2>
                     	</div>
 					</div>
 					<div class="row">
@@ -140,14 +140,14 @@
 					</div>					
 					<div class="row">
 						<div class="col-6">
-                    	<div  class="text-center mt-1 mb-1">
-                     		<button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditVisit">Edytuj</button>	
-                    	</div>
+                    		<div  class="text-center mt-1 mb-1">
+                     			<button class="btn btn-secondary" data-toggle="modal" data-target="#modalEditVisit">Edytuj</button>	
+                    		</div>
                     	</div>
                     	<div class="col-6">
-                    	<div  class="text-center mt-1 mb-1">
-                      		<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteVisit">Odwołaj</button>
-                    	</div>
+                    		<div  class="text-center mt-1 mb-1">
+                      			<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteVisit">Odwołaj</button>
+                    		</div>
                     	</div>
 					</div>
                 </div>
@@ -168,7 +168,7 @@
                               <p class="mt-4">Do:</p>
                               <p class="mt-4">Opis:</p>
                             </div>
-                            <div class="col-6  mt-2">
+                            <div class="col  mt-2">
                               <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                               <input type="hidden"  name="visitId" value="${visit.id}"/>
                               <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -182,13 +182,18 @@
                               </div>
                               <input type="text" class="form-control"name="newDesc" placeholder="Nowy opis">
                             </div>
-                            <input type="submit" class="btn btn-primary mr-3" value="Edytuj">
+
+                            <div class="col text-center">
+                            	<input type="submit" class="btn btn-primary mt-3 mr-3" value="Edytuj">
+                            </div>
+
                           </div>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
+                
                 <div id="modalDeleteVisit" class="modal fade" role="dialog">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -262,12 +267,13 @@
                         <div class="modal-body">
                           <form id="${visit.start_date}addOpinion" method="POST" action="user/addOpinion">
                             <div class="row">
+                            
                               <div class="col-3">
                                 <p class="mt-3">Ocena:</p>
                                 <p class="mt-4">Tytuł:</p>
                                 <p class="mt-4">Opis:</p>
                               </div>
-                              <div class="col-5  mt-2">
+                              <div class="col mt-2">
                                 <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                                 <input type="hidden" name="opinionId" value="${opinion.id}"/>
                                 <input type="hidden" name="userId" value="${user.id}"/>
@@ -276,9 +282,13 @@
                                 <p><input type="text" class="form-control" name="name" placeholder=""/></p>
                                 <p><input type="text" class="form-control" name="desc" placeholder=""/></p>
                               </div>
-                              <input type="submit" class="btn btn-primary mr-3" value="Dodaj">
-                            </div>
-                          </form>
+                           	</div> 	
+                            <div class="col text-center">
+                            	<input type="submit" class="btn btn-primary mt-3 mr-3" value="Dodaj">
+                           	</div>
+                           	 
+                            </form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -352,7 +362,7 @@
                             <p class="mt-4">Tytuł:</p>
                             <p class="mt-4">Opis:</p>
                           </div>
-                          <div class="col-5  mt-2">
+                          <div class="col  mt-2">
                             <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                             <input type="hidden" name="opinionId" value="${opinion.id}"/>
                             <input type="hidden" name="userId" value="${user.id}"/>
@@ -360,8 +370,10 @@
                             <p><input class="form-control" type="number" name="newStar" min="0" max="10" placeholder="Ocena"/></p>
                             <p><input class="form-control" type="text" name="newName" placeholder="Tytuł"></p>
                             <p><input class="form-control" type="text" name="newDesc" placeholder="Opis"></p>
-                          </div>
-                          <input type="submit" class="btn btn-primary mr-3" value="Edytuj">
+                          </div>                                                    
+                        </div>                        
+                        <div class="col  text-center mt-2">
+                          	<input type="submit" class="btn btn-primary mr-3" value="Edytuj">
                         </div>
                       </form>
                     </div>

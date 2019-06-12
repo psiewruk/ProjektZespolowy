@@ -145,13 +145,29 @@
                   Dodaj danie
                   </button>
                 </div>
+                
                 <div class="col">
-                  <form id="${map.key.name}del" method="POST" action="manage/deleteMenu">
-                    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-                    <input type="hidden"  name="menuId" value="${map.key.id}"/>
-                    <input class="btn btn-danger" type="submit" onclick="clicked(event)" value="Usuń menu"/>
-                  </form>
+					<button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteMenu">Usuń menu</button>
                 </div>
+                
+                <div id="modalDeleteMenu" class="modal fade" role="dialog">
+                	<div class="modal-dialog">
+                    	<div class="modal-content">
+                      		<div class="modal-header">
+                        		<button type="button" class="close" data-dismiss="modal">&times;</button>
+                      		</div>
+                      		<div class="modal-body">
+                        		<form id="${map.key.name}del" method="POST" action="manage/deleteMenu">
+                    				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                    				<input type="hidden"  name="menuId" value="${map.key.id}"/>
+                    				<h3 class="font-weight-bold text-center">Czy na pewno chcesz usunąć menu - "${map.key.name}"?</h3>
+                    				<input class="btn btn-danger" type="submit" value="Usuń"/>
+                  				</form>
+                      		</div>
+                    	</div>
+                  	</div>
+                </div>
+                
               </div>
             </div>
             <div id="modalMenuName" class="modal fade" role="dialog">
@@ -243,12 +259,27 @@
                                 </button>
                               </div>
                               <div class="col">
-                                <form id="${map.key.name}del" method="POST" action="manage/deleteDish">
-                                  <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-                                  <input type="hidden"  name="dishId" value="${dish.id}"/>
-                                  <input class="btn btn-danger" type="submit" onclick="clicked(event)" value="Usuń"/>
-                                </form>
+								 <button class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteDish">Usuń</button>
                               </div>
+                              
+                              <div id="modalDeleteDish" class="modal fade" role="dialog">
+                 	 			<div class="modal-dialog">
+                    				<div class="modal-content">
+                      					<div class="modal-header">
+                        					<button type="button" class="close" data-dismiss="modal">&times;</button>
+                      					</div>
+                      					<div class="modal-body">
+                        					<form id="${map.key.name}del" method="POST" action="manage/deleteDish">
+                                  				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                                  				<input type="hidden"  name="dishId" value="${dish.id}"/>
+                                  				<h3 class="font-weight-bold text-center">Czy na pewno chcesz usunąć danie - "${dish.name}"?</h3>
+                                  				<div class="text-center"><input class="btn btn-danger"  type="submit" value="Usuń"></div>
+                                			</form>
+                      					</div>
+                    				</div>
+                  				</div>
+                			</div>
+                			
                               <div id="modalEditDish${dish.id}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                   <div class="modal-content">

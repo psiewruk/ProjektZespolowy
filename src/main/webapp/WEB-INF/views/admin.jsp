@@ -142,7 +142,7 @@
            					
 
 </section>
-<section id="catManage" style="display:none;">
+<section id="catManage" class="p-5" style="display:none;">
 	<div>
 		<div class="text-center">
 			<button class="btn btn-primary" data-toggle="modal" data-target="#modalAddCategory">Nowa kategoria</button>
@@ -393,7 +393,7 @@
 			</c:forEach>
 		</c:if>
 </section>
-<section id="resManage" style="display:none">
+<section id="resManage" class="p-5" style="display:none">
 	<div>
 		<c:if test="${!empty listRestaurants}">
 			<c:set var="listSize" value="${fn:length(listRestaurants)}"/>
@@ -722,7 +722,7 @@
 			</c:forEach>
 		</c:if>
 </section>
-<section id="userManage" style="display:none">
+<section id="userManage" class="p-5" style="display:none">
 	<div>
 		<c:if test="${!empty listUsers}">
 			<c:set var="listSize" value="${fn:length(listUsers)}"/>
@@ -1043,7 +1043,7 @@
 			</c:forEach>
 		</c:if>
 </section>
-<section id="appManage" style="display:none">
+<section id="appManage" class="p-5" style="display:none">
 	<div>
 		<c:if test="${!empty listApplications}">
 			<c:set var="listSize" value="${fn:length(listUsers)}"/>
