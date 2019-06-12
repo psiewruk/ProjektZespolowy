@@ -71,7 +71,7 @@
 		<div class="row">
 			<div class="col-lg-8 mx-auto startReveal">
 				<h1 class="text-white mb-4">Twoje konto</h1>
-				<p class="text-white-50">Przeglądaj wizity oraz oceniaj odwiedzone restauracje</p>
+				<p class="text-white-50">Przeglądaj wizyty oraz oceniaj odwiedzone restauracje</p>
 			</div>
 		</div>
 	</div>
@@ -96,7 +96,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4 p-2 mb-5">
-						<button class="btn btn-block btn-info p-5 buttonReveal-R" onclick='hideFormUser("futVisitsManage")'>Przyszłe wizity</button>
+						<button class="btn btn-block btn-info p-5 buttonReveal-R" onclick='hideFormUser("futVisitsManage")'>Przyszłe wizyty</button>
 					</div>
 					<div class="col-md-4 p-2 mb-5">
 						<button class="btn btn-block btn-secondary p-5 buttonReveal-L" onclick='hideFormUser("comVisitsManage")'>Zakończone wizyty</button>
@@ -112,7 +112,7 @@
 	</div>
 </section>
 
-<!-- ----------------------------------Przyszłe wizity---------------------------------------------- -->
+<!-- ----------------------------------Przyszłe wizyty---------------------------------------------- -->
     
     <section id="futVisitsManage" style="display:none;">
       <c:if test="${!empty futureVisits}">
@@ -220,7 +220,7 @@
       </c:if>
     </section>
     
-    <!-- ----------------------------------Zakończone wizity---------------------------------------------- -->
+    <!-- ----------------------------------Zakończone wizyty---------------------------------------------- -->
 <section id="comVisitsManage" style="display:none;">
     <c:if test="${!empty previousVisits}">
       <c:forEach items="${previousVisits}" var="visit" varStatus="stat">

@@ -93,13 +93,13 @@
               <spring:bind path="start_dateString">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                   <form:input type="datetime-local" path="start_dateString" class="form-control" placeholder="Start"
-                    autofocus="true"></form:input>
+                    autofocus="true" required="required"></form:input>
                   <form:errors path="start_dateString"></form:errors>
                 </div>
               </spring:bind>
               <spring:bind path="description">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                  <form:input type="text" path="description" class="form-control" placeholder="Opis"></form:input>
+                  <form:input type="text" path="description" class="form-control" placeholder="Opis" required="required"></form:input>
                   <form:errors path="description"></form:errors>
                 </div>
               </spring:bind>
