@@ -123,10 +123,10 @@
                     </div>
                     <div class="col ml-0">
                       <div class="text-center">
-                        <input type="text" class="form-control mb-1"name="street" placeholder="Ulica"/>
-                        <input type="text" class="form-control mb-1"name="number" placeholder="Numer budynku/lokalu"/>
-                        <input type="text" class="form-control mb-1"name="postcode" placeholder="Kod pocztowy"/>
-                        <input type="text" class="form-control mb-1"name="city" placeholder="Miasto"/>
+                        <input type="text" class="form-control mb-1"name="street" placeholder="Ulica" required/>
+                        <input type="text" class="form-control mb-1"name="number" placeholder="Numer budynku/lokalu" required pattern="^\d*(\/\d)?$"/>
+                        <input type="text" class="form-control mb-1"name="postcode" placeholder="Kod pocztowy" required pattern="\d{2}-\d{3}"/>
+                        <input type="text" class="form-control mb-1"name="city" placeholder="Miasto" required/>
                       </div>
                       <div class="col">
                         <input type="hidden" class="form-control" name="${_csrf.parameterName}"   value="${_csrf.token}"/>

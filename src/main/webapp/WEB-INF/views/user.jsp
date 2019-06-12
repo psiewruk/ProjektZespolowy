@@ -279,8 +279,8 @@
                                 <input type="hidden" name="userId" value="${user.id}"/>
                                 <input type="hidden" name="restaurantId" value="${visit.restaurant.id}"/>
                                 <p><input type="number" class="form-control" name="star" min="0" max="10" placeholder="Od 0 do 10"/></p>
-                                <p><input type="text" class="form-control" name="name" placeholder=""/></p>
-                                <p><input type="text" class="form-control" name="desc" placeholder=""/></p>
+                                <p><input type="text" class="form-control" name="name" placeholder="" required/></p>
+                                <p><input type="text" class="form-control" name="desc" placeholder="" required/></p>
                               </div>
                            	</div> 	
                             <div class="col text-center">
