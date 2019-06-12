@@ -141,7 +141,7 @@
 					</div>					
 					<div class="row">
                         <div class="col">
-                            <h2 class=" font-weight-bold">Goscie</h2>
+                            <h2 class=" font-weight-bold">Goście</h2>
                         </div>
                     </div>
                     <div class="row">
