@@ -1115,8 +1115,8 @@
 										</div>
 									</div>
 								</div>
-					</c:when>
-					<c:when test="${ stat.count == listSize }">
+						</c:when>
+						<c:when test="${ stat.count == listSize }">
 						<div class="col-md-4 mb-3 mb-md-0">
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
@@ -1285,9 +1285,15 @@
 			</c:forEach>
 		</c:if>
 </section>
+<<<<<<< HEAD
 <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="${contextPath}/resources/js/grayscale.js"></script>
+=======
+
+	<jsp:include page="contact.jsp"/>
+	<jsp:include page="footer.jsp"/>
+>>>>>>> a563d0af8e5f7ac28a4e36d0d15372f7241ee1aa
 </body>
 </html>

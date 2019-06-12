@@ -19,8 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="${contextPath}/resources/css/grayscale.min.css" rel="stylesheet">
   </head>
-  <body id="page-top">
-  <div class="bg-seamless">
+  <body id="page-top" class="bg-seamless">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="${contextPath}/welcome">FoodTalk</a>
@@ -261,8 +260,7 @@
     </c:if>
     </div>
     </div>
-
-  </div>
+            <section class="contact-section">
     <jsp:include page="contact.jsp"/>
     <jsp:include page="footer.jsp"/>
   </body>

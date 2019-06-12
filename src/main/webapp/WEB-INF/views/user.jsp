@@ -410,7 +410,7 @@
         </section>
       </c:forEach>
     </c:if>
-</section>
+   </section>
 
     <jsp:include page="contact.jsp"></jsp:include>
     <jsp:include page="footer.jsp"></jsp:include>
