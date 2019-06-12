@@ -227,7 +227,9 @@
                         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                         <input type="hidden"  name="menuId" value="${map.key.id}"/>
                         <input type="hidden"  name="restaurantId" value="${restaurant.id}"/>
-                        <input type="submit" class="btn btn-primary mr-3" value="Dodaj">
+                      </div>
+                      <div class="col text-center">
+                      	<input type="submit" class="btn btn-primary mr-3" value="Dodaj">
                       </div>
                     </form>
                   </div>
@@ -304,8 +306,10 @@
                                           </div>
                                           <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                                           <input type="hidden" name="dishId" value="${dish.id}"/>
-                                          <input type="hidden" name="restaurantId" value="${restaurant.id}"/>
-                                          <input type="submit" class="btn btn-primary" value="Zapisz">
+                                          <input type="hidden" name="restaurantId" value="${restaurant.id}"/>                                          
+                                        </div>
+                                        <div class="col text-center">
+                                        	<input type="submit" class="btn btn-primary" value="Zapisz">
                                         </div>
                                       </form>
                                     </div>
