@@ -341,5 +341,8 @@
         }
       </script>
     </div>
+    
     <jsp:include page="contact.jsp"/>
     <jsp:include page="footer.jsp"/>
+  </body>
+</html>

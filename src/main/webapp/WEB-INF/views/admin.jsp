@@ -1115,8 +1115,8 @@
 										</div>
 									</div>
 								</div>
-					</c:when>
-					<c:when test="${ stat.count == listSize }">
+						</c:when>
+						<c:when test="${ stat.count == listSize }">
 						<div class="col-md-4 mb-3 mb-md-0">
 							<div class="card py-4 h-100">
 								<div class="card-body text-center ">
@@ -1285,7 +1285,8 @@
 			</c:forEach>
 		</c:if>
 </section>
-<jsp:include page="contact.jsp"/>
-<jsp:include page="footer.jsp"/>
+
+	<jsp:include page="contact.jsp"/>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>
